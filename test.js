@@ -1,87 +1,59 @@
 function autocomplete(inp) {
-    /*the autocomplete function takes two arguments,
-    the text field element and an array of possible autocompleted values:*/
     var currentFocus;
-    /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function (e) {
         var a, b, i, val = this.value;
-        /*close any already open lists of autocompleted values*/
         closeAllLists();
         if (!val) { return false; }
         currentFocus = -1;
-        /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
-        /*append the DIV element as a child of the autocomplete container:*/
         this.parentNode.appendChild(a);
-        /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
-            /*check if the item starts with the same letters as the text field value:*/
             if (arr[i].cauHoi.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                /*create a DIV element for each matching element:*/
                 b = document.createElement("DIV");
-                /*make the matching letters bold:*/
                 b.innerHTML = "<strong>" + arr[i].cauHoi.substr(0, val.length) + "</strong>";
-                b.innerHTML += arr[i].cauHoi.substr(val.length);
-                /*insert a input field that will hold the current array item's value:*/
-                b.innerHTML += "<input type='hidden' value='" + arr[i].cauHoi + "'>";
-                /*execute a function when someone clicks on the item value (DIV element):*/
-                b.addEventListener("click", function (e) {
-                    /*insert the value for the autocomplete text field:*/
-                    inp.value = this.getElementsByTagName("input")[0].value;
-                    /*close the list of autocompleted values,
-                    (or any other open lists of autocompleted values:*/
+                b.innerHTML += arr[i].cauHoi.substr(val.length);            
+                b.innerHTML += "<input type='hidden' value='" + arr[i].cauHoi + "'>";    
+                b.addEventListener("click", function (e) {                 
+                  inp.value = this.getElementsByTagName("input")[0].value;                  
                     closeAllLists();
                 });
                 a.appendChild(b);
             }
         }
     });
-    /*execute a function presses a key on the keyboard:*/
     inp.addEventListener("keydown", function (e) {
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
         if (e.keyCode == 40) {
-            /*If the arrow DOWN key is pressed,
-            increase the currentFocus variable:*/
             currentFocus++;
-            /*and and make the current item more visible:*/
             addActive(x);
-        } else if (e.keyCode == 38) { //up
-            /*If the arrow UP key is pressed,
-            decrease the currentFocus variable:*/
+        } else if (e.keyCode == 38) { 
             currentFocus--;
-            /*and and make the current item more visible:*/
+
             addActive(x);
-        } else if (e.keyCode == 13) {
-            /*If the ENTER key is pressed, prevent the form from being submitted,*/
-            e.preventDefault();
-            if (currentFocus > -1) {
-                /*and simulate a click on the "active" item:*/
+        } else if (e.keyCode == 13) {     
+           e.preventDefault();
+            if (currentFocus > -1) {      
                 if (x) x[currentFocus].click();
             }
         }
     });
     function addActive(x) {
-        /*a function to classify an item as "active":*/
-        if (!x) return false;
-        /*start by removing the "active" class on all items:*/
+   if (!x) return false;
         removeActive(x);
         if (currentFocus >= x.length) currentFocus = 0;
         if (currentFocus < 0) currentFocus = (x.length - 1);
-        /*add class "autocomplete-active":*/
+
         x[currentFocus].classList.add("autocomplete-active");
     }
     function removeActive(x) {
-        /*a function to remove the "active" class from all autocomplete items:*/
         for (var i = 0; i < x.length; i++) {
             x[i].classList.remove("autocomplete-active");
         }
     }
     function closeAllLists(elmnt) {
-        /*close all autocomplete lists in the document,
-        except the one passed as an argument:*/
         var x = document.getElementsByClassName("autocomplete-items");
         for (var i = 0; i < x.length; i++) {
             if (elmnt != x[i] && elmnt != inp) {
@@ -89,497 +61,1371 @@ function autocomplete(inp) {
             }
         }
     }
-    /*execute a function when someone clicks in the document:*/
+
     document.addEventListener("click", function (e) {
         closeAllLists(e.target);
     });
 }
 
-/*An array containing all the country names in the world:*/
 let arr = [
 
         {
-            cauHoi :  "Chính phủ là cơ quan nhà nước có đặc điểm nào dưới đây?",
-            dapAn :  "Chính phủ là cơ quan hành pháp"
+           cauHoi:"C.Mác và Ph. Angghen đã chia chủ nghĩa cộng sản thành bao nhiêu giai đoạn phát triển?",
+           dapAn:"2"
         },
         {
-            cauHoi :  "Các thành tố của hệ thống pháp luật là:",
-            dapAn :  "Quy phạm pháp luật, chế định pháp luật, ngành luật"
+           cauHoi:"Thời kỳ quá độ lên chủ nghĩa xã hội được tính từ khi?",
+           dapAn:"Cách mạng tháng Mười Nga 1917"
         },
         {
-            cauHoi :  "Ở Việt Nam, văn bản luật do cơ quan nào dưới đây ban hành?",
-            dapAn :  "Quốc hội"
+           cauHoi:"Hồ Chí Minh đi tìm đường cứu nước bắt đầu từ đâu?",
+           dapAn:"TP. Hồ Chí Minh"
         },
         {
-            cauHoi :  "Chọn phương án điền vào chỗ trống: “…………. là văn bản quy phạm pháp luật do Quốc hội - Cơ quan quyền lực nhà nước cao nhất - ban hành”",
-            dapAn :  "Văn bản luật"
+           cauHoi:"Chủ nghĩa xã hội khoa học ra đời từ điều kiện kinh tế - xã hội nào?",
+           dapAn:"Sự phát triển lớn mạnh của phương thức sản xuất tư bản và sự lớn mạnh của giai cấp công nhân"
         },
         {
-            cauHoi :  "Điều 29 khoản 2 của Bộ luật Dân sự năm 2015 quy định: “Cá nhân khi sinh ra được xác định dân tộc theo dân tộc của cha đẻ, mẹ đẻ. Trường hợp cha đẻ, mẹ đẻ thuộc hai dân tộc khác nhau thì dân tộc của con được xác định theo dân tộc của cha đẻ hoặc mẹ đẻ theo thỏa thuận của cha đẻ, mẹ đẻ; trường hợp không có thỏa thuận thì dân tộc của con được xác định theo tập quán; trường hợp tập quán khác nhau thì dân tộc của con được xác định theo tập quán của dân tộc ít người hơn”. Trong quy định này, có mấy quy phạm pháp luật?",
-            dapAn :  "4"
+           cauHoi:"Trước khi có học thuyết Mác, kết quả các phong trào đấu tranh của giai cấp vô sản chống giai cấp tư sản đều?",
+           dapAn:"Thất bại"
         },
         {
-            cauHoi :  "Phần tử nhỏ nhất tạo nên hệ thống pháp luật Việt Nam là gì?",
-            dapAn :  "Quy phạm pháp luật"
+           cauHoi:"Trong lịch sử phát triển các hình thái kinh tế - xã hội, chính trị xuất hiện vào thời kỳ?",
+           dapAn:"Chiếm hữu nô lệ"
         },
         {
-            cauHoi :  "Trong Nhà nước CHXHCN Việt Nam, quyền lực Nhà nước thuộc về lực lượng nào dưới đây?",
-            dapAn :  "Không đáp án nào đúng"
+           cauHoi:"Chức năng cơ bản của môn học chính trị trong trường nghề là?",
+           dapAn:"Nhận thức khoa học và giáo dục tư tưởng phẩm chất đạo đức, lối sống"
         },
         {
-            cauHoi :  "Cơ quan nào dưới đây thuộc hệ thống các cơ quan quản lý trong bộ máy nhà nước của Việt Nam?",
-            dapAn :  "Chính phủ"
+           cauHoi:"Sự phát minh và ứng dụng rộng rãi các thành tựu khoa học (cả khoa học lý luận và khoa học tự nhiên) cuối thế kỷ XIX ở Châu Âu đã tác động như thế nào đến chủ nghĩa Mác?",
+           dapAn:"Củng cố về lý luận và cơ sở khoa học"
         },
         {
-            cauHoi :  "Theo quy định của pháp luật Việt Nam, khi các văn bản có quy định khác nhau về cùng một vấn đề thì áp dụng quy định của:",
-            dapAn :  "Văn bản có hiệu lực pháp lý cao hơn"
+           cauHoi:"Chức năng chung của môn học chính trị là?",
+           dapAn:"Góp phần đào tạo người lao động nhận thức đúng về tri thức khoa học chính trị và rèn luyện phẩm chất chính trị phù hợp"
         },
         {
-            cauHoi :  "Ngành luật nào không có trong hệ thống pháp luật Việt Nam?",
-            dapAn :  "Ngành luật doanh nghiệp"
+           cauHoi:"Sau khi học xong môn học chính trị người học cần vận dụng kiến thức như thế nào?",
+           dapAn:"Để rèn luyện trở thành người lao động có phẩm chất chính trị vững vàng, đạo đức tốt, năng lực công tác"
         },
         {
-            cauHoi :  "Trong bộ máy Nhà nước Cộng hòa xã hội chủ nghĩa Việt Nam thì Quốc hội là:",
-            dapAn :  "Cả A, B, C đều đúng"
+           cauHoi:"Chủ nghĩa Mác - Lênin do ai sáng lập nên?",
+           dapAn:"Mác - Ăngghen"
         },
         {
-            cauHoi :  "Người đứng đầu cơ quan hành pháp trong bộ máy nhà nước của Việt Nam là:",
-            dapAn :  "Thủ tướng chính phủ"
+           cauHoi:"Nguồn gốc lý luận trực tiếp hình thành nên chủ nghĩa xã hội khoa học là:",
+           dapAn:"Chủ nghĩa xã hội không tưởng ở Pháp"
         },
         {
-            cauHoi :  "Tiêu chí nào dưới đây không được sử dụng để xác định cơ quan nhà nước thuộc bộ máy nhà nước?",
-            dapAn :  "Cơ quan nhà nước hoạt động trên cơ sở kinh phí do tư nhân cung cấp"
+           cauHoi:"Đâu là hệ tư tưởng tiến bộ nhất, giúp nhân dân lao động và thuộc địa giành lại độc lập, tự do?",
+           dapAn:"Chủ nghĩa Mác - Lênin"
         },
         {
-            cauHoi :  "Cơ quan nào dưới đây không thuộc hệ thống cơ quan xét xử trong bộ máy nhà nước của Việt Nam?",
-            dapAn :  "Viện kiểm sát nhân dân"
+           cauHoi:"Chính trị xuất hiện khi nào?",
+           dapAn:"Khi xã hội có sự phân chia giai cấp"
         },
         {
-            cauHoi :  "Quyền “lập hiến và lập pháp” thuộc về cơ quan nào dưới đây trong bộ máy nhà nước của Việt Nam?",
-            dapAn :  "Quốc hội"
+           cauHoi:"Mác, Ph.Ăngghen có mối quan hệ gắn bó và hiểu biết sâu sắc các phong trào của giai cấp nào?",
+           dapAn:"Giai cấp công nhân"
         },
         {
-            cauHoi :  "Hiến pháp năm 2013 bao gồm bao nhiêu chương, bao nhiêu điều?",
-            dapAn :  "11 chương, 120 điều"
+           cauHoi:"Các cuộc đấu tranh tiêu biểu của giai cấp công nhân đầu thế kỷ XIX làm tiền đề hình thành chủ nghĩa Mác là?",
+           dapAn:"Phong trào công nhân dệt ở Lyon (Pháp), Hiến chương của công nhân Anh, Công nhân dệt ở Xilêđi (Đức)"
         },
         {
-            cauHoi :  "“Xây dựng con người Việt Nam có sức khỏe, văn hóa, giàu lòng yêu nước, có tinh thần đoàn kết, ý thức làm chủ, trách nhiệm công dân” là mục đích của chính sách nào được quy định trong Hiến pháp năm 2013?",
-            dapAn :  "Chính sách văn hóa"
+           cauHoi:"Những thành tựu khoa học tự nhiên là cơ sở khoa học trực tiếp hình thành chủ nghĩa Mác là:",
+           dapAn:"Học thuyết về sự tiến hóa các loài của Đacuyn, Định luật bảo toàn và chuyển hóa năng lượng của Lomoloxop, Thuyết tiến hóa các loài của Svac, Slaydel"
         },
         {
-            cauHoi :  "Chính phủ Việt Nam đặt ra mục tiêu 1 triệu doanh nghiệp hoạt động trên thị trường Việt Nam. Chính phủ đang thực hiện chính sách nào được quy định trong Hiến pháp năm 2013?",
-            dapAn :  "Chính sách kinh tế"
+           cauHoi:"Ph. Ăngghen đã chia vận động của vật chất thành bao nhiêu hình thức cơ bản?",
+           dapAn:"5"
         },
         {
-            cauHoi :  "Để thực hiện chính sách Khoa học và Công nghệ theo Hiến pháp năm 2013, Nhà nước Việt Nam:",
-            dapAn :  "Bảo hộ quyền sở hữu trí tuệ"
+           cauHoi:"Theo chủ nghĩa Mác – Lênin, mối quan hệ giữa vật chất và ý thức được thể hiện như thế nào?",
+           dapAn:"Vật chất có trước, ý thức có sau, vật chất quyết định ý thức, thức có sự tác động trở lại đối với vật chất"
         },
         {
-            cauHoi :  "Theo Hiến pháp năm 2013, hình thức lao động nào dưới đây bị cấm?",
-            dapAn :  "Lao động cưỡng bức"
+           cauHoi:"Trong các hình thức vận động sau của vật chất thì hình thức vận động nào là cao nhất?",
+           dapAn:"Xã hội"
         },
         {
-            cauHoi :  "Ở Việt Nam, Hiến pháp do ai ban hành?",
-            dapAn :  "Quốc hội"
+           cauHoi:"Phép biện chứng duy vật có những nguyên lý cơ bản là:",
+           dapAn:"Nguyên lý về mối liên hệ phổ biến và nguyên lý về sự phát triển"
         },
         {
-            cauHoi :  "Ở Việt Nam hiện nay, hệ thống tòa án được tổ chức gồm:",
-            dapAn :  "Tòa án nhân dân tối cao; Tòa án nhân dân cấp cao; Tòa án nhân dân cấp tỉnh; Tòa án nhân dân cấp huyện."
+           cauHoi:"Phát triển là một khuynh hướng của vận động đối với các sự vật hiện tượng bao gồm :",
+           dapAn:"Đi từ thấp đến cao, từ đơn giản đến phức tạp, kém hoàn thiện đến hoàn thiện hơn, bao hàm cả sự thụt lùi đi xuống làm tiền đề cho sự phát triển"
         },
         {
-            cauHoi :  "Hiến pháp Việt Nam năm 2013 xác định phát triển khoa học và công nghệ là:",
-            dapAn :  "Quốc sách hàng đầu, giữ vai trò then chốt trong sự nghiệp phát triển kinh tế - xã hội của đất nước."
+           cauHoi:"Phản ánh đặc biệt của bộ óc con người với hiện thực khách quan được thể hiện như thế nào?",
+           dapAn:"Phản ánh có sự tích cực, chủ động, sáng tạo; có quy trình tự trao đổi thông tin giữa chủ thể và đối tượng có chọn lọc và định hướng, mô hình hóa trong tư duy, hiện thực hóa qua hoạt đông thực tiễn"
         },
         {
-            cauHoi :  "Mục đích phát triển kinh tế theo Hiến pháp là:",
-            dapAn :  "Dân giàu, nước mạnh, công bằng, dân chủ, văn minh"
+           cauHoi:"Theo lý luận của chủ nghĩa Mác – Lênin, ý thức được hình thành từ các nguồn gốc?",
+           dapAn:"Tự nhiên, xã hội"
         },
         {
-            cauHoi :  "Theo Hiến pháp năm 2013, văn hóa Việt Nam được bảo tồn và phát triển với phương châm:",
-            dapAn :  "Tiên tiến, đậm đà bản sắc dân tộc, tiếp thu tinh hoa văn hóa nhân loại"
+           cauHoi:"Theo chủ nghĩa Mác – Lênin, bản chất của ý thức được hình thành như thế nào?",
+           dapAn:"Phản ánh thế giới khách quan vào bộ óc người"
         },
         {
-            cauHoi :  "Đại hội Đảng toàn quốc lần thứ XI khẳng định nền kinh tế Việt Nam là nền kinh tế thị trường định hướng xã hội chủ nghĩa có bao nhiêu hình thức sở hữu?",
-            dapAn :  "4"
+           cauHoi:"Định nghĩa “Vật chất là một phạm trù của triết học dùng để chỉ thực tại khách quan, được đem lại cho con người trong cảm giác, được cảm giác chép lại, chụp lại, phản ánh không lệ thuộc vào cảm giác” của nhà tư tưởng nào?",
+           dapAn:"V.I.Lênin"
         },
         {
-            cauHoi :  "Tính đến năm 2018, Việt Nam có mấy bản Hiến pháp?",
-            dapAn :  "5"
+           cauHoi:"Giai đoạn sau của quá trình nhận thức (nhận thức lý tính) ở con người, bao gồm:",
+           dapAn:"Từ khái niệm đến phán đoán và suy lý"
         },
         {
-            cauHoi :  "Theo Hiến pháp năm 2013, bảo vệ Tổ quốc Việt Nam XHCN là:",
-            dapAn :  "Tất cả đều đúng"
+           cauHoi:"Đâu là một trong những giai đoạn của quá trình nhận thức?",
+           dapAn:"Trực quan sinh động"
         },
         {
-            cauHoi :  "“Bảo vệ các quyền và lợi ích hợp pháp của bà mẹ, trẻ em trong quan hệ gia đình” là một trong những mục đích của chính sách nào được quy định trong Hiến pháp năm 2013?",
-            dapAn :  "Chính sách xã hội"
+           cauHoi:"Giai đoạn đầu của quá trình nhận thức (nhận thức cảm tính) ở con người, bao gồm:",
+           dapAn:"Từ cảm giác đến tri giác và biểu tượng"
         },
         {
-            cauHoi :  "Theo Hiến pháp năm 2013, công dân nước Cộng hòa xã hội chủ nghĩa Việt Nam là:",
-            dapAn :  "Người có quốc tịch Việt Nam"
+           cauHoi:"Nguyên nhân của sự phát triển trong các sự vật hiện tượng là?",
+           dapAn:"Do sự liên hệ tác động qua lại giữa các mặt, các yếu tố bên trong của sự vật hiện tượng"
         },
         {
-            cauHoi :  "Ai là người trong hội đồng xét xử được tham gia nghị án trong phiên tòa hình sự sơ thẩm?",
-            dapAn :  "Thẩm phán và Hội thẩm nhân dân"
+           cauHoi:"Ý nghĩa phương pháp luận của nguyên lý về mối liên hệ phổ biến là?",
+           dapAn:"Có quan điểm toàn diện trong nhìn nhận và đánh giá về sự vật và hiện tượng"
         },
         {
-            cauHoi :  "Theo pháp luật tố tụng hình sự Việt Nam, trong giai đoạn khởi tố vụ án hình sự, việc xác định dấu hiệu tội phạm không dựa vào cơ sở nào dưới đây?",
-            dapAn :  "Tố giác của công dân"
+           cauHoi:"Quy trình nhận thức của con người trải qua các giai đoạn nào sau đây?",
+           dapAn:"Từ trực quan sinh động đến tư duy trừu tượng"
         },
         {
-            cauHoi :  "Giám đốc thẩm là xét xử lại vụ án đã có hiệu lực pháp luật khi:",
-            dapAn :  "Phát hiện sai phạm trong quy trình tố tụng"
+           cauHoi:"Trong quan hệ sản xuất, yếu tố nào mang tính quyết định nhất ?",
+           dapAn:"Quan hệ sở hữu về tư liệu sản xuất"
         },
         {
-            cauHoi :  "Theo Bộ luật Hình sự năm 2015, trục xuất là hình phạt được áp dụng cho:",
-            dapAn :  "Người nước ngoài phạm tội trên lãnh thổ Việt Nam"
+           cauHoi:"Vai trò của thực tiễn đối với hoạt động nhận thức của con người là?",
+           dapAn:"Là cơ sở, nguồn gốc của nhận thức, động lực, mục đích của nhận thức, tiêu chuẩn của chân lý"
         },
         {
-            cauHoi :  "Theo pháp luật tố tụng hình sự Việt Nam, hội đồng xét xử phúc thẩm một vụ án hình sự bao gồm:",
-            dapAn :  "3 thẩm phán, trong trường hợp cần thiết có thêm hai hội thẩm nhân dân"
+           cauHoi:"Đảng ta chủ trương phát triển lực lượng sản xuất bằng cách?",
+           dapAn:"Thực hiện công cuộc công nghiệp hóa, hiện đại hóa gắn với kinh tế tri thức"
         },
         {
-            cauHoi :  "Ông A phạm tội ít nghiêm trọng. Thời hiệu truy cứu trách nhiệm hình sự đối với ông A là:",
-            dapAn :  "5 năm kể từ ngày tội phạm được thực hiện"
+           cauHoi:"Theo lý luận của chủ nghĩa Mác – Lênin, nguồn gốc vận động của vật chất là:",
+           dapAn:"Tự thân vận động, do mâu thuẫn bên trong quyết định"
         },
         {
-            cauHoi :  "Theo Bộ luật Hình sự năm 2015, thời hiệu truy cứu trách nhiệm hình sự là 05 năm được áp dụng đối với:",
-            dapAn :  "Tội phạm ít nghiêm trọng"
+           cauHoi:"Trong lực lượng sản xuất, yếu tố nào cách mạng nhất?",
+           dapAn:"Công cụ lao động"
         },
         {
-            cauHoi :  "Theo pháp luật tố tụng hình sự Việt Nam, quy trình giải quyết một vụ án hình sự gồm:",
-            dapAn :  "5 giai đoạn"
+           cauHoi:"Hoạt động thực tiễn là hoạt động vật chất của con người tác động vào thế giới khách quan bao gồm những thình thức nào?",
+           dapAn:"Hoạt động sản xuất vật chất, hoạt động chính trị - xã hội, hoạt động thực nghiệm khoa học"
         },
         {
-            cauHoi :  "Chủ thể nào dưới đây khi phạm tội phải chịu trách nhiệm hình sự?",
-            dapAn :  "Công ty TNHH M"
+           cauHoi:"Phương thức sản của một hình thái kinh tế xã hội là gì?",
+           dapAn:"Cách thức tiến hành tổ chức sản xuất vật chất"
         },
         {
-            cauHoi :  "Theo pháp luật tố tụng hình sự Việt Nam, trong quy trình giải quyết một vụ án hình sự, giai đoạn nào dưới đây được thực hiện bởi cơ quan công an có thẩm quyền?",
-            dapAn :  "Xét xử"
+           cauHoi:"Động lực chủ yếu của tiến bộ xã hội là?",
+           dapAn:"Sự phát triển của lực lượng sản xuất"
         },
         {
-            cauHoi :  "Các hình thức xử phạt vi phạm hành chính bao gồm:",
-            dapAn :  "Cảnh cáo, phạt tiền, tước quyền sử dụng giấy phép, tịch thu tang vật, phương tiện được sử dụng để vi phạm hành chính, buộc tháo dỡ khôi phục tình trạng ban đầu."
+           cauHoi:"Phép biện chứng duy vật có những quy luật cơ bản là?",
+           dapAn:"Quy luật mâu thuẫn, quy luật lượng - chất, quy luật phủ định của phủ định"
         },
         {
-            cauHoi :  "Phương pháp điều chỉnh của pháp luật hình sự là:",
-            dapAn :  "Quyền uy"
+           cauHoi:"Theo chủ nghĩa Mác –Lênin, tính thống nhất của thế giới thể hiện ở?",
+           dapAn:"Tính vật chất"
         },
         {
-            cauHoi :  "Trình tự xét xử tại một phiên tòa hình sự bao gồm:",
-            dapAn :  "Khai mạc, xét hỏi, tranh luận, nghị án, tuyên án"
+           cauHoi:"Vai trò của một phương thức sản xuất đối với sự phát triển xã hội là:",
+           dapAn:"Quyết định tính chất của xã hội, tổ chức kết cấu của một xã hội, sự chuyển hóa của xã hội loài người qua các giai đoạn lịch sử"
         },
         {
-            cauHoi :  "Theo Bộ luật Hình sự năm 2015, thời hiệu truy cứu trách nhiệm hình sự là 20 năm được áp dụng đối với:",
-            dapAn :  "Tội phạm đặc biệt nghiêm trọng"
+           cauHoi:"Quan hệ sản xuất là?",
+           dapAn:"Mối quan hệ giữa con người với con người trong quá trình tổ chức sản xuất"
         },
         {
-            cauHoi :  "Theo pháp luật hình sự Việt Nam, nhận định nào dưới đây là đúng khi nói về pháp nhân thương mại phạm tội?",
-            dapAn :  "Không có đáp án nào đúng"
+           cauHoi:"Phương thức sản xuất bao gồm những yếu tố nào sau đây?",
+           dapAn:"Lực lượng sản xuất và Quan hệ sản xuất"
         },
         {
-            cauHoi :  "Theo Luật Xử lý vi phạm hành chính năm 2012, việc áp dụng biện pháp xử lý hành chính phải:",
-            dapAn :  "Nhanh chóng, công khai, khách quan, đúng thẩm quyền, đảm bảo công bằng, đúng quy định"
+           cauHoi:"Thực chất của đấu tranh giai cấp trong lịch sử xã hội loài người là?",
+           dapAn:"Đấu tranh vì lợi ích kinh tế không thể điều hòa được"
         },
         {
-            cauHoi :  "Điều 8 khoản 1 Nghị định số 42/2019/NĐ-CP của Chính phủ ngày 16/05/2019 quy định: “Phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng đối với hành vi không thực hiện đúng nội dung văn bản chấp thuận hoặc phương án khai thác loài thủy sản nguy cấp, quý hiếm.” Nếu một tổ chức vi phạm quy định này và không có tình tiết tăng nặng hoặc giảm nhẹ, tổ chức đó bị xử phạt khoản tiền là:",
-            dapAn :  "60 triệu đồng"
+           cauHoi:"Mối quan hệ biện chứng giữa lực lượng sản xuất và quan hệ sản xuất trong quy luật phát triển xã hội được thể hiện như thế nào?",
+           dapAn:"Lực lượng sản xuất quyết định quan hệ sản xuất, quan hệ sản xuất có sự tác động trở lại đối với lực lượng sản xuất"
         },
         {
-            cauHoi :  "Dấu hiệu vi phạm hành chính bao gồm:",
-            dapAn :  "Tất cả đều đúng"
+           cauHoi:"Trong nền sản xuất lớn hiện đại, yếu tố nào giữ vai trò quyết định trong quá trình sản xuất?",
+           dapAn:"Sức lao động"
         },
         {
-            cauHoi :  "Theo Luật Xử lý vi phạm hành chính năm 2012, một hành vi vi phạm hành chính có thể bị xử phạt bao nhiêu lần?",
-            dapAn :  "1 lần"
+           cauHoi:"Trong kinh tế, phương thức sản xuất hàng hóa phát triển mạnh nhất trong hình thái kinh tế - xã hội nào?",
+           dapAn:"Tư bản chủ nghĩa"
         },
         {
-            cauHoi :  "Ông H chạy xe mô tô trên đường và bị công an kiểm tra nồng độ cồn. Nồng độ cồn của ông H là 0,8 miligram/1 lít khí thở. Theo Nghị định số 46/2016/NĐ-CP ngày 26/05/2016 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực giao thông đường bộ và đường sắt, ông H bị xử phạt tiền ở mức từ 3 triệu đồng đến 4 triệu đồng. Mức tiền phạt tối thiểu mà ông H phải nộp, trong tình huống có tình tiết giảm nhẹ là:",
-            dapAn :  "3 triệu đồng"
+           cauHoi:"Đâu là thuộc tính của hàng hóa?",
+           dapAn:"Giá trị"
         },
         {
-            cauHoi :  "Theo Luật Xử lý vi phạm hành chính năm 2012, hình thức xử phạt nào dưới đây có thể là hình thức xử phạt chính hoặc là hình thức xử phạt bổ sung?",
-            dapAn :  "Tịch thu phương tiện được sử dụng để vi phạm hành chính"
+           cauHoi:"Trong các khâu của quá trình sản xuất, khâu nào giữ vai trò quyết định?",
+           dapAn:"Sản xuất"
         },
         {
-            cauHoi :  "Xử phạt vi phạm hành chính không bao gồm nguyên tắc nào dưới đây?",
-            dapAn :  "Một hành vi vi phạm hành chính có thể bị xử phạt nhiều lần"
+           cauHoi:"Trong tư liệu lao động, bộ phận nào quyết định đến năng suất lao động?",
+           dapAn:"Công cụ lao động"
         },
         {
-            cauHoi :  "Theo Luật Xử lý vi phạm hành chính năm 2012, biện pháp ngăn chặn và bảo đảm xử lý vi phạm hành chính không bao gồm biện pháp nào dưới đây?",
-            dapAn :  "Buộc thu hồi sản phẩm, hàng hóa không đảm bảo chất lượng"
+           cauHoi:"Để sức lao động trở thành hàng hóa cần có bao nhiêu điều kiện cơ bản?",
+           dapAn:"2"
         },
         {
-            cauHoi :  "Một số yếu tố có thể kết hợp khi xác định hành vi vi phạm pháp luật hành chính không bao gồm:",
-            dapAn :  "Cách thức thực hiện hành vi"
+           cauHoi:"Một trong những phát kiến địa lý quan trọng làm cơ sở cho chủ nghĩa thực dân ra đời là?",
+           dapAn:"Tìm ra châu Mỹ"
         },
         {
-            cauHoi :  "Lỗi cố ý trong vi phạm hành chính thường được hiểu là:",
-            dapAn :  "Đã nhận thức được hành vi của mình là nguy hiểm cho xã hội, bị pháp luật cấm thực hiện nhưng vẫn thực hiện"
+           cauHoi:"Hàng hóa có bao nhiêu thuộc tính?",
+           dapAn:"2"
         },
         {
-            cauHoi :  "Cơ quan nào sau đây không thuộc cơ quan hành chính nhà nước?",
-            dapAn :  "Hội đồng nhân dân"
+           cauHoi:"Hàng hóa có thuộc tính cơ bản là?",
+           dapAn:"Giá trị và giá trị sử dụng"
         },
         {
-            cauHoi :  "Cơ sở để truy cứu trách nhiệm hành chính là:",
-            dapAn :  "Vi phạm hành chính"
+           cauHoi:"Để tích lũy nguyên thủy tư bản, chủ nghĩa tư bản đã dùng thủ đoạn nào?",
+           dapAn:"Dùng bạo lực tàn khốc, dã man, tước đoạt, cướp bóc, tăng thuế"
         },
         {
-            cauHoi :  "Ông X đèo con mình là em K (15 tuổi) trên một chiếc xe mô tô. Ông X vượt đèn đỏ và bị công an dừng xe và xử phạt. Nhận định nào dưới đây là đúng?",
-            dapAn :  "Chỉ ông X phải nộp phạt"
+           cauHoi:"Trong kinh tế chính trị Mác, học thuyết nào sau đây được gọi là hòn đá tảng?",
+           dapAn:"Học thuyết giá trị thặng dư"
         },
         {
-            cauHoi :  "Quan hệ pháp luật hành chính nội bộ là:",
-            dapAn :  "Quan hệ pháp luật điều chỉnh mối quan hệ giữa các chủ thể có mối quan hệ lệ thuộc về mặt tổ chức"
+           cauHoi:"Chủ ngĩa đế quốc là gì?",
+           dapAn:"Chính sách mở rộng quyền lực và tầm ảnh hưởng của một quốc gia thông qua hoạt động thuộc địa hóa bằng vũ lực hoặc các phương thức khác"
         },
         {
-            cauHoi :  "Theo Luật xử lý vi phạm hành chính năm 2012, người nào trong cơ quan thuế có quyền phạt tiền đến 25 triệu đồng?",
-            dapAn :  "Chi cục trưởng chi cục thuế"
+           cauHoi:"Điều kiện để sức lao động trở thành hàng hóa sức lao động?",
+           dapAn:"Con người được tự do về than thể và không có tư liệu sản xuất"
         },
         {
-            cauHoi :  "Theo pháp luật dân sự Việt Nam, chủ thể của quyền sở hữu là:",
-            dapAn :  "Người đang sở hữu tài sản"
+           cauHoi:"Điều kiện nào để sản xuất hàng hóa ra đời?",
+           dapAn:"Có sự phân công lao động xã hội và tư hữu về tư liệu sản xuất"
         },
         {
-            cauHoi :  "Theo Bộ luật Dân sự năm 2015, chế tài phạt do vi phạm hợp đồng được áp dụng:",
-            dapAn :  "Khi các bên có thỏa thuận trong hợp đồng về việc áp dụng chế tài phạt"
+           cauHoi:"Theo lý luận của chủ nghĩa Mác – Lênin, sức lao động là gì?",
+           dapAn:"Là tổng thể các năng lực lao động của con người, bao gồm thể lực, trí lực và kinh nghiệm tham gia vào hoạt động sản xuất"
         },
         {
-            cauHoi :  "Theo Bộ luật Dân sự năm 2015, điều kiện nào sau đây không phải là điều kiện hiệu lực của hợp đồng?",
-            dapAn :  "Mục đích của hợp đồng không được vi phạm điều cấm của pháp luật"
+           cauHoi:"Theo Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội, Đảng ta đã xác định bao nhiêu phương hướng để xây dựng xã hội xã hội chủ nghĩa?",
+           dapAn:"7"
         },
         {
-            cauHoi :  "Theo quy định của Bộ luật Dân sự năm 2015, các bên tham gia giao kết hợp đồng:",
-            dapAn :  "Cả ba đáp án trên đều sai"
+           cauHoi:"Thời kỳ quá độ lên chủ nghĩa xã hội là?",
+           dapAn:"Là thời kỳ cải biến cách mạng sâu sắc trên tất cả các lĩnh vực của đời sống xã hội từ xã hội cũ sang xã hội mới"
         },
         {
-            cauHoi :  "Theo quy định của Bộ luật Dân sự năm 2015, khi áp dụng chế tài phạt, mức phạt:",
-            dapAn :  "Do các bên thỏa thuận trong hợp đồng"
+           cauHoi:"Dựa trên sáng kiến vĩ đại nào để C.Mác và Ph. Engel luận giải một cách khoa học về sứ mệnh lịch sử của giai cấp công nhân?",
+           dapAn:"Chủ nghĩa duy vật lịch sử và học thuyết giá trị thặng dư"
         },
         {
-            cauHoi :  "Theo Bộ luật Dân sự năm 2015, một bên không có quyền hủy bỏ hợp đồng và không phải bồi thường thiệt hại trong trường hợp nào dưới đây?",
-            dapAn :  "Bên kia vi phạm không cơ bản nghĩa vụ hợp đồng"
+           cauHoi:"Đặc điểm lớn nhất của thời kỳ quá độ lên chủ nghĩa xã hội ở nước ta là?",
+           dapAn:"Từ một nền sản xuất nhỏ là phổ biến quá độ lên CNXH không qua chế độ TBCN"
         },
         {
-            cauHoi :  "Theo Bộ luật Dân sự năm 2015, đối tượng của quyền sở hữu không bao gồm:",
-            dapAn :  "Quyền hình ảnh"
+           cauHoi:"Chủ nghĩa xã hội bắt đầu từ nước nào?",
+           dapAn:"Liên Xô"
         },
         {
-            cauHoi :  "Theo Bộ luật dân sự năm 2015, nguyên tắc nào dưới đây không phải là nguyên tắc của pháp luật dân sự Việt Nam?",
-            dapAn :  "Nguyên tắc giao dịch có lợi"
+           cauHoi:"Vì sao chủ nghĩa xã hội hiện thực sụp đổ ở Liên Xô?",
+           dapAn:"Do sự sai lầm trong cải tổ và sự phản bội của Gorbachev"
         },
         {
-            cauHoi :  "Anh A ăn trộm chiếc xe máy dựng ở vỉa hè. Theo Bộ luật Dân sự năm 2015, việc chiếm hữu của anh A đối với chiếc xe máy đó là:",
-            dapAn :  "Chiếm hữu không có căn cứ pháp luật nhưng không ngay tình"
+           cauHoi:"Thời kỳ quá độ lên chủ nghĩa xã hội ở Việt Nam bắt đầu từ khi nào?",
+           dapAn:"1954"
         },
         {
-            cauHoi :  "Theo quy định của Bộ luật Dân sự năm 2015, hợp đồng sẽ hình thành khi:",
-            dapAn :  "Các bên đồng ý về tất cả các điều khoản của hợp đồng"
+           cauHoi:"Thời kỳ quá độ lên chủ nghĩa xã hội diễn ra cuộc đấu tranh gay gắt giữa?",
+           dapAn:"Một bên là giai cấp công nhân và nhân dân lao động vừa giành được chính quyền nhà nước với một bên là giai cấp bóc lột và các thế lực phản động mới bị đánh đổ"
         },
         {
-            cauHoi :  "Theo quy định của Luật dân sự, quyền sở hữu tài sản bao gồm:",
-            dapAn :  "Quyền chiếm hữu, quyền sử dụng và quyền định đoạt"
+           cauHoi:"Đặc trưng cơ bản của chủ nghĩa xã hội là?",
+           dapAn:"Đây là giai đoạn thấp, mới thoát thai từ xã hội cũ vì vậy còn nhiều tàn dư trên tất cả các lĩnh vực của đời sống xã hội"
         },
         {
-            cauHoi :  "Theo quy định của Bộ luật Dân sự năm 2015, hợp đồng cung ứng dịch vụ có đối tượng là:",
-            dapAn :  "Hành vi"
+           cauHoi:"Thời kỳ quá độ ở nước ta được diễn ra trong cả nước bắt đầu từ khi nào?",
+           dapAn:"1975"
         },
         {
-            cauHoi :  "Quan hệ nhân thân khác với quan hệ tài sản thuộc phạm vi điều chỉnh của pháp luật dân sự Việt Nam là:",
-            dapAn :  "Quan hệ nhân thân không thể chuyển dịch được cho người khác"
+           cauHoi:"Theo Đại hội Đại biểu toàn quốc lần thứ X (2006), xã hội xã hội chủ nghĩa ở nước ta có bao nhiêu đặc trưng cơ bản?",
+           dapAn:"8"
         },
         {
-            cauHoi :  "Theo quy định của Bộ luật Dân sự năm 2015, cá nhân có năng lực hành vi dân sự đầy đủ khi:",
-            dapAn :  "Từ đủ 18 tuổi trở lên"
+           cauHoi:"Lênin đã áp dụng thành công lý luận chủ nghĩa Mác – Lênin vào hiện thực về chủ nghĩa xã hội ở nước nào?",
+           dapAn:"Nga"
         },
         {
-            cauHoi :  "Theo quy định của Luật dân sự, căn cứ nào sau đây không được coi là căn cứ xác lập quyền sở hữu tài sản hợp pháp?",
-            dapAn :  "Do trộm cắp, chiếm đoạt bất hợp pháp không ngay tình của người khác"
+           cauHoi:"Theo Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội, xã hội xã hội chủ nghĩa ở nước ta có bao nhiêu đặc trưng cơ bản?",
+           dapAn:"6"
         },
         {
-            cauHoi :  "Theo Bộ luật Lao động năm 2012 và pháp luật có liên quan, phần bảo hiểm xã hội mà người lao động phải đóng không bao gồm:",
-            dapAn :  "Bảo hiểm tai nạn lao động, bệnh nghề nghiệp"
+           cauHoi:"Thời kỳ quá độ lên chủ nghĩa xã hội có thể diễn ra theo con đường nào?",
+           dapAn:"Quá độ trực tiếp hoặc gián tiếp qua nhiều bước trung gian"
         },
         {
-            cauHoi :  "Bộ luật Dân sự hiện hành có hiệu lực từ ngày",
-            dapAn :  "01/01/2017"
+           cauHoi:"Hãy điền cụm từ còn thiếu trong đoạn văn sau: “Lịch sử xã hội loài người phát triển tuần tự qua các hình thái kinh tế - xã hội, từ cộng sản nguyên thủy lên cộng sản chủ nghĩa là một quá trình …”",
+           dapAn:"Tất yếu sẽ diễn ra"
         },
         {
-            cauHoi :  "Theo quy định của Bộ luật Lao động, tiền lương làm thêm của người lao động vào ngày nghỉ hàng tuần theo giờ tiêu chuẩn là:",
-            dapAn :  "2"
+           cauHoi:"Thành Nhà Hồ ở đâu?",
+           dapAn:"Thanh Hóa"
         },
         {
-            cauHoi :  "Theo Bộ luật Lao động năm 2012, khi một bên muốn sửa đổi, bổ sung hợp đồng lao động, bên đó phải thông báo cho bên kia trước ít nhất:",
-            dapAn :  "3 ngày làm việc"
+           cauHoi:"Nguồn gốc đầu tiên dẫn tới sự ra đời nhà nước Đại Việt cổ?",
+           dapAn:"Chống giặc ngoại xâm và thiên tai"
         },
         {
-            cauHoi :  "Luật Lao động điều chỉnh mối quan hệ giữa",
-            dapAn :  "Cả A, B, C đều đúng"
+           cauHoi:"Làng cổ Đường Lâm, nơi sinh ra vị anh hùng dân tộc?",
+           dapAn:"Ngô Quyền, Phùng Hưng"
         },
         {
-            cauHoi :  "Theo Bộ luật Lao động, người lao động nghỉ việc mà vẫn hưởng nguyên lương trong trường hợp nào dưới đây?",
-            dapAn :  "Cả A, B, C đều đúng"
+           cauHoi:"Một trong những nhiệm vụ mà Đảng ta xác định đối với vấn đề dân tộc đó là?",
+           dapAn:"Xây dựng thế trận quốc phòng toàn dân và thế trận an ninh nhân dân"
         },
         {
-            cauHoi :  "Công ty P ký hợp đồng lao động 12 tháng với ông Q. Hết thời hạn 12 tháng, ông Q vẫn tiếp tục làm việc nhưng công ty P không ký hợp đồng lao động mới. Theo Bộ luật Lao động năm 2012, nhận định nào dưới đây đúng?",
-            dapAn :  "Hợp đồng lao động 12 tháng trở thành hợp đồng lao động không xác định thời hạn"
+           cauHoi:"Trong các phương án sau, đâu là quan điểm của Đảng ta về vấn đề dân tộc?",
+           dapAn:"Các dân tộc trong đại gia đình các dân tộc Việt Nam bình đẳng, đoàn kết, tương trợ giúp đỡ nhau cùng phát triển, cùng nhau phấn đấu thực hiện thắng lợi sự nghiệp CNH, HĐH đất nước, xây dựng và bảo vệ vững chắc tổ quốc, kiên quyết chống mọi âm mưu chia rẽ"
         },
         {
-            cauHoi :  "Các quan hệ xã hội phát sinh trước khi có quan hệ lao động thuộc phạm vi điều chỉnh của luật lao động không bao gồm quan hệ nào dưới đây?",
-            dapAn :  "Quan hệ giữa một người làm thêm và công ty nơi người đó làm thêm"
+           cauHoi:"Văn hóa Việt Nam là nền văn hóa biểu hiện?",
+           dapAn:"Sự tổng hoà của các tiểu vùng văn hóa khác nhau, tạo nên sự thống nhất trong đa dạng"
         },
         {
-            cauHoi :  "Theo Bộ luật Lao động năm 2012, người nào dưới đây là người sử dụng lao động?",
-            dapAn :  "Các doanh nghiệp"
+           cauHoi:"Di cốt và công cụ cổ xưa ở những địa danh: Võ Nhai (Lạng sơn ), núi Đọ (Thanh hoá), Thẩm Ồn (Nghệ An ), Xuân Lộc (Đồng nai ) được nêu lên nhằm giải thích điều gì sau đây?",
+           dapAn:"Cư dân Cổ Việt Nam không phải di cư từ nơi khác đến mà có nguồn gốc bản địa từ rất sớm. Việt Nam là một trong những địa chỉ trên thế giới xuất hiện con người"
         },
         {
-            cauHoi :  "Theo quy định của Bộ luật Lao động năm 2012, đình công sẽ bị coi là bất hợp pháp khi:",
-            dapAn :  "Tất cả các đáp án trên đều đúng"
+           cauHoi:"Yếu tố nào tạo nên cốt lõi văn hóa, là cội nguồn của chủ nghĩa yêu nước Việt Nam?",
+           dapAn:"Sự gắn bó làng, xóm; nước và nhà hoà quyện với nhau"
         },
         {
-            cauHoi :  "Theo quy định của Bộ luật Lao động, người sử dụng lao động là cá nhân phải là người:",
-            dapAn :  "Đủ 18 tuổi"
+           cauHoi:"Nhà nước Việt Nam đầu tiên ra đời vì lý do gì?",
+           dapAn:"Vì nhu cầu xây dựng đất nước và chống giặc ngoại xâm"
         },
         {
-            cauHoi :  "Nhận định nào dưới đây đúng khi nói về các nguyên tắc của luật lao động?",
-            dapAn :  "Khuyến khích các thỏa thuận có lợi hơn cho người lao động"
+           cauHoi:"Cây đa Tân Trào ở đâu?",
+           dapAn:"Tuyên Quang"
         },
         {
-            cauHoi :  "Nhận định nào dưới đây là đúng khi nói về quyền của người lao động?",
-            dapAn :  "Người lao động không có quyền yêu cầu người sử dụng điều chỉnh mức đóng bảo hiểm thất nghiệp"
+           cauHoi:"Truyền thuyết Sơn Tinh – Thủy Tinh có ý nghĩa?",
+           dapAn:"Tinh thần đoàn kết, đắp đê, trị thủy của dân tộc"
         },
         {
-            cauHoi :  "Theo quy định của Bộ luật Lao động năm 2012, thời hiệu khởi kiện đối với tranh chấp về bồi thường thiệt hại cho người sử dụng lao động trong tranh chấp lao động cá nhân là bao nhiêu năm kể từ ngày mỗi bên tranh chấp cho rằng quyền và lợi ích của mình bị vi phạm?",
-            dapAn :  "1 năm"
+           cauHoi:"Những bài học kinh nghiệm sau: “lấy nhỏ thắng lớn”, “lấy ít địch nhiều”, “lấy yếu chống mạnh”, “lấy chất lượng cao thắng số lượng đông” thể hiện điều gì?",
+           dapAn:"Truyền thống lao động cần cù"
         },
         {
-            cauHoi :  "Công ty TNHH A tuyển bà Q làm nhân viên tạp vụ với thời hạn 36 tháng. Theo quy định của Bộ luật Dân sự năm 2012, hợp đồng lao động với bà Q phải được lập dưới hình thức nào?",
-            dapAn :  "Văn bản"
+           cauHoi:"Truyền thuyết “Con Rồng Cháu Tiên” khẳng định điều gì?",
+           dapAn:"Tất cả các đáp án đều đúng"
         },
         {
-            cauHoi :  "Chủ thể của tham nhũng là:",
-            dapAn :  "Người có chức vụ, quyền hạn"
+           cauHoi:"Một trong những lý do mà các thế lực thường xuyên xâm lược lãnh hải nước ta là?",
+           dapAn:"Có trữ lượng dầu mỏ vô cùng dồi dào và quan trọng cho phát triển kinh tế"
         },
         {
-            cauHoi :  "Theo Luật Phòng, chống tham nhũng năm 2018, hành vi nào dưới đây là hành vi tham nhũng trong khu vực nhà nước:",
-            dapAn :  "Lợi dụng chức vụ, quyền hạn gây ảnh hưởng đối với người khác để trục lợi"
+           cauHoi:"Chế độ phong kiến trung ương tập quyền đạt đến độ hoàn thiện trong lịch sử Việt Nam thuộc triều đại nào?",
+           dapAn:"Nhà Lê"
         },
         {
-            cauHoi :  "Ông K làm trưởng phòng Quản lý đô thị của Quận P. Ông K đã nhận một khoản tiền từ bà P để “lờ” đi sai phạm trong xây dựng của bà P. Hành vi của ông K, theo Luật Phòng, chống tham nhũng năm 2018, là:",
-            dapAn :  "Không thực hiện nhiệm vụ, công vụ vì vụ lợi"
+           cauHoi:"Đâu là một trong những tên gọi của Đảng ta?",
+           dapAn:"Đảng Lao động Việt Nam"
         },
         {
-            cauHoi :  "Công dân không có trách nhiệm nào dưới đây trong phòng chống tham nhũng?",
-            dapAn :  "Không đáp án nào đúng"
+           cauHoi:"Pháp xâm lược Việt Nam, xã hội Việt Nam tồn tại nhiều mâu thuẫn, nhưng nổi lên 2 mâu thuẫn: Giữa dân tộc Việt Nam với thực dân Pháp; Giữa nhân dân Việt Nam (chủ yếu là nông dân) với địa chủ phong kiến. Hai mâu thuẫn này được gọi là:",
+           dapAn:"Mâu thuẫn chủ yếu"
         },
         {
-            cauHoi :  "Trong công tác phòng, chống tham nhũng, Ban thanh tra nhân dân không có trách nhiệm nào dưới đây:",
-            dapAn :  "Trực tiếp xem xét đơn kiến nghị và xác minh hành vi tham nhũng"
+           cauHoi:"“Khi mâu thuẫn với Pháp và phong kiến có ý thức dân tộc và dân chủ; nhưng do lo sợ bị cách mạng đánh đổ họ thường dao động ngả nghiêng, dễ cải lương, thoả hiệp”. Đây là quan điểm nhằm chỉ giai cấp, tầng lớp nào?",
+           dapAn:"Tư sản Việt Nam"
         },
         {
-            cauHoi :  "Hành vi nào sau đây là hành vi tham ô tài sản:",
-            dapAn :  "Lợi dụng chức vụ, quyền hạn chiếm đoạt tài sản mà mình có trách nhiệm quản lý."
+           cauHoi:"Tinh thần “Khai dân trí, chấn dân trí, hậu dân sinh” là tinh thần của phong trào cách mạng nào trong lịch sử Việt Nam?",
+           dapAn:"Phong trào Duy Tân"
         },
         {
-            cauHoi :  "Nguyên nhân tham nhũng nào sau đây không thuộc nhóm nguyên nhân chủ quan:",
-            dapAn :  "Chính sách pháp luật chưa đầy đủ, thiếu đồng bộ, thiếu nhất quán"
+           cauHoi:"“Ra đời trong quá trình khai thác thuộc địa lần I của Pháp; sau chiến tranh thế giới thứ nhất phát triển rất nhanh. Tuy ít về số lượng, ra đời muộn so với giai cấp công nhân châu Âu, đời sống gắn với sản xuất công nghiệp, họ là đại biểu của phương thức sản xuất tiên tiến nhất”. Đây là quan điểm nhằm chỉ giai cấp, tầng lớp nào?",
+           dapAn:"Tư sản Việt Nam"
         },
         {
-            cauHoi :  "Tham nhũng là hành vi của người có chức vụ, quyền hạn nhằm mục đích gì?",
-            dapAn :  "Vụ lợi"
+           cauHoi:"Tiểu thương, tiểu chủ, công chức, trí thức, học sinh, sinh viên là lực lượng thuộc?",
+           dapAn:"Tầng lớp tiểu tư sản Việt Nam"
         },
         {
-            cauHoi :  "Luật Phòng chống tham nhũng năm 2018 có hiệu lực thay thế cho:",
-            dapAn :  "Luật Phòng, chống tham nhũng năm 2005"
+           cauHoi:"Phương án nào sau đây mô tả xã hội Việt Nam trước khi có Đảng Cộng sản Việt Nam ra đời?",
+           dapAn:"Từ một quốc gia phong kiến độc lập trở thành một nước thuộc địa nửa phong kiến; dân ta từ chỗ tự do, trở thành nô lệ"
         },
         {
-            cauHoi :  "Trong Luật Phòng chống tham nhũng năm 2018, các quy định về “chế độ trách nhiệm của người đứng đầu cơ quan, tổ chức, đơn vị trong phòng, chống tham nhũng” được đưa vào trong:",
-            dapAn :  "Chương 4 của Luật"
+           cauHoi:"Nguyên nhân thất bại của các phong trào Cần Vương, nông dân Yên thế, yêu nước theo khuynh hướng dân chủ tư sản, Đông kinh nghĩa Thục, Duy Tân, Việt Nam quốc dân Đảng là gì?",
+           dapAn:"Bế tắc về đường lối chính trị, lỏng lẻo về tổ chức, không có cơ sở rộng rãi trong quần chúng"
         },
         {
-            cauHoi :  "Khi tố cáo hành vi tham nhũng, công dân không có trách nhiệm nào dưới đây?",
-            dapAn :  "Số tiền mà người có hành vi tham nhũng có được"
+           cauHoi:"Lý do nào khẳng định giai cấp nông dân không thể dựng ngọn cờ tập hợp lực lượng đấu tranh chống Pháp, không có khả năng lãnh đạo cách mạng?",
+           dapAn:"Không đại biểu cho một phương thức sản xuất tiên tiến, không có hệ tư tưởng độc lập"
         },
         {
-            cauHoi :  "Một trong những điểm mới của Luật Phòng, chống tham nhũng năm 2018 là:",
-            dapAn :  "Luật điều chỉnh cả hành vi tham nhũng của doanh nghiệp, tổ chức khu vực ngoài Nhà nước"
+           cauHoi:"Nguyên nhân thất bại của các phong trào yêu nước trước khi có Đảng là bế tắc về đường lối chính trị, lỏng lẻo về tổ chức, không có cơ sở rộng rãi trong quần chúng. Do đó có thể nói......",
+           dapAn:"Tiền đồ cách mạng Việt Nam đen tối như không có đường ra"
         },
         {
-            cauHoi :  "Theo Luật Phòng, chống tham nhũng năm 2018, hành vi tham nhũng trong khu vực nhà nước không bao gồm:",
-            dapAn :  "Cố ý làm trái gây hậu quả nghiêm trọng"
+           cauHoi:"Tất cả tổ chức chính trị ra đời đều tuân thủ một số quy luật nhất định, vậy Đảng Cộng Sản Việt Nam ra đời theo quy luật nào?",
+           dapAn:"Là kết quả của sự kết hợp chặt chẽ chủ nghĩa Mác – Lênin với phong trào công nhân và phong trào yêu nước Việt Nam"
         },
         {
-            cauHoi :  "Tác hại về chính trị của tham nhũng bao gồm:",
-            dapAn :  "Làm giảm sút lòng tin của dân chúng vào sự lãnh đạo của Đảng"
+           cauHoi:"“Tiền đồ cách mạng Việt Nam đen tối như không có đường ra” là câu nói của ai?",
+           dapAn:"Phan Bội Châu"
         },
         {
-            cauHoi :  "Nguyên nhân nào dưới đây không phải là nguyên nhân của tham nhũng ở Việt Nam?",
-            dapAn :  "Môi trường kinh doanh đang ngày càng được cải thiện"
+           cauHoi:"Tờ báo Thanh Niên của Hội Việt Nam Thanh Niên Cách Mạng Đồng Chí Hội ra số đầu tiên vào thời gian nào?",
+           dapAn:"Ngày 21/06/1925"
         },
         {
-            cauHoi :  "Theo Luật Bảo vệ quyền lợi người tiêu dùng năm 2010, chi nhánh công ty Q là:",
-            dapAn :  "Không có đáp án nào đúng"
+           cauHoi:"“Đảng Cộng sản Việt Nam, đội tiên phong của giai cấp công nhân Việt Nam, đại biểu trung thành quyền lợi của giai cấp công nhân, nhân dân lao động và của cả dân tộc, theo chủ nghĩa Mác - Lênin và tư tưởng Hồ Chí Minh, là lực lượng lãnh đạo Nhà nước và xã hội. Mọi tổ chức của Đảng hoạt động trong khuôn khổ Hiến pháp và pháp luật”. Đoạn trích trên được trích tại điều bao nhiêu của Hiến pháp Việt Nam?",
+           dapAn:"Điều 4"
         },
         {
-            cauHoi :  "Theo Luật Bảo vệ quyền lợi người tiêu dùng năm 2010, tổ chức nào dưới đây là tổ chức xã hội tham gia bảo vệ quyền lợi người tiêu dùng?",
-            dapAn :  "Hiệp hội bảo vệ quyền lợi người tiêu dùng"
+           cauHoi:"Trước năm 1930, ba tổ chức Cộng sản tồn tại ở Việt Nam được thể hiện như thế nào?",
+           dapAn:"Chia rẽ, mâu thuẫn, tạo điểm yếu để thực dân đàn áp"
         },
         {
-            cauHoi :  "Người nào dưới đây không phải là người tiêu dùng?",
-            dapAn :  "Bà M mua sữa về để làm sữa chua bán"
+           cauHoi:"Nguyễn Ái Quốc ra đi tìm đường cứu nước vào lúc chủ nghĩa tư bản đang tồn tại như thế nào?",
+           dapAn:"Đã trở thành chủ nghĩa đế quốc"
         },
         {
-            cauHoi :  "Người tiêu dùng là:",
-            dapAn :  "Người mua, sử dụng hàng hóa dịch vụ cho mục đích tiêu dùng, sinh hoạt của cá nhân, gia đình, tổ chức."
+           cauHoi:"Chủ tịch Hồ Chí Minh cho rằng: “Phải lấy kết quả thiết thực đã góp sức bao nhiêu cho sản xuất và lãnh đạo sản xuất mà đo ý chí cách mạng của mình. Hãy kiên quyết …….lối làm việc không nhằm mục đích nâng cao sản xuất\". Hãy điền cụm từ còn thiếu vào chỗ trống trong các trường hợp sau:",
+           dapAn:"Chống bệnh nói suông, thói phô trương hình thức"
         },
         {
-            cauHoi :  "Theo Luật Bảo vệ quyền lợi người tiêu dùng năm 2010,  tổ chức, cá nhân kinh doanh hàng hóa, dịch vụ không có trách nhiệm nào dưới đây?",
-            dapAn :  "Thu tiền bán hàng từ người tiêu dùng"
+           cauHoi:"Theo tư tưởng Hồ Chí Minh, sức hấp dẫn của chủ nghĩa xã hội là gì?",
+           dapAn:"Sự cống hiến, sự chiến đấu và hy sinh cho lý tưởng cộng sản trở thành hiện thực ở đời sống nhân dân"
         },
         {
-            cauHoi :  "Cửa hàng điện máy M tiến hành sửa chữa tủ lạnh cho bà H trong thời hạn bảo hành của chiếc tủ lạnh này. Theo Luật Bảo vệ quyền lợi người tiêu dùng, cửa hàng điện máy M đang thực hiện trách nhiệm:",
-            dapAn :  "Bảo hành hàng hóa, linh kiện, phụ kiện"
+           cauHoi:"Chọn phương án hợp lý nhất để điền vào chỗ trống: “ Tư tưởng Hồ Chí Minh là một hệ thống quan điểm và tư tưởng của Hồ Chí Minh trong sự nghiệp cách mạng của ông được Đảng Cộng sản Việt Nam tổng kết, hệ thống hóa. ... Đảng Cộng sản Việt Nam xác định lấy Chủ nghĩa Mác-Lênin và tư tưởng Hồ Chí Minh là kim chỉ nam cho mọi hành động và thắng lợi của cách mạng Việt Nam.”.",
+           dapAn:"Toàn diện và sâu sắc; sáng tạo; cụ thể"
         },
         {
-            cauHoi :  "Theo pháp luật Việt Nam hiện hành, tổ chức, người nào dưới đây là cá nhân hoạt động thương mại độc lập, thường xuyên không phải đăng ký kinh doanh?",
-            dapAn :  "Người buôn bán vặt"
+           cauHoi:"“Muốn cứu nước và giải phóng dân tộc không có con đường nào khác là....”. Hãy điền cụm từ còn thiếu vào chỗ trống?",
+           dapAn:"Cách mạng vô sản"
         },
         {
-            cauHoi :  "Chủ đầu tư dự án chung cư GS, trước khi ký hợp đồng bán căn hộ chung cư cho các khách hàng, đã phải đăng ký mẫu hợp đồng với cơ quan nhà nước có thẩm quyền. Theo Luật Bảo vệ quyền lợi người tiêu dùng, chủ đầu tư dự án chung cư GS đang thực hiện trách nhiệm:",
-            dapAn :  "Kiểm soát hợp đồng theo mẫu, điều kiện giao dịch chung"
+           cauHoi:"Một trong những quan điểm của Hồ Chí Minh khẳng định: Muốn cách mạng thành công phải có…",
+           dapAn:"Sự lãnh đạo của Đảng cách mạng theo Chủ nghĩa Mác – Lênin"
         },
         {
-            cauHoi :  "Theo Luật Bảo vệ quyền lợi người tiêu dùng năm 2010, biên bản hòa giải thành không cần có nội dung nào sau đây?",
-            dapAn :  "Cam kết của các bên về việc sẽ không khởi kiện ra tòa án"
+           cauHoi:"Năm 1920 Hồ Chí Minh đã tìm thấy con đường cứu nước khi?",
+           dapAn:"Đọc được bản Luận cương của Lênin"
         },
         {
-            cauHoi :  "Theo Luật Bảo vệ quyền lợi người tiêu dùng năm 2010, tổ chức xã hội tham gia bảo vệ quyền lợi người tiêu dùng không có trách nhiệm nào dưới đây?",
-            dapAn :  "Giải quyết tranh chấp giữa người tiêu dùng và người bán hàng hóa"
+           cauHoi:"“Quét sạch chủ nghĩa cá nhân, nâng cao đạo đức cách mạng” là tư tưởng thuộc nội dung nào sau đây?",
+           dapAn:"Thực hiện cần, kiệm, liêm, chính, chí công vô tư"
         },
         {
-            cauHoi :  "Theo Luật Bảo vệ quyền lợi người tiêu dùng năm 2010, trong giải quyết tranh chấp về bảo vệ quyền lợi người tiêu dùng, người có nghĩa vụ chứng minh lỗi gây ra thiệt hại là:",
-            dapAn :  "Tổ chức, cá nhân kinh doanh hàng hóa dịch vụ"
+           cauHoi:"Chủ tịch Hồ Chí Minh sinh ngày 19/5/1890 trong một gia đình có truyền thống.... Ở làng....xã….huyện Nam Đàn, tỉnh Nghệ An. Hãy lựa chọn phương án phù hợp sau để hoàn thành đúng thứ tự các thông tin?",
+           dapAn:"Nho học yêu nước, Sen, Kim Liên"
         },
         {
-            cauHoi :  "Theo Luật Bảo vệ quyền lợi người tiêu dùng năm 2010, ai là người có thẩm quyền quyết định bên có lỗi trong vụ án dân sự về bảo vệ quyền lợi người tiêu dùng?",
-            dapAn :  "Tòa án"
+           cauHoi:"Ban Chấp hành Trung ương khoá IX đã quyết định triển khai chỉ đạo điểm cuộc vận động nào?",
+           dapAn:"\"Học tập và làm theo tấm gương đạo đức Hồ Chí Minh\""
         },
         {
-            cauHoi :  "Theo Luật Bảo vệ quyền lợi người tiêu dùng, nhận định nào dưới đây là đúng khi nói về các cá nhân hoạt động thương mại độc lập, thường xuyên và không phải đăng ký kinh doanh?",
-            dapAn :  "Họ không phải là thương nhân"
+           cauHoi:"Học tập và làm theo tư tưởng Hồ Chí Minh là nhiệm vụ của toàn Đảng, toàn dân và toàn quân Học tập tư tưởng Hồ Chí Minh là học tập……",
+           dapAn:"Lý luận cách mạng Việt Nam"
         },
         {
-            cauHoi :  "Công ty P sau khi bán một hợp đồng bảo hiểm nhân thọ cho bà M đã cung cấp cho bà M một hóa đơn. Theo Luật Bảo vệ quyền lợi người tiêu dùng, công ty P đang thực hiện trách nhiệm:",
-            dapAn :  "Cung cấp bằng chứng giao dịch"
+           cauHoi:"Trong quá trình hình thành và phát triển tư tưởng Hồ Chí Minh, giai đoạn từ năm 1911-1920 là giai đoạn thể hiện nội dung nào sau đây?",
+           dapAn:"Xác định con đường cứu nước, giải phóng dân tộc"
         },
         {
-            cauHoi :  "Theo Luật Bảo vệ quyền lợi người tiêu dùng năm 2010, nếu người tiêu dùng yêu cầu tổ chức kinh doanh hàng hóa phải bồi thường, nghĩa vụ chứng minh thiệt hại thuộc về:",
-            dapAn :  "Người tiêu dùng"
+           cauHoi:"Đâu là tác phẩm của Hồ Chí Minh",
+           dapAn:"Đường Kách Mệnh"
+        },
+        {
+           cauHoi:"Giai cấp tư sản Việt Nam có số ít là tư sản mại bản có quyền lợi kinh tế chính trị gắn liền với đế quốc thực dân; phần lớn còn lại là ......",
+           dapAn:"Tư sản dân tộc"
+        },
+        {
+           cauHoi:"Quan điểm nào sau đây KHÔNG phải là của Hồ Chí Minh?",
+           dapAn:"Đảng phải thẳng thắn phê bình, tự giác nhận lỗi, không để cho dân đói, dân rét, dân nghèo và đặc biệt khi có lỗi với dân thì tự giác viết đơn nghỉ việc và nhận trách nhiệm"
+        },
+        {
+           cauHoi:"Ai đã khẳng định: “Nói kinh tế thị trường định hướng xã hội chủ nghĩa có nghĩa đây không phải là kinh tế thị trường tự do theo kiểu tư bản chủ nghĩa, cũng không phải là kinh tế bao cấp, quản lý theo kiểu tập trung quan liêu và cũng chưa hoàn toàn là kinh tế thị trường xã hội chủ nghĩa, bởi vì Việt Nam đang ở trong thời kỳ quá độ lên chủ nghĩa xã hội, vừa có vừa chưa có đầy đủ các yếu tố của chủ nghĩa xã hội”.",
+           dapAn:"Nguyễn Phú Trọng"
+        },
+        {
+           cauHoi:"Phương án nào phản ánh nhiệm vụ của Đảng ta trong thời kỳ đẩy mạnh CNH, HĐH đất nước?",
+           dapAn:"Tất cả các đáp án đều đúng"
+        },
+        {
+           cauHoi:"Vấn đề “Tam nông” là vấn đề gì?",
+           dapAn:"Nông nghiệp, nông thôn, nông dân"
+        },
+        {
+           cauHoi:"Thị trường tài chính của nước ta hiện nay có nhiều vấn đề phức tạp, đặc biệt là sự xuất hiện một số hiện tượng có tham vọng thâu tóm ngân hàng, hiện tượng này có ảnh hưởng gì đến ổn định cho đất nước?",
+           dapAn:"Tất cả các đáp án đều đúng"
+        },
+        {
+           cauHoi:"Thành phần kinh tế nhà nước hiện nay ở nước ta bao gồm?",
+           dapAn:"Tất cả các phương án đều sai"
+        },
+        {
+           cauHoi:"Thành phần kinh tế nào giữ vai trò chủ đạo ở nước ta?",
+           dapAn:"Nhà nước"
+        },
+        {
+           cauHoi:"Sinh ra và lớn lên trong một nước thuộc địa ½ phong kiến; kinh tế nông nghiệp lạc hậu, phần lớn đảng viên của Đảng xuất thân từ giai cấp nông dân, luôn bị kẻ thù đàn áp dã man. Do đó,....…",
+           dapAn:"Để giữ vững sự lãnh đạo của Đảng, bí quyết thành công của Đảng chính là luôn giữ vững bản chất giai cấp công nhân; luôn là ngọn cờ tiền phong trong cuộc đấu tranh giành độc lập dân tộc và xây dựng chủ nghĩa xã hội"
+        },
+        {
+           cauHoi:"Muốn có phương thức sản xuất chủ nghĩa xã hội, hình thái kinh tế - xã hội chủ nghĩa thì chúng ta cần?",
+           dapAn:"Xây dựng cơ sở vật chất – kỹ thuật tương ứng"
+        },
+        {
+           cauHoi:"Đặc điểm lớn nhất của nước ta trong thời kỳ quá độ là gì?",
+           dapAn:"Từ một nước nông nghiệp lạc hậu tiến thẳng lên chủ nghĩa xã hội, không qua giai đoạn tư bản chủ nghĩa"
+        },
+        {
+           cauHoi:"Mô hình kinh tế trong thời kỳ quá độ ở nước ta là?",
+           dapAn:"Kinh tế thị trường định hướng XHCN"
+        },
+        {
+           cauHoi:"Sở hữu toàn dân về tư liệu sản xuất còn được gọi là?",
+           dapAn:"Sở hữu nhà nước"
+        },
+        {
+           cauHoi:"Chủ tịch Hồ Chí Minh cho rằng: “Phải lấy kết quả thiết thực đã góp sức bao nhiêu cho sản xuất và lãnh đạo sản xuất mà đo ý chí cách mạng của mình. Hãy kiên quyết …….lối làm việc không nhằm mục đích nâng cao sản xuất\". Hãy điền cụm từ còn thiếu vào chỗ trố",
+           dapAn:"Kinh tế thị trường"
+        },
+        {
+           cauHoi:"Những nguy cơ, thách thức như: Tụt hậu về kinh tế, chệch hướng về chủ nghĩa xã hội, nạn tham nhũng và quan liêu, “diễn biến hòa bình”… được Đảng ta nhận định trong Văn kiện?",
+           dapAn:"Văn kiện Đại hội IX"
+        },
+        {
+           cauHoi:"Sở hữu tư nhân về tư liệu sản xuất ở nước ta được biểu hiện dưới hình thức?",
+           dapAn:"Cá thể, tiểu chủ, tư bản tư nhân, hộ gia đình"
+        },
+        {
+           cauHoi:"Phải kiên quyết chống các loại bệnh “nội xâm” và đưa ra khỏi Đảng những phần tử thoái hóa biến chất. Từ đó.....",
+           dapAn:"Để mỗi cán bộ đảng viên của đảng vừa hồng lại vừa chuyên."
+        },
+        {
+           cauHoi:"Chức năng giáo dục của văn hóa thể hiện?",
+           dapAn:"Nhận thức, tư tưởng, tình cảm và hành động"
+        },
+        {
+           cauHoi:"Xây dựng hoàn chỉnh hệ thống chính sách bản đảm cung ứng dịch vụ công công thiết yếu nhằm?",
+           dapAn:"Đảm bảo tính công bằng và bình đẳng cho mọi người dân"
+        },
+        {
+           cauHoi:"Chủ trương phát triển hệ thống y tế công bằng và hiệu quả là hướng đến?",
+           dapAn:"Đảm bảo mọi người dân được chăm sóc và bảo vệ sức khỏe"
+        },
+        {
+           cauHoi:"Văn hóa là sự tổng hỏa của các giá trị về?",
+           dapAn:"Vật chất và tinh thần"
+        },
+        {
+           cauHoi:"Thực hiện các chính sách xã hội vì con người Đảng chủ trương?",
+           dapAn:"Phát triển kinh tế gắn liền với công bằng xã hội"
+        },
+        {
+           cauHoi:"Như thế nào là một nền văn hóa đậm đà bản sắc dân tộc?",
+           dapAn:"Những giá trị bền vững, những tinh hoa của cộng đồng các dân tộc Việt Nam đó; Giữ gìn bản sắc dân tộc đi đôi với chống lạc hậu, lỗi thời hủ tục, tập quán cũ"
+        },
+        {
+           cauHoi:"Một trong những đặc trưng của chủ nghĩa xã hội là “có nền văn hóa…,đậm đà bản sắc dân tộc”. Điền từ còn thiếu vào chổ trống?",
+           dapAn:"Tiên tiến"
+        },
+        {
+           cauHoi:"Xây dựng và phát triển văn hóa là sự nghiệp của?",
+           dapAn:"Toàn dân do Đảng lãnh đạo"
+        },
+        {
+           cauHoi:"Giải quyết các vấn đề toàn cầu hiện nay cần phải có?",
+           dapAn:"Sự hợp tác đa phương"
+        },
+        {
+           cauHoi:"Đảng và nhà nước ta coi chính sách dân số là?",
+           dapAn:"Quốc sách"
+        },
+        {
+           cauHoi:"Nền văn hóa Việt Nam được hình thành trên cở sở đặc trưng văn hóa tổng hợp các dân tộc Việt Nam nên có tính chất gì?",
+           dapAn:"Thống nhất trong đa dạng"
+        },
+        {
+           cauHoi:"Nền kinh tế hàng hóa nhiều thành phần vận hành theo cơ chế thị trường định hướng xã hội chủ nghĩa ở nước ta có vai trò như thế nào đối với sự phát triển kinh tế - xã hội?",
+           dapAn:"Tất cả các đáp án đều đúng"
+        },
+        {
+           cauHoi:"Kết hợp mục tiêu kinh tế với mục tiêu xã hội được tiến hành?",
+           dapAn:"Trên phạm vi cả nước,ở từng lĩnh vực từng địa phương"
+        },
+        {
+           cauHoi:"Xây dựng chiến lược quốc gia về nâng cao sức khỏe, tầm vóc con người là?",
+           dapAn:"Tăng tuổi thọ, cải thiện chất lượng giống nòi"
+        },
+        {
+           cauHoi:"Đề cương văn hóa Việt Nam do ai viết?",
+           dapAn:"Trường Chinh"
+        },
+        {
+           cauHoi:"Toàn cầu hóa nghĩa là?",
+           dapAn:"Sự hợp tác đa phương giữa các quốc gia"
+        },
+        {
+           cauHoi:"Quan điểm cơ bản của Đảng về quốc phòng an ninh là?",
+           dapAn:"Xây dựng nền quốc phòng toàn dân và an ninh nhân dân vững mạnh toàn diện"
+        },
+        {
+           cauHoi:"Chủ nghĩa đế quốc và các thế lực thù địch đang âm mưu chống phá Việt Nam bằng chiến lược nào?",
+           dapAn:"Diễn biến hòa bình và bạo loạn lật đổ"
+        },
+        {
+           cauHoi:"Một trong những nhiệm vụ của quốc phòng an ninh hiện nay là?",
+           dapAn:"Làm thất bại mọi âm mưu chống phá của các thế lực thù địch"
+        },
+        {
+           cauHoi:"Điền từ còn thiếu vào chỗ trống: “Tăng cường quốc phòng, giữ vững an ninh quốc gia, trật tự, an toàn xã hội là nhiệm vụ trọng yếu, thường xuyên của….”.",
+           dapAn:"Đảng, Nhà nước và toàn dân"
+        },
+        {
+           cauHoi:"Quốc phòng là gì?",
+           dapAn:"Là công cuộc giữ nước của một quốc gia, gồm tổng thể các hoạt động đối nội và đối ngoại về quân sự, chính trị, kinh tế, văn hoá, khoa học của Nhà nước và nhân dân để phòng…nhằm giữ vững hoà bình, đẩy lùi, ngăn chặn các hoạt động gây chiến của kẻ thù và sẵn sàng đánh thắng chiến tranh xâm lược dưới mọi hình thức, mọi quy mô"
+        },
+        {
+           cauHoi:"Bảo vệ tổ quốc được xem là nhiệm vụ như thế nào đối với cách mạng Việt Nam?",
+           dapAn:"Chiến lược"
+        },
+        {
+           cauHoi:"Trong sự kết hợp phát triển kinh tế xã hội và an ninh quốc phòng cần phải là?",
+           dapAn:"Xây dựng thế trận quốc phòng toàn dân, an ninh nhân dân, xây dựng khu vực phòng thủ tỉnh thành phố"
+        },
+        {
+           cauHoi:"Sức mạnh để bảo vệ tổ quốc là?",
+           dapAn:"Của khối đại đoàn kết dân tộc, cả hệ thống chính trị"
+        },
+        {
+           cauHoi:"Nhiệm vụ bảo vệ tổ quốc hiện nay là?",
+           dapAn:"Bảo vệ Đảng nhà nước, nhân dân và chế độ xã hội chủ nghĩa, an ninh chính trị, kinh tế, tư tưởng"
+        },
+        {
+           cauHoi:"Quân đội nhân dân Việt Nam thành lập vào?",
+           dapAn:"Ngày 22 tháng 12 năm 1944"
+        },
+        {
+           cauHoi:"Cơ sở chính trị -xã hội vững chắc cho quốc phòng và an ninh thì cán bộ, đảng viên và nhân dân phải?",
+           dapAn:"Vững vàng về chính trị tư tưởng"
+        },
+        {
+           cauHoi:"An ninh quốc gia là gì?",
+           dapAn:"Là sự ổn định trong quan hệ chính trị giữa các giai cấp, khẳng định vị trí lãnh đạo của giai cấp cầm quyền đối với các giai cấp khác và vị trí độc lập, tự chủ của chính quyền nhà nước đối với các Nhà nước khác trên thế giới"
+        },
+        {
+           cauHoi:"Để động viên chiến đấu bảo vệ tổ quốc Hồ Chí Minh đã từng nói: “ Các vua Hùng đã có công dựng nước, Bác cháu ta phải……” điền từ còn thiếu vào câu nói trên?",
+           dapAn:"Cùng nhau giữ lấy nước"
+        },
+        {
+           cauHoi:"Trong thực hiện nhiệm vụ bảo vệ tổ quốc luôn phải?",
+           dapAn:"Nâng cao ý thức trách nhiệm và tinh thần cảnh giác"
+        },
+        {
+           cauHoi:"Mặt trận tổ quốc và các đoàn thể nhân dân có vai trò như thế nào trong việc tập hợp vận động và đoàn kết rộng rãi và các tập thể nhân dân?",
+           dapAn:"Quan trọng"
+        },
+        {
+           cauHoi:"Quan điểm nào sau đây đúng theo chủ nghĩa duy vật biện chứng?",
+           dapAn:"Con người tạo ra tôn giáo"
+        },
+        {
+           cauHoi:"Tôn giáo nào là do người Việt sáng lập nên?",
+           dapAn:"Đạo cao Đài và Hòa Hảo"
+        },
+        {
+           cauHoi:"Tôn giáo nào xuất hiện sớm nhất trong lịch sử nước ta?",
+           dapAn:"Đạo Phật"
+        },
+        {
+           cauHoi:"Thực hiện đại đoàn kết dân tộc Đảng và nhà nước bảo đảm lợi ích chính đáng của?",
+           dapAn:"Mọi tầng lớp dân cư"
+        },
+        {
+           cauHoi:"Điền từ còn thiếu vào chỗ trống: Một trong những nội dung của chính sách tôn giáo ở nước ta hiện nay là tôn trọng, bảo đảm quyền tự do ….... và không ....... của nhân dân.",
+           dapAn:"Tín ngưỡng – tín ngưỡng"
+        },
+        {
+           cauHoi:"Điền từ còn thiếu vào chỗ trống: \"Tôn giáo là một hình thái ý thức – xã hội phản ánh một cách hoang đường, hư ảo ............... khách quan. Qua sự phản ánh của tôn giáo, những sức mạnh tự phát trong tự nhiên và xã hội đều trở thành thần bí.\"",
+           dapAn:"Hiện thực"
+        },
+        {
+           cauHoi:"Đối với thế hệ trẻ trong xây dựng đoàn kết dân tộc cần phải?",
+           dapAn:"Thường xuyên giáo dục chính trị, truyền thống, lý tưởng đạo đức lối sống"
+        },
+        {
+           cauHoi:"Dân tộc nào ở nước ta chiếm thành phần dân số đông đảo nhất?",
+           dapAn:"Kinh (Việt)"
+        },
+        {
+           cauHoi:"Chính sách tôn giáo cơ bản của Đảng ta hiện nay là?",
+           dapAn:"Đảm bảo tự do tín ngưỡng, mọi tôn giáo hoạt động theo theo khuôn khổ và bình đẳng trước pháp luật"
+        },
+        {
+           cauHoi:"Chính sách tôn giáo của Đảng và nhà nước ta nhằm mục đích gì?",
+           dapAn:"Làm cho tôn giáo hoạt động bình thường"
+        },
+        {
+           cauHoi:"Để nêu cao tinh thần đoàn kết, chủ tịch Hồ Chí Minh đã đề ra khẩu hiệu gì?",
+           dapAn:"“ Đoàn kết, đoàn kết, đại đoàn kết. Thành công thành công đại thành công”"
+        },
+        {
+           cauHoi:"Chính sách nhất quán của nhà nước xã hội chủ nghĩa đối với tôn giáo là gì?",
+           dapAn:"Tôn trọng và bảo đảm quyền tự do tín ngưỡng và không tín ngưỡng của mọi công dân"
+        },
+        {
+           cauHoi:"Nguồn gốc hình thành nên tôn giáo là gì?",
+           dapAn:"Xã hội, nhận thức, tâm lý"
+        },
+        {
+           cauHoi:"Theo Ph. Ăng nghen đã có một nhận xét làm cho chúng ta thấy rõ bản chất của tôn giáo như sau: “Tất cả mọi tôn giáo chẳng qua chỉ là …….. – vào trong đầu óc của con người – của những lực lượng bên ngoài chi phối cuộc sống của họ, chỉ là sự phản ánh trong đó những lực lượng trần thế đã mang hình thức những lực lượng siêu trần thế.”.Điền từ còn thiếu vào đoạn văn trên?",
+           dapAn:"Sự phản ánh hư ảo"
+        },
+        {
+           cauHoi:"Nội dung sau đây nói về vấn đề gì?: “Thực hiện nhất quán đường lối đối ngoại độc lập, tự chủ, hòa bình, hợp tác và phát triển, đa phương hóa, đa dạng hóa và chủ động và tích cực hội nhập kinh tế quốc tế”.",
+           dapAn:"Quan điểm đối ngoại"
+        },
+        {
+           cauHoi:"Một trong những đặc điểm của Nhà nước pháp quyền xã hội chủ nghĩa là gì?",
+           dapAn:"Nhà nước của dân, do dân và vì dân"
+        },
+        {
+           cauHoi:"Phong trào đấu tranh của giai cấp công nhân Việt Nam chuyển từ đấu tranh tự phát lên đấu tranh tự giác đươc đánh dấu bởi?",
+           dapAn:"Phong trào đấu tranh công nhân Ba Son"
+        },
+        {
+           cauHoi:"Xây dựng Nhà nước pháp quyền ở nước ta hiện nay phải xuất phát từ căn cứ cơ bản nào?",
+           dapAn:"Nắm vững nguyên lý cơ bản của chủ nghĩa Mác-Lênin và tư tưởng Hồ Chí Minh cũng như cương lĩnh của Đảng về Nhà nước và pháp luật"
+        },
+        {
+           cauHoi:"Văn bản nào có hiệu lực cao nhất trong hệ thống pháp luật Việt Nam?",
+           dapAn:"Hiến pháp"
+        },
+        {
+           cauHoi:"Một trong những yếu tố thúc đẩy xây dựng Nhà nước pháp quyền “là đẩy mạnh phòng chống ….”. Điền từ còn thiếu vào chổ trống?",
+           dapAn:"Suy thoái đạo đức"
+        },
+        {
+           cauHoi:"Đảng ta xác định xây dựng nhà nước pháp quyền xã hội chủ nghĩa có bao nhiêu đặc trưng?",
+           dapAn:"5"
+        },
+        {
+           cauHoi:"Giai cấp công nhân Việt Nam có sứ mệnh lịch sử to lớn là?",
+           dapAn:"Lãnh đạo cách mạng; đại diện phương thức sản xuất tiên tiến tiên phong trong sự nghiệp xây dựng chủ nghĩa xã hội; đi đầu trong sự nghiệp công nghiệp hóa, hiện đại hóa đất nước"
+        },
+        {
+           cauHoi:"Một trong những tiêu chuẩn xây dựng đội ngũ cán bộ công chức trong sạch có năng lực là?",
+           dapAn:"Cần, kiệm, liêm, chính chí công vô tư, không tham nhũng và kiên quyết chống tham nhũng"
+        },
+        {
+           cauHoi:"Đảng ta xác định: “Tổ chức quyền lực của Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam là thống nhất, có sự phân công và phối hợp giữa các cơ quan nhà nước trong thực hiện các quyền…..”",
+           dapAn:"Lập pháp, hành pháp, tư pháp"
+        },
+        {
+           cauHoi:"Trong các cơ quan tư pháp, cơ quan nào biểu hiện quyền tập trung nhất?",
+           dapAn:"Tòa án nhân dân"
+        },
+        {
+           cauHoi:"Điền từ thích hợp vào khoảng trống sau: Tham nhũng hiện nay là một trong bốn ............... của Việt Nam.",
+           dapAn:"Bệnh"
+        },
+        {
+           cauHoi:"Một trong những biện pháp để xây dựng Nhà nước pháp quyền trong hệ thống chính trị là?",
+           dapAn:"Hoàn thiện hệ thống pháp luật và cơ quan lập pháp"
+        },
+        {
+           cauHoi:"Xây dựng giai cấp công nhân Việt Nam lớn mạnh trong thời kỳ đẩy mạnh công nghiệp hóa, hiện đại hóa đất nước là nhiệm vụ?",
+           dapAn:"Quan trọng và cấp bách"
+        },
+        {
+           cauHoi:"Xây dựng và phát triển giai cấp công nhân Việt Nam lớn mạnh là trách nhiệm của?",
+           dapAn:"Cả hệ thống chính trị, toàn xã hội, người công nhân và của người sử dụng lao động"
+        },
+        {
+           cauHoi:"Mặt trận tổ quốc Việt Nam có vai trò như thế nào trong xây dựng nhà nước pháp quyền xã hội chủ nghĩa?",
+           dapAn:"Phản biện xã hội"
+        },
+        {
+           cauHoi:"Ngoài truyền thống tốt đẹp của dân tộc thì giai cấp công nhân Việt Nam còn có truyền thống tiêu biểu nào?",
+           dapAn:"Trung tâm đoàn kết toàn dân tộc; Giữ vai trò lãnh đạo cách mạng; Giữ vững truyền thống độc lập dân tộc gắn với chủ nghĩa xã hội"
+        },
+        {
+           cauHoi:"Giai cấp công nhân là giai cấp tiên tiến nhất vì?",
+           dapAn:"Lực lượng sản xuất tiến bộ, có trình độ xã hội hóa cao"
+        },
+        {
+           cauHoi:"Sau khi chiếm được Việt Nam, thực dân Pháp đã tiến hành?",
+           dapAn:"Chương trình khai thác thuộc địa"
+        },
+        {
+           cauHoi:"Thực trạng của giai cấp công nhân Việt Nam hiện nay là?",
+           dapAn:"Chưa đáp ứng được yêu cầu về số lượng, trình độ học vấn, chuyên môn, kỹ năng nghề nghiệp trong sự nghiệp CNH – HĐH đất nước"
+        },
+        {
+           cauHoi:"Điền từ còn thiếu vào khái niệm sau: “Giai cấp công nhân là một lực lượng xã hội to lớn, đang phát triển, bao gồm những người lao động chân tay và trí óc làm công hưởng lương trong các loại hình sản xuất kinh doanh và dịch vụ ………., hoặc sản xuất kinh doanh và dịch vụ có tính chất ………..”",
+           dapAn:"Công nghiệp"
+        },
+        {
+           cauHoi:"Những nguy cơ, thách thức như: tụt hậu về kinh tế, chệch hướng về chủ nghĩa xã hội, nạn tham nhũng và quan liêu, “diễn biến hòa bình”… được Đảng ta nhận định trong Văn kiện của đại hội nào?",
+           dapAn:"Đại hội Đảng lần thứ IX"
+        },
+        {
+           cauHoi:"Thực dân Pháp đã thực hiện mấy lần khai thác thuộc địa?",
+           dapAn:"2"
+        },
+        {
+           cauHoi:"Hiểu như thế nào về khái niệm giai cấp công nhân là gì?",
+           dapAn:"Là một lực lượng xã hội to lớn, đang phát triển, bao gồm những người lao động chân tay và trí óc, làm công hưởng lương trong các loại hình sản xuất kinh doanh và dịch vụ công nghiệp, hoặc sản xuất kinh doanh và dịch vụ có tính chất công nghiệp"
+        },
+        {
+           cauHoi:"Đặc điểm ra đời của giai cấp công nhân Việt Nam như thế nào?",
+           dapAn:"Phần lớn xuất thân từ nông dân"
+        },
+        {
+           cauHoi:"Tổ chức công đoàn Việt Nam ra đời được đánh dấu bằng sự kiện nào?",
+           dapAn:"Thành lập Công hội đỏ Bắc kỳ"
+        },
+        {
+           cauHoi:"Sự phát triển giai cấp công nhân Việt Nam về số lượng đến năm 1929 đạt?",
+           dapAn:"22 vạn người"
+        },
+        {
+           cauHoi:"Sự phát triển giai cấp công nhân Việt Nam về số lượng đến trước chiến tranh thế giới thứ nhất đạt ...............?",
+           dapAn:"Khoảng 10 vạn người"
+        },
+        {
+           cauHoi:"Sông Bạch Đằng hiện nay ở những tỉnh nào?",
+           dapAn:"Quảng Ninh, Hải Phòng"
+        },
+        {
+           cauHoi:"Mối quan hệ biện chứng giữa cơ sở hạ tầng và kiến trúc thượng tầng được thể hiện như thế nào?",
+           dapAn:"Cơ sở hạ tầng quyết định kiến trúc thượng tầng, kiến trúc thượng tầng ra đời có sự tác động trở lại đối với cơ sở hạ tầng"
+        },
+        {
+           cauHoi:"Tiền tệ có bao nhiêu chức năng cơ bản?",
+           dapAn:"5"
+        },
+        {
+           cauHoi:"Khuyến khích mọi người làm giàu theo pháp luật là ?",
+           dapAn:"Khắc phục tư tưởng bao cấp ỷ lại"
+        },
+        {
+           cauHoi:"Theo học thuyết Mác, bản chất của con người là:",
+           dapAn:"Tổng hòa các mối quan hệ xã hội"
+        },
+        {
+           cauHoi:"Quy luật kinh tế cơ bản của sản xuất hàng hóa là?",
+           dapAn:"Quy luật giá trị"
+        },
+        {
+           cauHoi:"Chủ tịch Hồ Chí Minh đã kêu gọi thực hiện chính sách nào về tôn giáo?",
+           dapAn:"“Tín ngưỡng tự do, lương giáo đoàn kết”"
+        },
+        {
+           cauHoi:"Văn hóa Đông Sơn là nền văn hóa đại diện cho Nhà nước nào sau đây?",
+           dapAn:"Nhà nước Văn Lang – Âu Lạc"
+        },
+        {
+           cauHoi:"Nguồn gốc lý luận trực tiếp để triết học Mác ra đời là:",
+           dapAn:"Triết học cổ điển Đức"
+        },
+        {
+           cauHoi:"Cuộc cách mạng công nghiệp đầu tiên bắt nguồn từ đâu?",
+           dapAn:"Anh"
+        },
+        {
+           cauHoi:"Trong các khâu của quá trình sản xuất, khâu nào là mục đích và động lực của quá trình sản xuất?",
+           dapAn:"Tiêu dùng"
+        },
+        {
+           cauHoi:"Hãy lựa chọn phương án đúng nhất trong các phương án sau?",
+           dapAn:"Nhà nước Văn Lang – Âu Lạc với nền văn hóa Đông Sơn; Nhà nước Chăm Pa Cổ với nền văn hóa Sa Huỳnh; Vương Quốc Phù Nam với nền văn hóa Ốc Eo"
+        },
+        {
+           cauHoi:"Cương lĩnh xây dựng đất nước trong thời kỳ quá độ lên chủ nghĩa xã hội còn được gọi là?",
+           dapAn:"Cương lĩnh 1991"
+        },
+        {
+           cauHoi:"Đâu là nguyên lý của Phép biện chứng duy vật?",
+           dapAn:"Nguyên lý về sự phát triển"
+        },
+        {
+           cauHoi:"Các bộ phận lý luận cấu thành nên chủ nghĩa Mác bao gồm?",
+           dapAn:"Triết học, Kinh tế chính trị học, Chủ nghĩa xã hội khoa học"
+        },
+        {
+           cauHoi:"Học thuyết Mác được sáng lập bởi các nhà tư tưởng?",
+           dapAn:"Mác, Ph.Ăngghen"
+        },
+        {
+           cauHoi:"Những thành tựu lý luận là nguồn gốc lý luận trực tiếp hình thành chủ nghĩa Mác – Lênin là:",
+           dapAn:"Triết học cổ điển Đức, Kinh tế chính trị học Anh, Chủ nghĩa xã hội không tưởng Pháp"
+        },
+        {
+           cauHoi:"Trong trường nghề, môn chính trị có bao nhiêu chức năng cơ bản?",
+           dapAn:"2"
+        },
+        {
+           cauHoi:"Theo Lênin, thuộc tính chung nhất của vật chất là gì?",
+           dapAn:"Tồn tại bên ngoài, không lệ thuộc vào cảm giác"
+        },
+        {
+           cauHoi:"Theo lý luận của chủ nghĩa Mác – Lênin thì phương thức tồn tại của vật chất là:",
+           dapAn:"Vận động"
+        },
+        {
+           cauHoi:"Ý nghĩa phương pháp luận của nguyên lý về sự phát triển là?",
+           dapAn:"Khi xem xét sự vận hiện tượng chúng ta phải đặt nó trong trạng thái vận động, phát triển, áp dụng quan điểm toàn diện và quan điểm lịch sử cụ thể"
+        },
+        {
+           cauHoi:"Trong những quy luật của phép biện chứng duy vật, quy luật nào vạch ra cách thức của sự phát triển?",
+           dapAn:"Quy luật lượng chất"
+        },
+        {
+           cauHoi:"Trong những quy luật của phép biện chứng duy vật, quy luật nào vạch ra nguồn gốc động lực của sự phát triển?",
+           dapAn:"Quy luật mâu thuẫn"
+        },
+        {
+           cauHoi:"Trong những quy luật cơ bản của phép biện chứng duy vật, quy luật nào vạch ra khuynh hướng của sự phát triển?",
+           dapAn:"Quy luật phủ định"
+        },
+        {
+           cauHoi:"Lực lượng sản xuất là?",
+           dapAn:"Mối quan hệ giữa con người với tự nhiên, thể hiện trình độ chinh phục tự nhiên của con người"
+        },
+        {
+           cauHoi:"Đảng ta chủ trương phát triển quan hệ sản xuất bằng cách?",
+           dapAn:"Chủ trương phát triển nền kinh tế hàng hóa nhiều thành phần vận hành theo cơ chế thị trường"
+        },
+        {
+           cauHoi:"Hàng hóa là gì?",
+           dapAn:"Là sản phẩm của lao động, nhằm thỏa mãn nhu cầu nào đó của con người, thông qua trao đổi mua bán"
+        },
+        {
+           cauHoi:"Vai trò của sản xuất hàng hóa đối với xã hội là?",
+           dapAn:"Duy trì và phát triển xã hội"
+        },
+        {
+           cauHoi:"Đâu là hàng hóa?",
+           dapAn:"Bút của nhà sản xuất muốn bán ra thị trường"
+        },
+        {
+           cauHoi:"Giá trị thặng dư là gì?",
+           dapAn:"Là giá trị dôi ra ngoài sức lao động, bị nhà tư bản chiếm đoạt"
+        },
+        {
+           cauHoi:"Cách mạng tư sản đầu tiên diễn ra ở đâu?",
+           dapAn:"Hà Lan"
+        },
+        {
+           cauHoi:"Lênin sinh ra ở đâu?",
+           dapAn:"Nga"
+        },
+        {
+           cauHoi:"Dòng sông nào đã đi vào lịch sử dân tộc với cuộc kháng chiến chống quân Nam Hán?",
+           dapAn:"Sông Bạch Đằng"
+        },
+        {
+           cauHoi:"Địa hình Việt Nam có hình chữ S nằm ở phía đông bán đảo Đông Dương, giữa vùng Đông Nam á, phía Bắc giáp Trung Quốc, phía Tây giáp Lào và Campuchia, phía Đông và Nam giáp biển, các điều kiện này có khó khăn gì đối với chính trị?",
+           dapAn:"Dễ xảy ra xung đột lãnh thổ với các nước láng giềng"
+        },
+        {
+           cauHoi:"Các dân tộc ở Việt Nam có trình độ phát triển kinh tế - xã hội?",
+           dapAn:"Không đều nhau"
+        },
+        {
+           cauHoi:"Quê hương của cố Tổng Bí thư Trần Phú?",
+           dapAn:"Hà Tĩnh"
+        },
+        {
+           cauHoi:"Trong lịch sử, Việt Nam luôn là mục tiêu nhòm ngó của các thế lực từ bên ngoài xâm lược lớn hơn mình rất nhiều lần, nguyên nhân từ yếu tố nào?",
+           dapAn:"Tài nguyên thiên nhiên dồi dào"
+        },
+        {
+           cauHoi:"Đảng Cộng sản Việt Nam ra đời là bước ngoặt lịch sử vĩ đại của cách mạng Việt Nam. Từ đây cách mạng Việt nam đã có một đảng chân chính lãnh đạo, trở thành một bộ phận của cách mạng thế giới. Đồng thời, ......",
+           dapAn:"chấm dứt thời kỳ khủng hoảng về đường lối, bế tắc về phương pháp cứu nước đưa cách mạng Việt Nam đến thắng lợi cuối cùng"
+        },
+        {
+           cauHoi:"Hồ Chí Minh đọc bản “Sơ thảo lần thứ nhất Luận cương của Lênin về vấn đề dân tộc và thuộc địa” vào thời gian nào?",
+           dapAn:"Tháng 7 năm 1920"
+        },
+        {
+           cauHoi:"Trận Điện Biên Phủ diễn ra vào khoảng thời gian nào?",
+           dapAn:"1954"
+        },
+        {
+           cauHoi:"“Trong Đảng thực hành dân chủ rộng rãi, thường xuyên và nghiêm chỉnh tự phê bình và phê bình là cách tốt nhất để củng cố và phát triển sự đoàn kết và thống nhất của Đảng. Phải có tình đồng chí thương yêu lẫn nhau”. Đó là đoạn trích thuộc?",
+           dapAn:"Trích Di chúc Hồ Chí Minh"
+        },
+        {
+           cauHoi:"Đâu là kẻ thù chính của dân tộc ta trong giai đoạn 1858 - 1954?",
+           dapAn:"Pháp"
+        },
+        {
+           cauHoi:"Giai cấp nông dân tuy là lực lượng đa số trong xã hội, chịu một cổ 2 tròng. Nhưng mặt khác, ......",
+           dapAn:"họ vừa là người dân mất nước, vừa là người bị áp bức, bóc lột nặng nề nên họ rất kiên quyết cách mạng"
+        },
+        {
+           cauHoi:"Tư tưởng về chí công vô tư được thể hiện rõ nét nhất trong nội dung nào của hệ thống tư tưởng Hồ Chí Minh?",
+           dapAn:"Tư tưởng về đạo đức cách mạng"
+        },
+        {
+           cauHoi:"Theo tư tưởng Hồ Chí Minh, \"Muôn việc thành công hoặc thất bại, đều do …. tốt hoặc kém”. Hãy điền từ còn thiếu vào chỗ trống theo các phương án sau:",
+           dapAn:"Cán bộ"
+        },
+        {
+           cauHoi:"Lời dặn sau của Hồ Chí Minh: \"Bất kỳ việc gì, chúng ta phải bắt đầu từ gốc, dần dần đến ngọn, từ ít đến nhiều, từ hẹp đến rộng, chớ nên tham mau, tham nhiều trong một lúc\". Người đang nói đến điều gì?",
+           dapAn:"Mối quan hệ giữa chính sách, quan điểm và cách thực hiện chúng"
+        },
+        {
+           cauHoi:"Hồ Chí Minh là lãnh tụ của tổ chức nào?",
+           dapAn:"Hội Việt Nam cách mạng thanh niên"
+        },
+        {
+           cauHoi:"Yếu tố nào quan trọng nhất góp phần hình thành Tư tưởng Hồ Chí Minh?",
+           dapAn:"Phẩm chất cá nhân của Người"
+        },
+        {
+           cauHoi:"Có bao nhiêu nguyên tắc xây dựng và rèn luyện đạo đức cách mạng theo tư tưởng Hồ Chí Minh?",
+           dapAn:"3"
+        },
+        {
+           cauHoi:"Tư tưởng về tình yêu thương con người ở tư tưởng Hồ Chí Minh được thể hiện ở khía cạnh nào sau đây?",
+           dapAn:"Tất cả các đáp án"
+        },
+        {
+           cauHoi:"Thành phần kinh tế nhà nước ở Việt Nam được hình thành trên loại hình sở hữu về tư liệu sản xuất nào?",
+           dapAn:"Sở hữu toàn dân"
+        },
+        {
+           cauHoi:"Điền từ còn thiếu vào chỗ trống?: “về xây dựng và phát triển nền văn hóa ... tiên tiến đậm đà bản sắc dân tộc” được đề ra vào năm nào?",
+           dapAn:"Việt Nam"
+        },
+        {
+           cauHoi:"Để bảo vệ và phát huy truyền thống văn hóa của dân tộc cần phải?",
+           dapAn:"Bảo vệ các di sản và giá trị văn hóa truyền thống"
+        },
+        {
+           cauHoi:"Điền từ còn thiếu trong câu nói của chủ tịch Hồ Chí Minh: “Vì lẽ sống sinh tồn cũng như mục đích của cuộc sống, loài người mới sáng tạo và phát minh ra ngôn ngữ, chữ viết, đạo đức, pháp luật, khoa học, tôn giáo, nghệ thuật. Những công cụ sinh hoạt hàng ngày về ăn, mặc, ở và các phương thức sử dụng. Toàn bộ những sáng tạo và phát minh đó là ……..”",
+           dapAn:"Văn hóa"
+        },
+        {
+           cauHoi:"Đường lối xây dựng và phát triển văn hóa của Đảng hiện nay là?",
+           dapAn:"Tiên tiến đậm đà bản sắc dân tộc"
+        },
+        {
+           cauHoi:"Theo Hồ Chí Minh, văn hóa có bao nhiêu chức năng cơ bản?",
+           dapAn:"4"
+        },
+        {
+           cauHoi:"Việt Nam hiện nay có bao nhiêu dân tộc?",
+           dapAn:"54"
+        },
+        {
+           cauHoi:"Theo quy định của pháp luật Việt Nam, việc truyền đạo và các hoạt động tôn giáo cần phải?",
+           dapAn:"Tuân thủ hiến pháp và pháp luật"
+        },
+        {
+           cauHoi:"Để phát huy sức mạnh đoàn kết dân tộc Đại hội X đã đề ra “Nâng cao năng lực chiến đấu của Đảng, phát huy ………, đẩy mạnh toàn diện công cuộc đổi mơi, sớm đưa nươcs ta ra khỏi tình trạng kém phát triển” điền từ còn thiếu vào đoạn văn trên?",
+           dapAn:"sức mạnh đại đoàn kết dân tộc"
+        },
+        {
+           cauHoi:"Các thế lực thù địch hiện nay lợi dụng vấn đề tôn giáo để làm gì?",
+           dapAn:"Phá hoại đoàn kết dân tộc, chống đối chế độ"
+        },
+        {
+           cauHoi:"Hoạt động tôn giáo hiện nay vẫn còn phức tạp với những biểu hiện nào?",
+           dapAn:"Tổ chức truyền đạo trái phép, hành nghề mê tín dị đoan, kích động, chống đối"
+        },
+        {
+           cauHoi:"Quá trình sản xuất là sự kết hợp giữa các yếu tố?",
+           dapAn:"Sức lao động, tư liệu lao động và đối tượng lao động"
+        },
+        {
+           cauHoi:"Chủ nghĩa Mác - Lênin chỉ rõ động lực của sự phát triển xã hội chính là do nguyên nhân nào?",
+           dapAn:"Sự phát triển của sản xuất vật chất"
+        },
+        {
+           cauHoi:"Ngày 17 tháng 6 năm 1929 là mốc thời gian đánh dấu tổ chức cộng sản nào được thành lập?",
+           dapAn:"Đông Dương Cộng sản Đảng"
+        },
+        {
+           cauHoi:"Nhà nước ta đã lấy hệ tư tưởng nào làm \"kim chỉ nam\"",
+           dapAn:"Chủ nghĩa Mác – Lênin"
+        },
+        {
+           cauHoi:"Nguồn gốc lý luận trực tiếp hình thành kinh tế chính trị Mác là:",
+           dapAn:"Kinh tế cổ điển Anh"
+        },
+        {
+           cauHoi:"Mác, Ph. Ăngghen có kiến thức thiên tài trong nhiều lĩnh vực như:",
+           dapAn:"Triết học, kinh tế chính trị, toán học, quân sự"
+        },
+        {
+           cauHoi:"Sự vận động và phát triển của xã hội bao gồm quy luật cơ bản là:",
+           dapAn:"Quan hệ sản xuất và lực lượng sản xuất; Cơ sở hạ tầng và kiến trúc thượng tầng"
+        },
+        {
+           cauHoi:"Lực lượng sản xuất bao gồm?",
+           dapAn:"Tư liệu sản xuất và người lao động"
+        },
+        {
+           cauHoi:"Phương thức sản xuất tư bản chủ nghĩa phát triển dẫn đến mâu thuẫn xã hội nào cần được giải quyết?",
+           dapAn:"Mâu thuẫn giữa giai cấp vô sản và giai cấp tư sản"
+        },
+        {
+           cauHoi:"Ai là người đề ra khả năng quá độ lên chủ nghĩa xã hội?",
+           dapAn:"V.I. Lênin"
+        },
+        {
+           cauHoi:"Khi nói: “Quá độ lên chủ nghĩa xã hội bỏ qua tư bản chủ nghĩa” là bỏ qua yếu tố nào?",
+           dapAn:"Bỏ qua việc xác lập của quan hệ sản xuất và kiến trúc thượng tầng tư bản chủ nghĩa"
+        },
+        {
+           cauHoi:"Việc đắp đê trị thủy trong lịch sử dựng nước của nhân dân Việt Nam đã góp phần trực tiếp hình thành nên truyền thống tốt đẹp cơ bản nào sau đây?",
+           dapAn:"Truyền thống đoàn kết"
+        },
+        {
+           cauHoi:"Phương án nào sau đây KHÔNG đúng?",
+           dapAn:"Cần cù vốn là bản chất của lao động nói chung"
+        },
+        {
+           cauHoi:"Theo tư tưởng Hồ Chí Minh, trung với nước, hiếu với dân là gì?",
+           dapAn:"Suốt đời phấn đấu hy sinh vì độc lập, tự do của Tổ quốc, vì chủ nghĩa xã hội"
+        },
+        {
+           cauHoi:"Đối với trí thức trong phát huy đoàn kết dân tộc cần phải?",
+           dapAn:"Phát huy dân chủ và trọng dụng nhân tài"
+        },
+        {
+           cauHoi:"Phong trào đấu tranh của giai cấp công nhân Việt Nam chuyển từ đấu tranh tự phát lên đấu tranh tự giác đươc đánh dấu bởi?",
+           dapAn:"Phong trào đấu tranh của công nhân Phú Riềng"
+        },
+        {
+           cauHoi:"Thời kỳ quá độ ở nước ta được diễn ra trong cả nước bắt đầu từ khi nào?",
+           dapAn:"1954"
+        },
+        {
+           cauHoi:"Chủ nghĩa xã hội bắt đầu từ nước nào?",
+           dapAn:"Anh"
+        },
+        {
+           cauHoi:"Sinh ra và lớn lên trong một nước thuộc địa ½ phong kiến; kinh tế nông nghiệp lạc hậu, phần lớn đảng viên của Đảng xuất thân từ giai cấp nông dân, luôn bị kẻ thù đàn áp dã man. Do đó,....…",
+           dapAn:"Để mãi mãi giữ vững sự lãnh đạo của Đảng, phương châm của mọi thắng lợi là tiêu diệt tận gốc các thế lực phản động, thực hiện “diễn biến hòa bình”, “bạo loạn lật đổ”"
+        },
+        {
+           cauHoi:"Chủ tịch Hồ Chí Minh cho rằng: “Phải lấy kết quả thiết thực đã góp sức bao nhiêu cho sản xuất và lãnh đạo sản xuất mà đo ý chí cách mạng của mình. Hãy kiên quyết …….lối làm việc không nhằm mục đích nâng cao sản xuất\". Hãy điền cụm từ còn thiếu vào chỗ trống trong các trường hợp sau:",
+           dapAn:"Chống bệnh thành tích, thói cá nhân chủ nghĩa"
+        },
+        {
+           cauHoi:"Làng cổ Đường Lâm, nơi sinh ra vị anh hùng dân tộc?",
+           dapAn:"Không có đáp án đúng"
+        },
+        {
+           cauHoi:"Thực hiện các chính sách xã hội vì con người Đảng chủ trương?",
+           dapAn:"Chăm lo đời sống vật chất tinh thần cho nhân dân"
+        },
+        {
+           cauHoi:"Trong những quy luật của phép biện chứng duy vật, quy luật nào vạch ra nguồn gốc động lực của sự phát triển?",
+           dapAn:"Quy luật lượng chất"
+        },
+        {
+           cauHoi:"Trong nền sản xuất lớn hiện đại, yếu tố nào giữ vai trò quyết định trong quá trình sản xuất?",
+           dapAn:"Đối tượng lao động"
+        },
+        {
+           cauHoi:"Việt Nam hiện nay có bao nhiêu tôn giáo chính?",
+           dapAn:"6"
+        },
+        {
+           cauHoi:"Các dân tộc ở Việt Nam có trình độ phát triển kinh tế - xã hội?",
+           dapAn:"Giống nhau"
+        },
+        {
+           cauHoi:"Quốc phòng là gì?",
+           dapAn:"Là sứ mệnh của mỗi quốc gia, dân tộc"
+        },
+        {
+           cauHoi:"Điền từ thích hợp vào khoảng trống sau: Tham nhũng hiện nay là một trong bốn ............... của Việt Nam.",
+           dapAn:"Trào lưu"
+        },
+        {
+           cauHoi:"Đảng ta chủ trương phát triển lực lượng sản xuất bằng cách?",
+           dapAn:"Phát triển kinh tế gắn với thực hiện công bằng xã hội"
+        },
+        {
+           cauHoi:"Điều kiện để sức lao động trở thành hàng hóa sức lao động?",
+           dapAn:"Con người được tự do đem bán sức lao động của mình như một hàng hóa"
+        },
+        {
+           cauHoi:"Bảo vệ tổ quốc được xem là nhiệm vụ như thế nào đối với cách mạng Việt Nam?",
+           dapAn:"Then chốt"
+        },
+        {
+           cauHoi:"Đâu là một trong những giai đoạn của quá trình nhận thức?",
+           dapAn:"Tư duy"
+        },
+        {
+           cauHoi:"Tư tưởng về chí công vô tư được thể hiện rõ nét nhất trong nội dung nào của hệ thống tư tưởng Hồ Chí Minh?",
+           dapAn:"Tư tưởng về xây dựng Đảng trong sạch, vững mạnh"
+        },
+        {
+           cauHoi:"Thời kỳ quá độ lên chủ nghĩa xã hội được tính từ khi?",
+           dapAn:"Công xã Paris 1871"
+        },
+        {
+           cauHoi:"Thực dân Pháp đã thực hiện mấy lần khai thác thuộc địa?",
+           dapAn:"3"
+        },
+        {
+           cauHoi:"Chủ nghĩa Mác - Lênin chỉ rõ động lực của sự phát triển xã hội chính là do nguyên nhân nào?",
+           dapAn:"Hình thành nên giai cấp"
+        },
+        {
+           cauHoi:"Di cốt và công cụ cổ xưa ở những địa danh: Võ Nhai (Lạng sơn ), núi Đọ (Thanh hoá), Thẩm Ồn (Nghệ An ), Xuân Lộc (Đồng nai ) được nêu lên nhằm giải thích điều gì sau đây?",
+           dapAn:"Cư dân Cổ Việt Nam có nguồn gốc từ Phương Bắc"
+        },
+        {
+           cauHoi:"Xây dựng và phát triển văn hóa là sự nghiệp của?",
+           dapAn:"Ngành văn hóa do Đảng lãnh đạo"
+        },
+        {
+           cauHoi:"Đảng ta xác định: “Tổ chức quyền lực của Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam là thống nhất, có sự phân công và phối hợp giữa các cơ quan nhà nước trong thực hiện các quyền…..”",
+           dapAn:"Tự do dân chủ"
+        },
+        {
+           cauHoi:"Phát triển là một khuynh hướng của vận động đối với các sự vật hiện tượng bao gồm :",
+           dapAn:"Đi từ cao xuống thấp, đi từ hoàn thiện đến hoàn thiện hơn, không có sự phát triển thụt lùi"
+        },
+        {
+           cauHoi:"Nguồn gốc hình thành nên tôn giáo là gì?",
+           dapAn:"Mối quan hệ giữa thần thánh và con người"
+        },
+        {
+           cauHoi:"Một trong những đặc điểm của Nhà nước pháp quyền xã hội chủ nghĩa là gì?",
+           dapAn:"Nhà nước hoạt động không theo hiến pháp và pháp luật"
+        },
+        {
+           cauHoi:"Trong sự kết hợp phát triển kinh tế xã hội và an ninh quốc phòng cần phải là?",
+           dapAn:"Xây dựng phát triển lực lượng ba thứ quân tinh nhuệ hiện đại thực hiện bảo vệ chủ quyền và toàn vẹn lãnh thổ"
+        },
+        {
+           cauHoi:"Chức năng chung của môn học chính trị là?",
+           dapAn:"Góp phần đào tạo người lao động vừa có đức, vừa có tài"
+        },
+        {
+           cauHoi:"Hoạt động thực tiễn là hoạt động vật chất của con người tác động vào thế giới khách quan bao gồm những thình thức nào?",
+           dapAn:"Hoạt động vật chất, hoạt động tinh thần"
+        },
+        {
+           cauHoi:"Chính sách tôn giáo cơ bản của Đảng ta hiện nay là?",
+           dapAn:"Cho phép thành lập các tôn giáo mới"
+        },
+        {
+           cauHoi:"Theo tư tưởng Hồ Chí Minh, trung với nước, hiếu với dân là gì?",
+           dapAn:"Xây dựng khối đoàn kết quốc tế"
+        },
+        {
+           cauHoi:"Phương thức sản của một hình thái kinh tế xã hội là gì?",
+           dapAn:"Cách thức tổ chức hoạt động đối nội và đối ngoại"
+        },
+        {
+           cauHoi:"Văn hóa Đông Sơn là nền văn hóa đại diện cho Nhà nước nào sau đây?",
+           dapAn:"Vương quốc Phù Nam"
+        },
+        {
+           cauHoi:"Trước khi có học thuyết Mác, kết quả các phong trào đấu tranh của giai cấp vô sản chống giai cấp tư sản đều?",
+           dapAn:"Thắng lợi"
+        },
+        {
+           cauHoi:"Một trong những đặc trưng của chủ nghĩa xã hội là “có nền văn hóa…,đậm đà bản sắc dân tộc”. Điền từ còn thiếu vào chổ trống?",
+           dapAn:"Cổ truyền"
+        },
+        {
+           cauHoi:"Quân đội nhân dân Việt Nam thành lập vào?",
+           dapAn:"Ngày 19 tháng 12 năm 1946"
+        },
+        {
+           cauHoi:"Tất cả tổ chức chính trị ra đời đều tuân thủ một số quy luật nhất định, vậy Đảng Cộng Sản Việt Nam ra đời theo quy luật nào?",
+           dapAn:"Là kết quả của sự kết hợp những bài học kinh nghiệm của các phong trào đấu tranh trước 1930, đặc biệt là các bài học xuất phát tự sự tồn tại của các tổ chức Cộng sản"
+        },
+        {
+           cauHoi:"Nguyên nhân của sự phát triển trong các sự vật hiện tượng là?",
+           dapAn:"Do một lực lượng siêu nhiên tác động và chi phối đến sự phát triển"
+        },
+        {
+           cauHoi:"Các cuộc đấu tranh tiêu biểu của giai cấp công nhân đầu thế kỷ XIX làm tiền đề hình thành chủ nghĩa Mác là?",
+           dapAn:"Phong trào công nhân dệt ở Paris (Pháp), Hiến chương của công nhân Anh, Công nhân dệt ở Nga"
+        },
+        {
+           cauHoi:"Điều kiện nào để sản xuất hàng hóa ra đời?",
+           dapAn:"Người sản xuất tự do về thân thể"
+        },
+        {
+           cauHoi:"“Muốn cứu nước và giải phóng dân tộc không có con đường nào khác là....”. Hãy điền cụm từ còn thiếu vào chỗ trống?",
+           dapAn:"Cách mạng toàn dân"
+        },
+        {
+           cauHoi:"Xây dựng hoàn chỉnh hệ thống chính sách bản đảm cung ứng dịch vụ công công thiết yếu nhằm?",
+           dapAn:"Đáp ứng nhu cầu hội nhập khu vực và quốc tế"
+        },
+        {
+           cauHoi:"Để nêu cao tính đoàn kết của giai cấp vô sản Lênin đã đề ra khẩu hiệu nào?",
+           dapAn:"“Vô sản thế giới và các dân tộc bị áp bức đoàn kết lại”"
+        },
+        {
+           cauHoi:"Yếu tố nào tạo nên sự cố kết trong cộng đồng dân tộc Việt Nam?",
+           dapAn:"Nhu cầu lao động sản xuất, chiến đấu dựng xây đất nước"
+        },
+        {
+           cauHoi:"Dân tộc ta đã phải trải qua hơn 12 thế kỷ chống chiến tranh xâm lược bảo vệ tổ quốc, trong số các thế lực ngoại bang, chống thế lực nào lâu dài nhất?",
+           dapAn:"Quân Nam Hán"
+        },
+        {
+           cauHoi:"Phương án nào sau đây KHÔNG đúng về chế độ phong kiến Việt Nam cuối thế kỷ XVIII đến giữa thế kỷ XIX?",
+           dapAn:"Từng bước thiết lập nên những chính sách mới nhằm phối hợp, đoàn kết nhân dân chống lại thực dân Pháp"
+        },
+        {
+           cauHoi:"Đảng ta đã lãnh đạo đất nước giành được nhiều thắng lợi, rút ra nhiều bài học kinh nghiệm. Trong các phương án sau, đâu là bài học kinh nghiệm của Đảng ta?",
+           dapAn:"Cách mạng là sự nghiệp của dân, do dân và vì dân"
+        },
+        {
+           cauHoi:"Cách mạng tháng 8 năm 1945 là kết quả của bao nhiêu năm đấu tranh anh dũng của nhân dân ta dưới sự lãnh đạo của Đảng?",
+           dapAn:"Của 15 năm lãnh đạo"
+        },
+        {
+           cauHoi:"“Bất cứ ở đâu, trên thế giới chỉ có 2 loại người : bóc lột và bị bóc”. Nhận định này là của ai?",
+           dapAn:"Hồ Chí Minh"
+        },
+        {
+           cauHoi:"Đại hội đại biểu toàn quốc lần thứ mấy của Đảng chính thức ghi vào Cương lĩnh và Điều lệ Đảng: \"Đảng lấy chủ nghĩa Mác - Lênin và tư tưởng Hồ Chí Minh làm nền tảng tư tưởng, kim chỉ nam cho hành động...\"",
+           dapAn:"Đại hội Đại biểu lần thứ VII"
+        },
+        {
+           cauHoi:"Tôn giáo nào ở nước ta hiện nay có số lượng tín đồ đông nhất?",
+           dapAn:"Phật giáo"
+        },
+        {
+           cauHoi:"Hoàn thành định nghĩa sau: «Chính trị là khoa học nghiên cứu về mối quan hệ giữa con người, giai cấp, đảng phái, dân tộc trong việc …, …, …. và …..quyền lực chính trị »",
+           dapAn:"giành, giữ, tổ chức, thực thi"
         }
-  
-    
+     
 ]
 const search = () => {
 
