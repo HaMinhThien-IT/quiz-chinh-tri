@@ -3,6 +3,7 @@ function autocomplete(inp) {
   inp.addEventListener("input", function (e) {
     var a,
       b,
+
       i,
       val = this.value;
     closeAllLists();
@@ -22,7 +23,7 @@ function autocomplete(inp) {
         b.innerHTML =
           "<strong>" + arr[i].cauHoi.substr(0, val.length) + "</strong>";
         b.innerHTML += arr[i].cauHoi.substr(val.length);
-        b.innerHTML += "<input id='input123' type='hidden' value='" + arr[i].cauHoi + "'>";
+        b.innerHTML += "<div><input id='input123' type='hidden' value='" + arr[i].cauHoi + "'> <p'> <strong>Đáp án: </strong> " + arr[i].dapAn + " </p> </div>";
         b.addEventListener("click", function (e) {
           inp.value = this.getElementsByTagName("input")[0].value;
           closeAllLists();
@@ -2330,10 +2331,11 @@ const search = () => {
   console.log(node1);
   nodeDs.innerHTML = "";
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i].cauHoi.includes(node1) || arr[i].dapAn.includes(node1)) {
-      nodeDs.innerHTML =
-        nodeDs.innerHTML +
-        `
+    if (arr[i].cauHoi.length > 23) {
+      if ((arr[i].cauHoi.substring(0, 23)).toLowerCase() == (String(node1).substring(0, 23).toLowerCase())) {
+        nodeDs.innerHTML =
+          nodeDs.innerHTML +
+          `
             <p>
              <span> Câu hỏi số ${i} : </span> ${arr[i].cauHoi}
           </p>
@@ -2341,6 +2343,18 @@ const search = () => {
              <Strong>Đáp án : </Strong> ${arr[i].dapAn}
 
             `;
+      }
+    } else {
+      if (arr[i].cauHoi.includes(node1) || arr[i].dapAn.includes(node1)) {
+        nodeDs.innerHTML =
+          nodeDs.innerHTML +
+          `
+              <p>
+               <span> Câu hỏi số ${i} : </span> ${arr[i].cauHoi}
+            </p>
+               <Strong>Đáp án : </Strong> ${arr[i].dapAn}
+              `;
+      }
     }
   }
 };
