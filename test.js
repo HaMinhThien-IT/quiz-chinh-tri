@@ -22,7 +22,7 @@ function autocomplete(inp) {
         b.innerHTML =
           "<strong>" + arr[i].cauHoi.substr(0, val.length) + "</strong>";
         b.innerHTML += arr[i].cauHoi.substr(val.length);
-        b.innerHTML += "<input type='hidden' value='" + arr[i].cauHoi + "'>";
+        b.innerHTML += "<input id='input123' type='hidden' value='" + arr[i].cauHoi + "'>";
         b.addEventListener("click", function (e) {
           inp.value = this.getElementsByTagName("input")[0].value;
           closeAllLists();
@@ -76,1890 +76,2253 @@ function autocomplete(inp) {
 }
 
 let arr = [
+
+
   {
-    cauHoi: "Biến con trỏ có thể chứa",
-    dapAn: "Địa chỉ vùng nhớ của một biến khác.",
+    cauHoi: "Đâu là các phương thức của ObjectMapper được sử dụng để đọc nguồn dữ liệu JSON và cho kết quả là JSonNode",
+    dapAn: "readTree()"
   },
   {
-    cauHoi:
-      "Biểu thức điều kiện để kiểm tra một phần tử thứ i của mảng A có nằm trong (-5;10) là ?\n1. (A[i]  >  -5) and (A[i]  <  10)\n2. (-5  <  A[i]) and (10  <  A[i])",
-    dapAn: "1 đúng, 2 đúng",
+    cauHoi: "Theo cú pháp của JSON, các cặp key=value phải thỏa mãn\n\r1. Key phải là chuỗi\n\r2. Value có thể là chuỗi",
+    dapAn: "1 đúng, 2 đúng"
   },
   {
-    cauHoi:
-      'Char S[20]="aaaaaea";\n\nchar* p=strstr(S,"e");\n\nNếu địa chỉ của S là 1000, thì giá trị của p là bao nhiêu là',
-    dapAn: "1005",
-  },
-  {
-    cauHoi:
-      "Cho Stack gồm 5 phần tử {12, 5, 20, 23, 25}, trong đó 25 là phần tử ở đỉnh Stack. Để lấy ra phần tử thứ 3 trong Stack ta phải làm thế nào?",
-    dapAn: "POP(25), POP(23), POP(20), PUSH(23), PUSH(25)",
-  },
-  {
-    cauHoi:
-      "Cho Stack gồm 5 phần tử {12, 5, 20, 23, 25}, trong đó 25 là phần tử ở đỉnh Stack. Để lấy ra phần tử thứ 4 trong Stack ta phải làm thế nào?",
-    dapAn: ["POP(23)", "POP(25),", "PUSH(25)"],
-  },
-  {
-    cauHoi:
-      'Cho biết đoạn chương trình sau có kết quả bao nhiêu:  \n\n\rvoid main()\n\n\r{\n\n\r int ints[] = { 0, 1, 2, 3 };\n\n\r int* i1 = ints + 1;\n\n\r int a = ++*i1;\n\n\r int b = a + *i1;\n\n\r printf("%d\\n", b);\n\n\r getch();\n\n\r}',
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      'Cho biết đoạn chương trình sau có kết quả bao nhiêu:  \n\nvoid main()\n\n{\n\n int ints[] = { 0, 1, 2, 3 };\n\n int* i1 = ints + 1;\n\n int a = ++*i1;\n\n int b = a + *i1;\n\n printf("%d\\n", b);\n\n getch();\n\n}',
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      "Cho cây nhị phân T có 70 nút cấp 2 ( có 2 con).Cây đó có bao nhiêu nút lá( không có con):",
-    dapAn: "71",
-  },
-  {
-    cauHoi:
-      "Cho cây nhị phân T có chiều cao là 6( nút gốc có mức 1) . Số nút tối đa của cây là:",
-    dapAn: "63",
-  },
-  {
-    cauHoi:
-      "Cho cây nhị phân T, nút có địa chỉ 19 thì có nút cha ở địa chỉ nào",
-    dapAn: "9",
-  },
-  {
-    cauHoi: "Cho cây nhị phân T, nút có địa chỉ 7 có 2 con ở địa chỉ nào:",
-    dapAn: ["14", "15"],
-  },
-  {
-    cauHoi:
-      "Cho cây nhị phân T, phép duỵêt cây theo thứ tự giữa cho kết quả DBHEAFICGJ . Nếu duyệt theo thứ tự sau ta có kết quả : DHEBIFJGCA . Hãy cho biết các nút của cây con phải",
-    dapAn: "ficgj",
-  },
-  {
-    cauHoi:
-      "Cho cây nhị phân T. Phép duyệt cây theo thứ tự trước cho kết quả ABDEHCFIGJ. Nếu duyệt theo thứ tự giữa ta có kết quả: DBHEAFICGJ. Hãy cho biết các nút của cây con trái",
-    dapAn: "bdhe",
-  },
-  {
-    cauHoi: "Cho cây nhị phân T. Phép duyệt thứ tự trước cho kết quả là",
-    dapAn: "abdecfg",
-  },
-  {
-    cauHoi:
-      'Cho cấu trúc dữ liệu như sau:\n\n\rstruct Employee\n\n\r{ char Code[], name[];\n\n\r long Salary;\n\n\r};\n\n\rEmployee e1= { "E089", "Hoang so", 12000}, e2=e1;\n\n\rprintf("%ld",el.Salary+e2 -> Salary); cho biết kết quả của chương trình',
-    dapAn: "doan ma bi loi",
-  },
-  {
-    cauHoi:
-      'Cho cấu trúc dữ liệu như sau:\n\nstruct Employee\n\n{ char Code[], name[];\n\n long Salary;\n\n};\n\nEmployee e1= { "E089", "Hoang so", 12000}, e2=e1;\n\nprintf("%ld",el.Salary+e2 - >  Salary); cho biết kết quả của chương trình',
-    dapAn: "doan ma bi loi",
-  },
-  {
-    cauHoi:
-      "Cho dãy khoá 42,23,74,11,65,58,94,36\n\nLần lượt đưa dãy khoá trên vào cây nhị phân tìm kiếm. Bây giờ ta muốn tìm kiếm xem trong dãy khoá trên có khoá 105 không thì phải làm bao nhiêu phép so sánh:",
-    dapAn: "3",
-  },
-  {
-    cauHoi:
-      "Cho dãy khoá 42,23,74,11,65,58,94,36\nLần lượt đưa dãy khoá trên vào cây nhị phân tìm kiếm. Bây giờ ta muốn tìm kiếm xem trong dãy khoá trên có khoá 105 không thì phải làm bao nhiêu phép so sánh:",
-    dapAn: "3",
-  },
-  {
-    cauHoi:
-      "Cho dãy khoá 42,23,74,11,65,58,94,36\nLần lượt đưa dãy khoá trên vào cây nhị phân tìm kiếm. Nếu ta tìm kiếm trên cây nhị phân này thì trong trường hợp xấu nhất phải làm bao nhiêu phép so sánh",
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      "Cho dãy số 27 40 -7 5 57, thực hiện bước thứ 1, khi áp dụng thuật toán sắp xếp lựa chọn để sắp xếp dãy theo thứ tự giảm, ta có được dãy mới là gì?",
-    dapAn: "57  27 -7  5  40",
-  },
-  {
-    cauHoi:
-      "Cho dãy số sau: 10 11 14 32 36 43 55 57 87 97. Áp dụng phương pháp tìm kiếm nhị phân, để tìm kiếm số 10, lần phân đoạn thứ nhất của dãy sẽ là",
-    dapAn: "[10 11 14 32 36]",
-  },
-  {
-    cauHoi:
-      "Cho dãy số sau: 14 32 10 43 57 87 55 36 97 11. Áp dụng phương pháp tìm kiếm tuần tự, sau bao nhiều lần thực hiện phép so sánh ta sẽ tìm thấy số 43?",
-    dapAn: "4 lần",
-  },
-  {
-    cauHoi:
-      "Cho dãy số sau: 40 25 75 15 65 55 90 30 95 85. Áp dụng phương pháp sắp xếp lựa chọn, sau lượt 1 dãy sẽ được sắp xếp lại như thế nào?",
-    dapAn: "15 25 75 40 65 55 90 30 95 85",
-  },
-  {
-    cauHoi:
-      "Cho dãy số sau: 40 25 75 15 65 55 90 30 95 85. Áp dụng phương pháp sắp xếp lựa chọn, sau lượt 2 dãy sẽ được sắp xếp lại như thế nào?",
-    dapAn: "15 25 75 40 65 55 90 30 95 85",
-  },
-  {
-    cauHoi:
-      "Cho dãy số sau: 40 25 75 15 65 55 90 30 95 85. Áp dụng phương pháp sắp xếp lựa chọn, sau lượt 3 dãy sẽ được sắp xếp lại như thế nào?",
-    dapAn: "15 25 30 40 65 55 90 75 95 85",
-  },
-  {
-    cauHoi:
-      "Cho dãy số sau: 40 25 75 15 65 55 90 30 95 85. Áp dụng phương pháp sắp xếp nhanh (Quick_Sort), sau lượt 6 dãy sẽ được sắp xếp lại như thế nào?",
-    dapAn: "1 5 25 30 40 55 65 (90 75 95 85)",
-  },
-  {
-    cauHoi:
-      "Cho dãy số sau: 40 25 75 15 65 55 90 30 95 85. Áp dụng phương pháp sắp xếp nhanh (Quick_Sort), sau lượt 9 dãy sẽ được sắp xếp lại như thế nào?",
-    dapAn: "1 5 25 30 40 55 65 75 85 90 (95)",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {3 1 6 0 5 4 8 2 9 7}. áp dụng phương pháp sắp xếp nhanh (Quick sort) sau lần lặp đầu tiên của giải thuật ta có kết quả: {(0 1 2) 3 (5 4 8 6 9 7)}. Dãy số thu được sau lần lặp thứ ba là:",
-    dapAn: "{0 1 (2) 3 (5 4 8 6 9 7)}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {3 1 6 0 5 4 8 2 9 7}. áp dụng phương pháp sắp xếp nhanh (Quick sort) sau lần lặp đầu tiên của giải thuật ta có kết quả: {(0 1 2) 3 (5 4 8 6 9 7)}. Dãy số thu được sau lần lặp thứ bốn là:",
-    dapAn: "{0 1 2 3 (5 4 8 6 9 7)}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 0 2 8 5 9 6 1 3 7}. áp dụng phương pháp sắp xếp chèn (Insert sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 2 8 5 9 6 1 3 7}. Dãy số thu được sau lần lặp thứ ba là:",
-    dapAn: "{0 2 4 8 5 9 6 1 3 7}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 0 2 8 5 9 6 1 3 7}. áp dụng phương pháp sắp xếp chèn (Insert sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 2 8 5 9 6 1 3 7}. Dãy số thu được sau lần lặp thứ bảy là:",
-    dapAn: "{0 1 2 4 5 6 8 9 3 7}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 0 2 8 5 9 6 1 3 7}. áp dụng phương pháp sắp xếp chèn (Insert sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 2 8 5 9 6 1 3 7}. Dãy số thu được sau lần lặp thứ bốn là:",
-    dapAn: "{0 2 4 5 8 9 6 1 3 7}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 0 2 8 5 9 6 1 3 7}. áp dụng phương pháp sắp xếp chèn (Insert sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 2 8 5 9 6 1 3 7}. Dãy số thu được sau lần lặp thứ chín là:",
-    dapAn: "{0 1 2 3 4 5 6 7 8 9}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 0 2 8 5 9 6 1 3 7}. áp dụng phương pháp sắp xếp chèn (Insert sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 2 8 5 9 6 1 3 7}. Dãy số thu được sau lần lặp thứ hai là:",
-    dapAn: "{0 2 4 8 5 9 6 1 3 7}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 0 2 8 5 9 6 1 3 7}. áp dụng phương pháp sắp xếp chèn (Insert sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 2 8 5 9 6 1 3 7}. Dãy số thu được sau lần lặp thứ tám là:",
-    dapAn: "{0 1 2 3 4 5 6 8 9 7}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 7 0 9 2 5 3 1 8 6}. áp dụng phương pháp sắp xếp nổi bọt (Bubble sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 7 1 9 2 5 3 6 8}. Dãy số thu được sau lần lặp thứ ba là:",
-    dapAn: "{0 1 2 4 7 3 9 5 6 8}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 7 0 9 2 5 3 1 8 6}. áp dụng phương pháp sắp xếp nổi bọt (Bubble sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 7 1 9 2 5 3 6 8}. Dãy số thu được sau lần lặp thứ bốn là:",
-    dapAn: "{0 1 2 3 4 7 5 9 6 8}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 7 0 9 2 5 3 1 8 6}. áp dụng phương pháp sắp xếp nổi bọt (Bubble sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 7 1 9 2 5 3 6 8}. Dãy số thu được sau lần lặp thứ năm là:",
-    dapAn: "{0 1 2 3 4 5 7 6 9 8}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {6 1 3 0 5 7 9 2 8 4}. áp dụng phương pháp sắp xếp lựa chọn (Select sort) sau lần lặp đầu tiên của giải thuật ta có kết quả: {0 1 3 6 5 7 9 2 8 4}. Dãy số thu được sau lần lặp thứ ba là:",
-    dapAn: "{0 1 2 6 5 7 9 3 8 4}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {6 1 3 0 5 7 9 2 8 4}. áp dụng phương pháp sắp xếp lựa chọn (Select sort) sau lần lặp đầu tiên của giải thuật ta có kết quả: {0 1 3 6 5 7 9 2 8 4}. Dãy số thu được sau lần lặp thứ bảy là:",
-    dapAn: "{0 1 2 3 4 5 6 9 8 7}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {6 1 3 0 5 7 9 2 8 4}. áp dụng phương pháp sắp xếp lựa chọn (Select sort) sau lần lặp đầu tiên của giải thuật ta có kết quả: {0 1 3 6 5 7 9 2 8 4}. Dãy số thu được sau lần lặp thứ hai là:",
-    dapAn: "{0 1 3 6 5 7 9 2 8 4}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {6 1 3 0 5 7 9 2 8 4}. áp dụng phương pháp sắp xếp lựa chọn (Select sort) sau lần lặp đầu tiên của giải thuật ta có kết quả: {0 1 3 6 5 7 9 2 8 4}. Dãy số thu được sau lần lặp thứ năm là:",
-    dapAn: "{0 1 2 3 4 7 9 6 8 5}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {6 1 3 0 5 7 9 2 8 4}. áp dụng phương pháp sắp xếp lựa chọn (Select sort) sau lần lặp đầu tiên của giải thuật ta có kết quả: {0 1 3 6 5 7 9 2 8 4}. Dãy số thu được sau lần lặp thứ sáu là:",
-    dapAn: "{0 1 2 3 4 5 9 6 8 7}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {6 1 3 0 5 7 9 2 8 4}. áp dụng phương pháp sắp xếp lựa chọn (Select sort) sau lần lặp đầu tiên của giải thuật ta có kết quả: {0 1 3 6 5 7 9 2 8 4}. Dãy số thu được sau lần lặp thứ tư là:",
-    dapAn: "{0 1 2 3 6 5 7 9 8 4}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {6 1 3 0 5 7 9 2 8 4}. áp dụng phương pháp sắp xếp lựa chọn (Select sort) tăng dần, sau lần lặp đầu tiên của giải thuật ta có kết quả: {0 1 3 6 5 7 9 2 8 4}. Dãy số thu được sau lần lặp thứ tám là:",
-    dapAn: "{0 1 2 3 4 5 6 7 8 9}",
-  },
-  {
-    cauHoi:
-      "Cho dãy số: 12 2 8 5 1 6 4 15 và các bước sắp xếp sau:\n\n\rBước 1: 1 2 8 5 12 6 4 15\n\n\rBước 2: 1 2 8 5 12 6 4 15\n\n\rBước 3: 1 2 4 5 12 6 8 15\n\n\rBước 4: 1 2 4 5 12 6 8 15\n\n\rBước 5: 1 2 4 5 6 12 8 15\n\n\rBước 6: 1 2 4 5 6 8 12 15\n\n\rCác bước trên dựa theo giải thuật sắp xếp  ?",
-    dapAn: "select sort",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật sau:\n1.C(n,n)=C(n,0)=1\n2.C(n,k)=C(n-1,k)+C(n-1,k-1) với n > k > 0\nGiá trị của C(4,2) là",
-    dapAn: "6",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật đệ quy\n\n\r1.F(1)=F(2)=1\n\n\r2.F(k)=F(k-1)+F(k-2) nếu K>2\n\n\rHãy tính F(6):",
-    dapAn: "8",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật đệ quy\n\n1.F(1)=1, F(2)=2, F(3)=2\n\n2.F(k)=F(K-1) + 2F(K-3) , K > 3\n\nHãy tính F(6)",
-    dapAn: "12",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật đệ quy\n\n1.F(1)=F(2)=1\n\n2.F(k)=F(k-1)+F(k-2) nếu K > 2\n\nHãy tính F(6):",
-    dapAn: "8",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật đệ quy\n1.F(1)=1, F(2)=2, F(3)=2\n2.F(k)=F(K-1) + 2F(K-3) , K > 3\nHãy tính F(6)",
-    dapAn: "12",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật đệ quy\n1.F(1)=F(2)=1\n2.F(k)=F(k-1)+F(k-2) nếu K > 2\nHãy tính F(6):",
-    dapAn: "8",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật đệ quy\n1.F(1)=F(2)=1\n2.F(k)=F(k-1)+F(k-2) nếu K > 2\nHãy tính F(7):",
-    dapAn: "13",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật đệ quy:\n\n\r1.F(0,a)=F(a,0)=a (0 là số không)\n\n\r2.F(m,n)=F(m-n,n) nếu m>=n\n\n\r3.F(m,n)=F(m,n-m) Nếu m=30, n = 75 thì sau khi thực hiện giải thuật ta được giá trị là",
-    dapAn: "15",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật đệ quy:\n\n1.F(0,a)=F(a,0)=a (0 là số không)\n\n2.F(m,n)=F(m-n,n) nếu m > =n\n\n3.F(m,n)=F(m,n-m) Nếu m=30, n = 75 thì sau khi thực hiện giải thuật ta được giá trị là",
-    dapAn: "15",
-  },
-  {
-    cauHoi:
-      "Cho giải thuật đệ quy:\n1.F(0,a)=F(a,0)=a (0 là số không)\n2.F(m,n)=F(m-n,n) nếu m > =n\n3.F(m,n)=F(m,n-m) Nếu m=30, n = 75 thì sau khi thực hiện giải thuật ta được giá trị là",
-    dapAn: "15",
-  },
-  {
-    cauHoi:
-      "Cho mảng 2 chiều : A={F( i j)} i là chỉ số hàng, j là chỉ số cột. Mảng A có 8 hàng, 9 cột. Lưu trữ liên tiếp mảng A ưu tiên hàng. Nếu phần tử F(11) có địa chỉ 50, mỗi phần tử chiếm 3 ô thì phần tử F(57) có địa chỉ:",
-    dapAn: "176",
-  },
-  {
-    cauHoi:
-      "Cho mảng 2 chiều A={F( i j)}: i là chỉ số hàng, j là chỉ số cột. Mảng A có 8 hàng, 9 cột. Lưu trữ liên tiếp mảng A ưu tiên cột nếu phần tử F(11) có địa chỉ 230 , mỗi phần tử chiếm 3 ô thì phần tử F(37) có địa chỉ:",
-    dapAn: "380",
-  },
-  {
-    cauHoi:
-      "Cho mảng 2 chiều A={a (i j )}, mảng có m hàng, n cột, và được lưu trữ liên tiếp. Công thức tính địa chỉ của phần tử a (i j)\n\n\rL{ F(i j )} = L(0) + C [(j - 1)m + (i - 1)]\n\n\rDùng trong trường hợp",
-    dapAn: "Ưu tiên cột",
-  },
-  {
-    cauHoi:
-      "Cho mảng 2 chiều A={a (i j )}, mảng có m hàng, n cột, và được lưu trữ liên tiếp. Công thức tính địa chỉ của phần tử a (i j)\n\nL{ F(i j )} = L(0) + C [(j - 1)m + (i - 1)]\n\nDùng trong trường hợp",
-    dapAn: "Ưu tiên cột",
-  },
-  {
-    cauHoi:
-      "Cho mảng 2 chiều A={a (i j )}, mảng có m hàng, n cột, và được lưu trữ liên tiếp. Công thức tính địa chỉ của phần tử a (i j)\nL{ F(i j )} = L(0) + C [(j - 1)m + (i - 1)]\nDùng trong trường hợp",
-    dapAn: "Ưu tiên cột",
-  },
-  {
-    cauHoi:
-      "Cho mảng một chiều A=(a1,a2,…,ax,…,an) và được lưu trữ liên tiếp. Giả thử mỗi phần tử của mảng chiếm 3 ô và phần tử đầu tiên F(1) có địa chỉ 23 thì phần tử F(4) có địa chỉ",
-    dapAn: "41",
-  },
-  {
-    cauHoi:
-      "Cho một danh sách móc nối với các phần tử trong danh sách có kiểu S1 được định nghĩa như sau:\n\n struct S1{ int info; struct S1 * next;} *head;\n\nBiết con trỏ “head” lưu địa chỉ của phần tử đầu tiên trong danh sách. Cho biết mục đích của câu lệnh sau:\n\n { head- > next- > next- > info=111;};",
-    dapAn: "Giá trị “info” trong phần tử thứ 3 đã bị thay đổi.",
-  },
-  {
-    cauHoi:
-      "Cho một danh sách móc nối với các phần tử trong danh sách có kiểu S1 được định nghĩa như sau:\n\n struct S1{ int info; struct S1 * next;} *head;\n\nBiết con trỏ “head” lưu địa chỉ của phần tử đầu tiên trong danh sách. Cho biết mục đích của câu lệnh sau:\n\n {(head- > next)=(head- > next)- > next;};",
-    dapAn: "Loại bỏ phần tử thứ 2 ra khỏi danh sách.",
-  },
-  {
-    cauHoi:
-      "Cho một ma trận thưa, hàng 1 có 2 phần tử F(11) , F(12) . Từ hàng thứ 2 chỉ có 3 phần tử F(k , k-1) ; F(k, k) ; F(k, k+1) , hàng cuối cùng cũng chỉ có 2 phần tử : F(n, n-1) ; F(n , n)\n\n\rHãy lưu trữ liên tiếp ưu tiên hàng của ma trận này thành một mảng một chiều : thí dụ F(11) là b(1) ; F(12) là b(2) ; F(21) là b(3) …\n\n\rTính b(k) nếu phần tử F(i j ) là F(6 , 7)",
-    dapAn: "B(17)",
-  },
-  {
-    cauHoi:
-      "Cho một ma trận thưa, hàng 1 có 2 phần tử F(11) , F(12) . Từ hàng thứ 2 chỉ có 3 phần tử F(k , k-1) ; F(k, k) ; F(k, k+1) , hàng cuối cùng cũng chỉ có 2 phần tử : F(n, n-1) ; F(n , n)\n\nHãy lưu trữ liên tiếp ưu tiên hàng của ma trận này thành một mảng một chiều : thí dụ F(11) là b(1) ; F(12) là b(2) ; F(21) là b(3) …\n\nNếu F(67) thì b(  )",
-    dapAn: "17",
-  },
-  {
-    cauHoi:
-      "Cho một ma trận thưa, hàng 1 có 2 phần tử F(11) , F(12) . Từ hàng thứ 2 chỉ có 3 phần tử F(k , k-1) ; F(k, k) ; F(k, k+1) , hàng cuối cùng cũng chỉ có 2 phần tử : F(n, n-1) ; F(n , n)\nHãy lưu trữ liên tiếp ưu tiên hàng của ma trận này thành một mảng một chiều : thí dụ F(11) là b(1) ; F(12) là b(2) ; F(21) là b(3) …\nTính b(k) nếu phần tử F(i j ) là F(6 , 7)",
-    dapAn: "b(17)",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\n\n\rint Logarit(int n)\n\n\r{\n\n\r if(n<0)\n\n\r return -1;\n\n\r else\n\n\r if(n>=2)\n\n\r return 1+logarit(n/2);\n\n\r else\n\n\r return 0;\n\n\r}\n\n\rCho biết chức năng của đoạn chương trình trên",
-    dapAn: "Tìm giá trị nguyên  logarit cơ số 2 của n",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\n\n\rint dequy(int a,int b)\n\n\r{\n\n\r if(a==b)\n\n\r return a;\n\n\r else\n\n\r {\n\n\r if(a>b)\n\n\r a=a-b;\n\n\r else\n\n\r b=b-a;\n\n\r }\n\n\r return dequy(a,b);\n\n\r}\n\n\rCho biết chức năng của đoạn chương trình trên",
-    dapAn: "Tìm ước số chung lớn nhất của 2 số nguyên a, b.",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\n\nint Logarit(int n)\n\n{\n\n if(n < 0)\n\n return -1;\n\n else\n\n if(n > =2)\n\n return 1+logarit(n/2);\n\n else\n\n return 0;\n\n}\n\nCho biết chức năng của đoạn chương trình trên",
-    dapAn: "Tìm giá trị nguyên  logarit cơ số 2 của n",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\n\nint dequy(int a,int b)\n\n{\n\n if(a==b)\n\n return a;\n\n else\n\n {\n\n if(a > b)\n\n a=a-b;\n\n else\n\n b=b-a;\n\n }\n\n return dequy(a,b);\n\n}\n\nCho biết chức năng của đoạn chương trình trên",
-    dapAn: "Tìm ước số chung lớn nhất của 2 số nguyên a, b.",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\n\nint dequy(int n)\n\n{\n\n if(n==0)\n\n return 0;\n\n return 1+dequy(n/10);\n\n}\n\nCho biết chức năng của đoạn chương trình trên",
-    dapAn: "Đếm số lượng chữ số nguyên dương n",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\n\nlong Tong(unsigned n)\n\n{\n\n if(n==0)\n\n return 1;\n\n return n+Tong(n-2);\n\n}\n\nCho biết chức năng của đoạn chương trình trên dùng để tính cho biểu thức nào",
-    dapAn: "S(n)=1+3+5+…+(2.n+1) với n > =0",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\n\nlong dequy(long n,long &max)\n\n{ \n\n long m;\n\n if(n==0)\n\n return max;\n\n else\n\n {\n\n m=n%10;\n\n if(m > max)\n\n max=m;\n\n } \n\n return dequy(n/10,max);\n\n}\n\nCho biết chức năng của đoạn chương trình trên",
-    dapAn: "Tìm chữ số có giá trị lớn nhất của số nguyên dương n",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\nint Logarit(int n)\n{\n if(n < 0)\n return -1;\n else\n if(n > =2)\n return 1+logarit(n/2);\n else\n return 0;\n}\nCho biết chức năng của đoạn chương trình trên",
-    dapAn: "Tìm giá trị nguyên  logarit cơ số 2 của n",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\nint n=0;\nfor (int i=0; i < 10; i+=4) n+=I; giá trị của biến n là",
-    dapAn: "12",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\nlong Tong(unsigned n)\n{\n if(n==0)\n return 1;\n return n+Tong(n-2);\n}\nCho biết chức năng của đoạn chương trình trên dùng để tính cho biểu thức nào",
-    dapAn: "S(n)=1+3+5+…+(2.n+1) với n > =0",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình sau:\nlong dequy(long n,long &max)\n{ \n long m;\n if(n==0)\n return max;\n else\n {\n m=n%10;\n if(m > max)\n max=m;\n } \n return dequy(n/10,max);\n}\nCho biết chức năng của đoạn chương trình trên",
-    dapAn: "Tìm chữ số có giá trị lớn nhất của số nguyên dương n",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình:\n\nchar S[] = “Helen”;\n\nchar *p = S;\n\nchar c = *(p+3);\n\nGiá trị của c sẽ là:",
-    dapAn: "e",
-  },
-  {
-    cauHoi:
-      "Cho đoạn chương trình:\nchar S[] = “Helen”;\nchar *p = S;\nchar c = *(p+3);\nGiá trị của c sẽ là:",
-    dapAn: "e",
-  },
-  {
-    cauHoi: "Chọn câu trả lời đúng nhất về thuật toán",
-    dapAn:
-      "Thuật toán là một dãy hữu hạn các bước, mỗi bước mô tả chính xác các phép toán hoặc hành động cần thực hiện để giải quyết vấn đề đặt ra",
-  },
-  {
-    cauHoi: "Chọn câu đúng nhất cho hàm Swap?",
-    dapAn:
-      "Void Swap(int &X, int &Y) { \n\n   int Temp = X; X = Y; Y = Temp; \n\n}",
-  },
-  {
-    cauHoi: "Chọn câu đúng?",
+    cauHoi: "Chon interface\n\r@FunctionalInterface\n\rpublic interface Demo4Inter{\n\r void m1(int x);\n\r}\n\rHãy chọn mã đúng khi tạo đối tượng",
     dapAn: [
-      "“struct” là một kiểu dữ liệu do người dùng định nghĩa bao gồm nhiều thành phần có kiểu khác nhau.",
-      "“struct” là sự kết hợp của nhiều thành phần có thể có kiểu khác nhau.",
-    ],
+      "Demo4Inter o1 = new Demo4Inter() {\n\r @Override\n\r public void m1(int x) {}\n\r};",
+      "Demo4Inter o3 = x -> {};",
+      "Demo4Inter o4 = x -> System.out.println(x);"
+    ]
   },
   {
-    cauHoi: "Cài đặt danh sách bằng con trỏ có nghĩa là",
-    dapAn:
-      "Dùng con trỏ để liên kết các phần tử của danh sách theo phương thức ai chỉ đến ai+1. Để một phần tử có thể chỉ đến một phần tử khác ta xem mỗi ô là một Record gồm có 2 trường : Trường Elements để giữ nội dung của phần tử trong danh sách. Trường Next là một con trỏ giữ địa chỉ của ô kế tiếp.",
-  },
-  {
-    cauHoi: "Cài đặt danh sách bằng mảng có nghiã là",
-    dapAn:
-      "dùng một mảng (array) để lưu trữ liên tiếp các phần tử của danh sách bắt đầu từ vị trí đầu tiên của mảng.",
-  },
-  {
-    cauHoi: "Các hoạt động cơ bản trên Danh sách liên kết vòng",
-    dapAn: ["Chèn", "hiển thị", "xóa"],
-  },
-  {
-    cauHoi: "Các thuộc tính của một kiểu dữ liệu",
-    dapAn: "Tất cả các thuộc tính đưa ra",
-  },
-  {
-    cauHoi:
-      "Các tiêu chuẩn đánh giá cấu trúc dữ liệu. Để đánh giá một cấu trúc dữ liệu chúng ta thường dựa vào các tiêu chí nào",
-    dapAn: "Tất cả đáp án trên là đúng",
-  },
-  {
-    cauHoi: "Cây 5 phân có nghĩa là gì?",
-    dapAn: "nut co cap lon nhat la 5",
-  },
-  {
-    cauHoi: "Cây nhị phân khác rỗng là cây...",
-    dapAn: "Mỗi nút có không quá 2 nút con",
-  },
-  {
-    cauHoi: "Cây nhị phân tìm kiếm là:",
-    dapAn:
-      "Cây nhị phân mà mỗi nút trong cây đều thoả tính chất: giá trị của nút cha nhỏ hơn mọi nút trên cây con trái và lớn hơn mọi nút trên cây con phảI của nó.",
-  },
-  {
-    cauHoi: "Có bao nhiêu loại hoạt động cơ bản trên danh sách liên kết vòng",
-    dapAn: "3",
-  },
-  {
-    cauHoi:
-      "Có các khai báo sau: int x=15; int *p; Muốn p là con trỏ trỏ tới x phải thực hiện lệnh nào",
-    dapAn: "P=&x;",
-  },
-  {
-    cauHoi: "Có mấy loại danh sách liên kết",
-    dapAn: "3",
-  },
-  {
-    cauHoi: "Cấu trúc dữ liệu mảng có các ưu điểm nào?",
-    dapAn: "Tất cả đáp án đều đúng",
-  },
-  {
-    cauHoi: "Cấu trúc dữ liệu nào tương ứng với LIFO",
-    dapAn: "stack",
-  },
-  {
-    cauHoi:
-      "Danh sách khai báo bằng con trỏ. Hàm sau có chức năng gì?\n\nBoolean EList( ListvHeader )\n\n{\n\nElist = (Header.Next = Nil);\n\n}",
-    dapAn: "kiem tra danh sach rong",
-  },
-  {
-    cauHoi:
-      "Danh sách khai báo bằng con trỏ. Hàm sau có chức năng gì?\nBoolean EList( ListvHeader )\n{\nElist = (Header.Next = Nil);\n}",
-    dapAn: "kiem tra danh sach rong",
-  },
-  {
-    cauHoi:
-      'Danh sách khai báo bằng con trỏ. Thủ tục sau có chức năng gì?"\n\nvoid MnullList ( List Header)\n\n{\n\nNew (Header);\n\nHeader.Next : = Nil;\n\n}',
-    dapAn: "thu tuc khoi tao danh sach rong",
-  },
-  {
-    cauHoi:
-      'Danh sách khai báo bằng con trỏ. Thủ tục sau có chức năng gì?"\nvoid MnullList ( List Header)\n{\nNew (Header);\nHeader.Next : = Nil;\n}',
-    dapAn: "thu tuc khoi tao danh sach rong",
-  },
-  {
-    cauHoi:
-      "Danh sách liên kết vòng là gì?\n\n1. Danh sách liên kết vòng (Circular Linked List) là một biến thể của Danh sách liên kết (Linked List), trong đó phần tử đầu tiên trỏ tới phần tử cuối cùng và phần tử cuối cùng trỏ tới phần tử đầu tiên., \n\n2. Danh sách liên kết vòng (Circular Linked List) là một biến thể của Danh sách liên kết (Linked List), trong đó phần tử đầu tiên trỏ tới phần tử đầu tiên và phần tử cuối cùng trỏ tới phần tử cuối.",
-    dapAn: "1 đúng, 2 sai",
-  },
-  {
-    cauHoi:
-      "Danh sách liên kết vòng là gì?\n1. Danh sách liên kết vòng (Circular Linked List) là một biến thể của Danh sách liên kết (Linked List), trong đó phần tử đầu tiên trỏ tới phần tử cuối cùng và phần tử cuối cùng trỏ tới phần tử đầu tiên., \n2. Danh sách liên kết vòng (Circular Linked List) là một biến thể của Danh sách liên kết (Linked List), trong đó phần tử đầu tiên trỏ tới phần tử đầu tiên và phần tử cuối cùng trỏ tới phần tử cuối.",
-    dapAn: "1 đúng, 2 sai",
-  },
-  {
-    cauHoi:
-      "Danh sách liên kết đôi là gì?\n\n1. Là một biến thể của Danh sách liên kết (Linked List), trong đó hoạt động duyệt qua các nút có thể được thực hiện theo hai chiều: về trước và về sau một cách dễ dàng khi so sánh với Danh sách liên kết đơn.\n\n2. Là một biến thể của danh sách liên kết đơn, nhưng do 2 danh sách đơn cộng lại, Không có đáp án nào đúng",
-    dapAn: "1 đúng, 2 sai",
-  },
-  {
-    cauHoi:
-      "Danh sách liên kết đôi là gì?\n1. Là một biến thể của Danh sách liên kết (Linked List), trong đó hoạt động duyệt qua các nút có thể được thực hiện theo hai chiều: về trước và về sau một cách dễ dàng khi so sánh với Danh sách liên kết đơn.\n2. Là một biến thể của danh sách liên kết đơn, nhưng do 2 danh sách đơn cộng lại, Không có đáp án nào đúng",
-    dapAn: "1 đúng, 2 sai",
-  },
-  {
-    cauHoi: "Danh sách tuyến tính là",
+    cauHoi: "Cho lớp Student:\n\r@Data\n\r@AllArgsConstructor\n\r@NoArgsConstructor\n\rpublic class Student {\n\r String name;\n\r Boolean gender = false;\n\r Double marks = 0.0;\n\r}\n\rHãy điền mã đúng vào chỗ trống:\n\rList<Student> list = Arrays.asList(\n\r    new Student(\"Nguyễn Văn Tèo\", true, 7.5)\n\r    ...\n\r  );\n\r  Collections.sort(list, _____);",
     dapAn: [
-      "Danh sách mà quan hệ lân cận giữa các phần tử được hiển thị ra thì được là danh sách tuyến tính",
-      "Danh sách mà quan hệ lân cận giữa các phần tử được hiển thị ra thì được là danh sách tuyến tính.",
-      "Danh sách mà quan hệ lân cận giữa các phần tử được xác định.",
-    ],
+      "(sv1, sv2) -> sv1.getMarks().compareTo(sv2.getMarks())",
+      "(sv1, sv2) -> { return sv1.getMarks().compareTo(sv2.getMarks());}"
+    ]
   },
   {
-    cauHoi: "Danh sách tuyến tính là",
-    dapAn: "Danh sách mà quan hệ lân cận giữa các phần tử được xác định.",
+    cauHoi: "Lệnh nào được sử dụng để duyệt các key trong đối tượng JavaScript?",
+    dapAn: "for(var key in object)"
   },
   {
-    cauHoi: "Danh sách tuyến tính là",
-    dapAn:
-      "Danh sách mà quan hệ lân cận giữa các phần tử được hiển thị ra thì được là danh sách tuyến tính",
-  },
-  {
-    cauHoi: "Duyệt cây nhị phân theo thứ tự giữa được thực hiện theo thứ tự:",
-    dapAn:
-      "Duyệt cây con trái theo thứ tự giữa, thăm gốc, duyệt cây con phải theo thứ tự giữa.",
-  },
-  {
-    cauHoi: "Duyệt cây nhị phân theo thứ tự sau được thực hiện theo thứ tự:",
-    dapAn:
-      "Duyệt cây con trái theo thứ tự sau, duyệt cây con phải theo thứ tự sau, thăm gốc.",
-  },
-  {
-    cauHoi: "Duyệt cây nhị phân theo thứ tự trước được thực hiện theo thứ tự:",
-    dapAn:
-      "Thăm gốc, duyệt cây con trái theo thứ tự trước, duyệt cây con phải theo thứ tự trước.",
-  },
-  {
-    cauHoi:
-      "Dãy số Fibonacci bắt nguồn từ bài toán cổ về việc sinh sản của các cặp thỏ. Bài toán được đặt ra như sau:\n\nCác con thỏ không bao giờ chết.\n\nHai tháng sau khi ra đời một cặp thỏ mới sẽ sinh ra một cặp thỏ con.\n\nKhi đã sinh con rồi thì cứ mỗi tháng tiếp theo chúng lại sinh được một cặp con mới.\n\nGiả sử bắt đầu từ một cặp thỏ mới ra đời thì đến tháng thứ 5 sẽ có bao nhiêu cặp?",
-    dapAn: "5 cặp",
-  },
-  {
-    cauHoi:
-      "Dùng STACK để lưu trữ số nhị phân có giá trị bằng số thập phân 215 ta có kết quả: ( số bên trái vào trước số bên phải )",
-    dapAn: "11101011",
-  },
-  {
-    cauHoi: "Dấu hiệu nào dưới đây cho biết danh sách liên kết đơn rỗng:",
-    dapAn: "(p==NULL);",
-  },
-  {
-    cauHoi: "Dữ liệu kí tự bao gồm",
+    cauHoi: "Chon interface\n\r@FunctionalInterface\n\rpublic interface Demo4Inter{\n\r void m1(int x);\n\r default void m2() {}\n\r public static void m3() {}\n\r}\n\rHãy chọn mã đúng khi tạo đối tượng",
     dapAn: [
-      "Các kí tự chữ cái.",
-      "Các kí tự số chữ số.",
-      "Các kí tự đặc biệt.",
-    ],
+      "Demo4Inter o1 = new Demo4Inter() {\n\r @Override\n\r public void m1(int x) {}\n\r};",
+      "Demo4Inter o2 = new Demo4Inter() {\n\r @Override\n\r public void m1(int x) {}\n\r @Override\n\r public void m2() {}\n\r};",
+      "Demo4Inter o3 = x -> {};",
+      "Demo4Inter o4 = x -> System.out.println(x);"
+    ]
   },
   {
-    cauHoi:
-      "Giả sử Q là Hàng đợi, các phần tử của nó có kiểu Item. Hàm sau làm nhiệm vụ gì \nboolean F(Queue Q) {\n F = (Q.rear = max);\n}",
-    dapAn: "Kiểm tra hàng đợi đầy",
-  },
-  {
-    cauHoi: "Giả sử có câu lệnh ch='A'. Vậy ch sẽ chứa bao nhiêu byte",
-    dapAn: "1",
-  },
-  {
-    cauHoi: 'Giả sử có câu lệnh ch[]= "A". ch chứa bao nhiêu bytes',
-    dapAn: "2",
-  },
-  {
-    cauHoi:
-      "Giả sử trong ngôn ngữ C sử dụng khai báo “double a[12]”, phần tử a[7] là phần tử thứ bao nhiêu trong mảng a",
-    dapAn: "Thứ 8.",
-  },
-  {
-    cauHoi:
-      "Ho một danh sách móc nối với các phần tử trong danh sách có kiểu S1 được định nghĩa như sau:\n\nstruct S1{int info; struct S1 *next;} *head;\n\nBiết con trỏ “*head” lưu địa chỉ của phần tử đầu tiên trong danh sách. Nhóm câu lệnh nào sau đây thêm một phần tử vào đầu danh sách:",
-    dapAn: "P- > next=head; head=p;",
-  },
-  {
-    cauHoi: "Hàng đợi còn được gọi là danh sách kiểu",
-    dapAn: "fifo",
-  },
-  {
-    cauHoi: "Hàng đợi còn được gọi là danh sách kiểu:",
-    dapAn: "FIFO",
-  },
-  {
-    cauHoi: "Hàng đợi được viết tắt bởi sự kết hợp các từ sau",
-    dapAn: ["FI", "FO"],
-  },
-  {
-    cauHoi:
-      "Khai báo hàm tìm giá trị lớn nhất trong một mảng các số long dưới đây, khai báo đúng là ?",
-    dapAn: "long max(long *a, int n)",
-  },
-  {
-    cauHoi:
-      "Khi biến con trỏ không chứa bất kì một địa chỉ nào thì giá trị của nó sẽ là",
-    dapAn: ["0", "NULL."],
-  },
-  {
-    cauHoi: "Khi bổ sung một phần tử mới vào hàng đợi cần kiểm tra thì ...",
-    dapAn: "Hàng đợi có đầy không",
-  },
-  {
-    cauHoi:
-      "Khi chèn một phần tử vào danh sách (cài đặt bằng mảng) yêu cầu cần",
-    dapAn: "do dai cua danh sach < do dai cua mang",
-  },
-  {
-    cauHoi:
-      "Khi chèn một phần tử vào danh sách xảy ra tình trạng:\n\nđộ dài của danh sách = độ dài của mảng thì thông báo là:",
-    dapAn: "danh sach day",
-  },
-  {
-    cauHoi:
-      "Khi khai báo mảng, ta khởi tạo luôn giá trị của mảng như sau:int x[3]={4,2,6}; Nghĩa là: x[0]=  , x[1]=  , x[2]=  ;",
-    dapAn: "4,2,6",
-  },
-  {
-    cauHoi:
-      "Khi lưu trữ cây nhị phân dưới dạng mảng, nếu vị trí của nút cha trong mảng là 3 thì vị trí tương ứng của nút con phải sẽ là:",
-    dapAn: "7",
-  },
-  {
-    cauHoi:
-      "Khi lưu trữ cây nhị phân dưới dạng mảng, nếu vị trí của nút cha trong mảng là 3 thì vị trí tương ứng của nút con trái sẽ là:",
-    dapAn: "6",
-  },
-  {
-    cauHoi:
-      "Khi lưu trữ cây nhị phân dưới dạng mảng, nếu vị trí của nút cha trong mảng là i thì vị trí của nút con trái là",
-    dapAn: "2*i",
-  },
-  {
-    cauHoi:
-      "Khi lưu trữ cây nhị phân dưới dạng mảng, nếu vị trí của nút cha trong mảng là i thì vị tí của nút con phải là",
-    dapAn: "2*i + 1",
-  },
-  {
-    cauHoi:
-      "Khi thực hiện việc thêm một node x vào cây nhị phân tìm kiếm ta chỉ cần...",
-    dapAn: "Tìm vị trí thích hợp cho x trên toàn bộ cây",
-  },
-  {
-    cauHoi:
-      "Khi đổi một số nguyên từ hệ thập phân sang hệ nhị phân thì người ta dùng phép chia liên tiếp cho 2 và lấy các số dư (là các chữ số nhị phân) theo chiều ngược lại.\nCơ chế sắp xếp này chính là cơ chế hoạt động của cấu trúc dữ liệu:",
-    dapAn: "Ngăn xếp (stack)",
-  },
-  {
-    cauHoi:
-      "Không gian nhớ dùng để lưu trữ các node của danh sách liên kết kép:",
-    dapAn: "Lưu trữ rởi rác trong bộ nhớ.",
-  },
-  {
-    cauHoi:
-      "Không phải lúc nào cũng có thể xây dựng bài toán theo giải thuật và thủ tục đệ quy một cách dễ dàng, các vấn đề có thể là",
+    cauHoi: "Chon interface\n\r@FunctionalInterface\n\rpublic interface Demo4Inter{\n\r void m1(int x);\n\r default void m2() {}\n\r}\n\rHãy chọn mã đúng khi tạo đối tượng",
     dapAn: [
-      "Làm thế nào để đảm bảo kích thước bài toán giảm đi sau mỗi lần gọi?",
-      "Xem xét và định nghĩa các trường hợp đặc biệt (trường hợp suy biến) như thế nào?",
-    ],
+      "Demo4Inter o1 = new Demo4Inter() {\n\r @Override\n\r public void m1(int x) {}\n\r};",
+      "Demo4Inter o2 = new Demo4Inter() {\n\r @Override\n\r public void m1(int x) {}\n\r @Override\n\r public void m2() {}\n\r};",
+      "Demo4Inter o3 = x -> {};",
+      "Demo4Inter o4 = x -> System.out.println(x);"
+    ]
   },
   {
-    cauHoi: "Khử đệ quy là gì",
-    dapAn: "Đưa các bài toán đệ quy về các bài toán không sử dụng đệ quy",
-  },
-  {
-    cauHoi: "Kiểu dữ liệu float có thể xử lí dữ liệu trong phạm vi nào",
-    dapAn: "3.4*10 38 den 3.4*1038",
-  },
-  {
-    cauHoi:
-      "Kiểu dữ liệu int( kiểu số nguyên) có thể xử lí số nguyên nằm trong khoảng nào",
-    dapAn: "-32768…32767.",
-  },
-  {
-    cauHoi:
-      "Kiểu dữ liệu nào dưới đây không được coi là kiểu dữ liệu cơ bản trong ngôn ngữ lập trình C",
-    dapAn: "Kiểu mảng.",
-  },
-  {
-    cauHoi:
-      "Kiểu dữ liệu nào dưới đây được coi là kiểu dữ liệu cơ bản trong ngôn ngữ lập trình C",
-    dapAn: "Kiểu double.",
-  },
-  {
-    cauHoi: "Kí hiệu nào là con trỏ của phẩn tử thứ 3 của mảng a có 4 kí tự",
-    dapAn: "*(a+2)",
-  },
-  {
-    cauHoi: "Kích thước của mảng là  hay",
-    dapAn: "so phan tu toi da cua mang,kich thuoc bo nho se cap phat cho mang",
-  },
-  {
-    cauHoi: "Kích thước lưu trữ kiểu số nguyên là",
-    dapAn: "2 byte",
-  },
-  {
-    cauHoi:
-      'Kết quả của đoạn chương trình sau là gì:\n\n\rchar c;\n\n\rint n;\n\n\rprintf("%d%c",&n,&c);\n\n\rNếu gõ vào : ”10 T”.',
-    dapAn: ["C=''.", "N=10"],
-  },
-  {
-    cauHoi:
-      'Kết quả của đoạn chương trình sau là gì:\nchar c;\nint n;\nprintf("%d%c",&n,&c);\nNếu gõ vào : ”10 T”.',
-    dapAn: ["c=''.", "n=10"],
-  },
-  {
-    cauHoi: "Lệnh sau định nghĩa gì?  \n\n\rint *ptr[10];",
-    dapAn: "ptr la mang cua 10 integer pointer",
-  },
-  {
-    cauHoi: "Lựa chọn định nghĩa về danh sách đúng?",
+    cauHoi: "Hãy chọn lệnh đúng duyệt Map sau\n\rMap<String, Double> map = new HashMap<>();",
     dapAn: [
-      "Danh sách là tập hợp các phần tử có kiểu dữ liệu xác định và giữa chúng có một mối liên hệ nào đó,",
-      "Một danh sách có chiều dài bằng 0 là một danh sách rỗng.",
-      "Số phần tử của danh sách gọi là chiều dài của danh sách",
-    ],
+      "map.forEach((k, v) -> System.out.printf(\"%s=%.2f\", k, v));",
+      "map.forEach((k, v) -> {System.out.printf(\"%s=%.2f\", k, v);});"
+    ]
   },
   {
-    cauHoi: "Miền giá trị của Kiểu số nguyên là:",
-    dapAn: "-32768 .. 32767",
-  },
-  {
-    cauHoi: "Mảng là",
-    dapAn: "Một nhóm phần tử có cùng kiểu và chung tên gọi.",
-  },
-  {
-    cauHoi: "Mỗi nút trong cây có tối đa:",
-    dapAn: "Nhiều nút con",
-  },
-  {
-    cauHoi:
-      "Một cây nhị phân có chiều cao là 7, cây đó chỉ có 50 nút. Nếu lưu trữ kế tiếp thì lãng phí bao nhiêu ô ( nút gốc có mức 1, mỗi nút chiếm 1 ô ):",
-    dapAn: "77 o",
-  },
-  {
-    cauHoi: "Một giá trị kiểu char chiếm bao nhiêu bộ nhớ",
-    dapAn: "1byte",
-  },
-  {
-    cauHoi:
-      "Ngôn ngữ lập trình C được Dennish phát triển dựa trên ngôn ngữ lập trình nào:",
-    dapAn: ["BCPL", "Ngôn ngữ B"],
-  },
-  {
-    cauHoi:
-      "Ngôn ngữ lập trình nào dưới đây là ngôn ngữ lập trình có cấu trúc?",
-    dapAn: ["Ngôn ngữ C", "Pascal"],
-  },
-  {
-    cauHoi: "Ngăn xếp được viết tắt bởi sự kết hợp các từ sau",
-    dapAn: ["FO", "LI"],
-  },
-  {
-    cauHoi: "Nhược điểm của thủ tục đệ quy",
-    dapAn: "Cả hai đáp án trên đều đúng",
-  },
-  {
-    cauHoi: "Nút có khóa nhỏ nhất trong cây nhị phân tìm kiếm khác rỗng là...",
-    dapAn: "Nút con bên trái  nhất",
-  },
-  {
-    cauHoi:
-      "Nếu S1 và S2 là các câu lệnh và E là biểu thức logic thì\n\nIf E Then S1 Else S2\n\nGiả sử thời gian thực hiện các lệnh S1, S2 là O(f(n)) và O(g(n)) tương ứng. Khi đó thời gian thực hiện lệnh if là",
-    dapAn: "O(max (f()n), g(n)))",
-  },
-  {
-    cauHoi:
-      "Nếu có các khai báo sau:\n\n\rchar msg[10];\n\n\rchar *ptr;\n\n\rchar value;\n\n\rCâu nào sau đây là đúng:",
-    dapAn: "Ptr=msg;",
-  },
-  {
-    cauHoi:
-      "Nếu có các khai báo sau:\n\n\rchar msg[10];\n\n\rchar value;\n\n\rCâu nào sau đây sẽ là đúng:",
-    dapAn: "Msg[2]=value;",
-  },
-  {
-    cauHoi:
-      "Nếu có các khai báo sau:\nchar msg[10];\nchar *ptr;\nchar value;\nCâu nào sau đây là đúng:",
-    dapAn: "ptr=msg;",
-  },
-  {
-    cauHoi: "Nếu hàm được gọi trước khi nó định nghĩa thì điều kiện là gì?",
-    dapAn: "Trước khi gọi hàm nó phải được khai báo",
-  },
-  {
-    cauHoi:
-      "Nếu lưu trữ móc nối thì mỗi nút của cây nhị phân cần 2 khoảng để ghi địa chỉ 2 con. Cây có 72 nút. Vậy lãng phí bao nhiêu khoảng địa chỉ:",
-    dapAn: "73",
-  },
-  {
-    cauHoi: "Nếu x là một biến toàn cục và x không phải là một con trỏ thì:",
-    dapAn:
-      "Miền nhớ giành cho x không bị thay đổi trong quá trình thực hiện chương trình.",
-  },
-  {
-    cauHoi: "Phát biểu nào sau đây về mảng một chiều là đúng?",
-    dapAn: "Là tập hợp hữu hạn các phần tử có cùng kiểu dữ liệu",
-  },
-  {
-    cauHoi: "Phương pháp sắp xếp nhanh (Quick sort) chính là phương pháp:",
-    dapAn: "Phân đoạn",
-  },
-  {
-    cauHoi:
-      "Queue (hàng đợi) là kiểu danh sách tuyến tính mà phép loại bỏ thực hiện ở 1 đầu gọi là lối",
-    dapAn: "truoc",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải Tải về . Cho biết đây là giải thuật gì (nhị phân hay tuyến tính)",
-    dapAn: "nhi phan",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Cho biết đây là giải thuật gì (nhị phân hay tuyến tính)\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x2.doc">Tải về</a>',
-    dapAn: "nhi phan",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Cho biết đây là giải thuật gì (nhị phân hay tuyến tính)?\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x1.doc">Tải về</a>',
-    dapAn: "tuyen tinh",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải Tải về . Cho biết đây là giải thuật gì nhị phân hay tuyến tính.....",
-    dapAn: "Tìm phần tử nhỏ nhất của mảng M bao gồm N phần tử",
-  },
-  {
-    cauHoi: "Sinh viên tải Tải về . Kết quả biến n là",
-    dapAn: "7",
-  },
-  {
-    cauHoi: "Sinh viên tải Tải về . Kết quả biến n là",
-    dapAn: "5",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Kết quả biến n là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x11.doc">Tải về</a>',
-    dapAn: "5",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Kết quả biến n là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x13.doc">Tải về</a>',
-    dapAn: "7",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Kết quả biến n là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x15.doc">Tải về</a>',
-    dapAn: "5",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Kết quả biến n là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x17.doc">Tải về</a>',
-    dapAn: "7",
-  },
-  {
-    cauHoi: "Sinh viên tải Tải về . Kết quả biến result là",
-    dapAn: "3",
-  },
-  {
-    cauHoi: "Sinh viên tải Tải về . Kết quả biến result là",
-    dapAn: "2",
-  },
-  {
-    cauHoi: "Sinh viên tải Tải về . Kết quả biến result là",
-    dapAn: "6",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Kết quả biến result là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x12.doc">Tải về</a>',
-    dapAn: "2",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Tìm mô tả đúng nhất cho hàm TinhTong \n\n1. Hàm tính tổng N số nguyên đầu tiên\n\n2. Hàm tính tổng N số nguyên tố nhỏ hơn N, tính tổng N số nguyên tố lớn hơn N\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x4.doc">Tải về</a>',
-    dapAn: "1 sai, 2 sai",
-  },
-  {
-    cauHoi: "Sinh viên tải Tải về . Đáp án đúng nhất?",
-    dapAn:
-      "Hàm thực hiện việc sao chép nội dung mảng M có chiều dài Len về mảng CM có cùng chiều dài. Hàm trả về chiều dài của mảng CM sau khi sao chép.",
-  },
-  {
-    cauHoi: "Sinh viên tải Tải về . Đáp án đúng nhất?",
-    dapAn: "Hàm sẽ trả về -1 nế u không tìm thấy phần tử có giá trị là X",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Đáp án đúng nhất?\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x5.doc">Tải về</a>',
-    dapAn: "Hàm sẽ trả về -1 nế u không tìm thấy phần tử có giá trị là X",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải Tải về . Đáp án đúng nhất?\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab4x6.doc">Tải về</a>',
-    dapAn:
-      "Thủ tục hỗ trợ tìm kiếm đệ quy phần tử có giá trị là X trê n mảng các phần tử từ chỉ s ố từ Firs t đế n chỉ s ố Last",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải [Tải về] . Cho biết đây là giải thuật gì (nhị phân hay tuyến tính)?",
-    dapAn: "tuyen tinh",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải [Tải về] . Cho biết đây là giải thuật gì nhị phân hay tuyến tính.....",
-    dapAn: "Tìm phần tử nhỏ nhất của mảng M bao gồm N phần tử",
-  },
-  {
-    cauHoi: "Sinh viên tải [Tải về] . Kết quả biến result là",
-    dapAn: "6",
-  },
-  {
-    cauHoi: "Sinh viên tải [Tải về] . Kết quả biến result là",
-    dapAn: "2",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về cho biết chức năng chính của hàm là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab1x15.doc">Tải về</a>',
-    dapAn: "sap xep day so tang dan",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về cho biết kết quả của chương trình là",
-    dapAn: "16.67",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về cho biết kết quả của chương trình là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab2x1.doc">Tải về</a>',
-    dapAn: "16.67",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải file Tải về khi nhập n=3 và A[0]: 4, Nhap A[1]: 6, Nhap A[2]: 3, kết quả sẽ là",
-    dapAn: "3,4,6",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về khi nhập n=3 và A[0]: 4, Nhap A[1]: 6, Nhap A[2]: 3, kết quả sẽ là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab1x14.doc">Tải về</a>',
-    dapAn: "3,4,6",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về kết quả của chương trình là",
-    dapAn: "66",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về kết quả của chương trình là là",
-    dapAn: "llo_world",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về kết quả của chương trình là là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab2x11.doc">Tải về</a>',
-    dapAn: "llo_world",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về kết quả của chương trình là?",
-    dapAn: "63.20, -45.60, 70.10, 3.60, 14.50",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về kết quả của chương trình là?\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab2x7.doc">Tải về</a>',
-    dapAn: "63.20, -45.60, 70.10, 3.60, 14.50",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về lỗi thiếu của khi gọi hàm change() là",
-    dapAn: ["&", ";"],
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về lỗi thiếu của khi gọi hàm change() là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab2x5.doc">Tải về</a>',
-    dapAn: ["&", ";"],
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về sau đó cho biết kết quả bang cac so\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab1x13.doc">Tải về</a>',
-    dapAn: "153,370,371,407",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải file Tải về sau đó cho biết kết quả của biến sum1 là",
-    dapAn: "10",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về sau đó cho biết kết quả của biến sum1 là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab1x3.doc">Tải về</a>',
-    dapAn: "10",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải file Tải về sau đó nhập a =12 và b=4 cho biết biến UCLN là",
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về sau đó nhập a =12 và b=4 cho biết biến UCLN là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab1x6.doc">Tải về</a>',
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về sau đó nhập n =12 và m =12 cho biết biến DC là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab1x11.doc">Tải về</a>',
-    dapAn: "2",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải file Tải về sau đó nhập n =12 và m =15 cho biết biến DC là",
-    dapAn: "1",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về sau đó nhập n =12 và m =15 cho biết biến DC là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab1x10.doc">Tải về</a>',
-    dapAn: "1",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về đầu ra output là",
-    dapAn: "hello_world",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về đầu ra output là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab2x10.doc">Tải về</a>',
-    dapAn: "hello_world",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về đầu ra output là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab2x9.doc">Tải về</a>',
-    dapAn: "fpolyhcm.com",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về. Cho biết chương trình lỗi dòng thư",
-    dapAn: "17",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Cho biết chương trình lỗi dòng thư\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x12.doc">Tải về</a>',
-    dapAn: "17",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về. Cho biết chương trình trên lỗi ở dòng",
-    dapAn: "19",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Cho biết chương trình trên lỗi ở dòng\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x10.doc">Tải về</a>',
-    dapAn: "19",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Cho biết chương trình trên lỗi ở dòng\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x9.doc">Tải về</a>',
-    dapAn: "19",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Cho biết kết quả của biến n là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x1.doc">Tải về</a>',
-    dapAn: "5",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về. Khi kết quả n=24 thì ta phải nhập a=",
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Khi kết quả n=24 thì ta phải nhập a=\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x8.doc">Tải về</a>',
-    dapAn: "4",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về. Khi nhập a=10; và i=2 thì biến b là =",
-    dapAn: "8",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về. Khi nhập a=10; và i=2 thì biến b là =",
-    dapAn: "2",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về. Khi nhập a=6; b=8 thì i là",
-    dapAn: "2",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Khi nhập a=6; b=8 thì i là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x2.doc">Tải về</a>',
-    dapAn: "2",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Khi nhập vào số 4, kết quả của chương trình là\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x11.doc">Tải về</a>',
-    dapAn: "10",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về. Sinh viên cho biết lỗi dòng thứ mấy",
-    dapAn: "21",
-  },
-  {
-    cauHoi: "Sinh viên tải file Tải về. Sinh viên cho biết lỗi dòng thứ mấy",
-    dapAn: "15",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Sinh viên cho biết lỗi dòng thứ mấy\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x4.doc">Tải về</a>',
-    dapAn: "21",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Sinh viên cho biết lỗi dòng thứ mấy\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x5.doc">Tải về</a>',
-    dapAn: "15",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file Tải về. Sinh viên cho biết lỗi dòng thứ mấy\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab3x6.doc">Tải về</a>',
-    dapAn: "10",
-  },
-  {
-    cauHoi: "Sinh viên tải file [Tải về] . Cho biết kết quả của chương trình",
-    dapAn: "0 1 1 2 3 5 8 13 21 34",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải file [Tải về] . Khi kết quả n=24 thì ta phải nhập a=",
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải file [Tải về] . Khi nhập vào số 4, kết quả của chương trình là",
-    dapAn: "10",
-  },
-  {
-    cauHoi: "Sinh viên tải file [Tải về] . Sinh viên cho biết lỗi dòng thứ mấy",
-    dapAn: "15",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải file [Tải về] . kết quả của chương trình là 0 1 1 2, ta cần nhập biến j=",
-    dapAn: "4",
-  },
-  {
-    cauHoi: "Sinh viên tải file [Tải về] cho biết chức năng chính của hàm là",
-    dapAn: "sap xep day so tang dan",
-  },
-  {
-    cauHoi: "Sinh viên tải file [Tải về] cho biết kết quả của chương trình là",
-    dapAn: "16.67",
-  },
-  {
-    cauHoi: "Sinh viên tải file [Tải về] kết quả của chương trình là",
-    dapAn: "999",
-  },
-  {
-    cauHoi: "Sinh viên tải file [Tải về] sau đó cho biết kết quả bang cac so",
-    dapAn: "153,370,371,407",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải file [Tải về] sau đó cho biết kết quả của biến sum1 là",
-    dapAn: "10",
-  },
-  {
-    cauHoi:
-      "Sinh viên tải file [Tải về] sau đó nhập n =123 cho biết biến DC là",
-    dapAn: "3",
-  },
-  {
-    cauHoi: "Sinh viên tải file [Tải về] đầu ra output là",
-    dapAn: "hello_world",
-  },
-  {
-    cauHoi: "Sinh viên tải file [Tải về] đầu ra output là",
-    dapAn: "fpolyhcm.com",
-  },
-  {
-    cauHoi:
-      "Sắp xếp theo thứ tự tăng dần của cấp thời gian thực hiện chương trình (Chú ý: (log2n) = Log cơ số 2 của n)",
-    dapAn: "O(1),O(log2n),O(n),O(nlog2n)",
-  },
-  {
-    cauHoi:
-      "Số phép so sánh của thuật toán tìm kiếm, trong trường hợp xấu nhất là",
-    dapAn: "2*n",
-  },
-  {
-    cauHoi: "Tham chiếu đến phần tử thứ i của mảng D được xác định bởi",
-    dapAn: "D[i]",
-  },
-  {
-    cauHoi: "Thao tác POP(x) dùng trong Stack là để:",
-    dapAn: "Lấy một phần tử cuối cùng ra khỏi đỉnh Stack",
-  },
-  {
-    cauHoi: "Thao tác Push(x) dùng trong Stack là để:",
-    dapAn: "Bổ sung một phần tử vào đỉnh Stack",
-  },
-  {
-    cauHoi: "Thành phần dữ liệu của danh sách liên liên kết .....",
-    dapAn: "Lưu thông tin về bản thân phần tử",
-  },
-  {
-    cauHoi: "Thành phần liên kết của danh sách liên kết .....",
-    dapAn:
-      "Lưu địa chỉ phần tử đứng  sau trong danh sách hoặc bằng NULL nếu là phần  tử cuối danh sách",
-  },
-  {
-    cauHoi: "Thời gian chạy chương trình phụ thuộc vào các yếu tố nào",
+    cauHoi: "Hãy điền mã đúng vào chỗ trống\n\r  List<Integer> list = Arrays.asList(1, 9, 4, 7, 5, 2);\n\r  list.forEach(_____);",
     dapAn: [
-      "Dữ liệu đầu vào.",
-      "Tính chất của trình biên dịch được dùng.",
-      "Tôc độ của máy được dùng.",
-      "Độ phức tạp tính toán của giải thuật.",
-    ],
+      "(n) -> {System.out.println(n);}",
+      "n -> System.out.println(n)"
+    ]
   },
   {
-    cauHoi:
-      "Thời gian thực hiện các lệnh đơn : gán, đọc, viết là  \n\n\rChú ý: (log2n) = Log cơ số 2 của n; n^2 = n mũ 2",
-    dapAn: "o(1)",
-  },
-  {
-    cauHoi:
-      "Thời gian thực hiện các lệnh đơn : gán, đọc, viết là  \n\nChú ý: (log2n) = Log cơ số 2 của n; n^2 = n mũ 2",
-    dapAn: "o(1)",
-  },
-  {
-    cauHoi: "Trong biểu diễn dữ liệu dưới dạng cây, cấp của cây chính",
-    dapAn: "Cấp cao nhất của một nút trên cây",
-  },
-  {
-    cauHoi: "Trong biểu diễn dữ liệu dưới dạng cây, nút có cấp bằng 0 gọi là:",
-    dapAn: "Lá",
-  },
-  {
-    cauHoi: "Trong các cấu trúc dữ liệu sau đâu là dữ liệu trừu tượng",
+    cauHoi: "Đâu là các toán tử logic trong Thymeleaf?",
     dapAn: [
-      "Cấu trúc dữ liệu dạng StacK",
-      "Cấu trúc dữ liệu dạng danh sách(LIST)",
-      "Cấu trúc dữ liệu kiểu hàng đợi(QUEUE)",
-    ],
+      "!",
+      "and",
+      "not",
+      "or"
+    ]
   },
   {
-    cauHoi: "Trong các cấu trúc dữ liệu sau, đâu là dữ liệu trừu tượng?",
-    dapAn: "Tất cả cấu trúc",
+    cauHoi: "Giả sử x là biến trong Model có kiểu là Integer. Nếu x có giá trị là 2 thì đâu là kết quả của đoạn mã sau?\n\r<ul th:switch=\"${x}\">\n\r <li th:case=\"1\">Một</li>\n\r <li th:case=\"2\">Hai</li>\n\r <li th:case=\"3\">Ba</li>\n\r <li th:case=\"*\">Bốn</li>\n\r</ul>",
+    dapAn: "Hai"
   },
   {
-    cauHoi:
-      'Trong các giải thuật sắp xếp, giải thuật nào áp dụng phương pháp "Chia để trị"?',
-    dapAn: "Quick sort, Merge sort",
+    cauHoi: "Chọn mã cho kết quả tương đương với thẻ sau\n\r<span th:text=\"${message}\"></span>",
+    dapAn: "<span>[[${message}]]</span>"
   },
   {
-    cauHoi:
-      "Trong lưu trữ dữ liệu kiểu Queue (Q) dưới dạng mảng nối vòng, giả sử F là con trỏ trỏ tới lối trước của Q, R là con trỏ trỏ tới lối sau của Q. Điều kiện F=R=0 nghĩa là:",
-    dapAn: "Queue rỗng",
-  },
-  {
-    cauHoi:
-      "Trong lưu trữ dữ liệu kiểu Queue (Q), giả sử F là con trỏ trỏ tới lối trước của Q, R là con trỏ trỏ tới lối sau của Q. Khi loại bỏ một phần tử vào Queue, thì R và F thay đổi thế nào?",
-    dapAn: "F=F+1, R không thay đổi",
-  },
-  {
-    cauHoi:
-      "Trong lưu trữ dữ liệu kiểu Queue (Q), giả sử F là con trỏ trỏ tới lối trước của Q, R là con trỏ trỏ tới lối sau của Q. Khi thêm một phần tử vào Queue, thì R và F thay đổi thế nào?",
-    dapAn: "F không thay đổi, R=R+1",
-  },
-  {
-    cauHoi:
-      "Trong một chương trình có 3 bước thực hiện mà thời gian thực hiện tưng bước lần lượt là O(n2), O(n3) và O(nlog2n). thời gian thực hiện chương trình sẽ là\n\n\rChú ý: (log2n) = Log cơ số 2 của n; n^2 = n mũ 2",
-    dapAn: "O(n^3)",
-  },
-  {
-    cauHoi:
-      "Trong một chương trình có 3 bước thực hiện mà thời gian thực hiện tưng bước lần lượt là O(n2), O(n3) và O(nlog2n). thời gian thực hiện chương trình sẽ là\n\nChú ý: (log2n) = Log cơ số 2 của n; n^2 = n mũ 2",
-    dapAn: "O(n^3)",
-  },
-  {
-    cauHoi:
-      "Trong một chương trình có 3 bước thực hiện mà thời gian thực hiện tưng bước lần lượt là O(n2), O(n3) và O(nlog2n). thời gian thực hiện chương trình sẽ là\nChú ý: (log2n) = Log cơ số 2 của n; n^2 = n mũ 2",
-    dapAn: "O(n^3)",
-  },
-  {
-    cauHoi: "Trong ngôn ngữ C, khai báo “int array[3][5]” có nghĩa là:",
-    dapAn:
-      "Là một mảng hai chiều tối đa là 15 phần tử và mỗi phần tử là một số nguyên.",
-  },
-  {
-    cauHoi:
-      "Trong số các phép toán sau đây, phép toán nào không được dùng đối với mảng:",
-    dapAn: "Bổ xung một phần tử vào mảng",
-  },
-  {
-    cauHoi: "Trường hợp cơ sở của giải thuật đệ quy là",
-    dapAn:
-      "Trường hợp bài toán Pn, có quy mô đủ nhỏ để ta có thể giải trực tiếp.",
-  },
-  {
-    cauHoi: "Trường hợp đệ quy của giải thuật đệ qui là",
-    dapAn:
-      "Là cơ chế đưa bài toán cần giải về một hay nhiều bài toán tương tự nhưng có quy mô nhỏ hơn",
-  },
-  {
-    cauHoi:
-      "Tìm mô tả đúng cho hàm sau:\nint SC (int M[], int Len, int CM[]) { \n for (int i = 0; i  <  Len; i++)\n CM[i] = M[i];\n return (Len);\n}",
-    dapAn:
-      "Hàm thực hiện việc sao chép nội dung mảng M có chiều dài Len về mảng CM có cùng chiều dài. Hàm trả về chiều dài của mảng CM sau khi sao chép",
-  },
-  {
-    cauHoi: "Tính chất nào sau đây là tính chất của cây nhị phân tìm kiếm:",
-    dapAn: "Mọi khóa thuộc cây con trái nút đó đều nhỏ hơn khóa ứng với nút đó",
-  },
-  {
-    cauHoi: "Tính chất nào sau đây là tính chất của cây nhị phân tìm kiếm?",
-    dapAn: "Mọi khóa thuộc cây con phải nút đó đều lớn hơn khóa ứng với nút đó",
-  },
-  {
-    cauHoi: "Tư tưởng của giải thuật tìm kiếm trên cây nhị phân tìm kiếm",
-    dapAn:
-      "Tìm kiếm dựa vào cây nhị tìm kiếm: Nừu giá trị cần tìm nhỏ hơn gốc thì thực hiện tìm kiếm trên cây con trái, ngược lại ta việc tìm kiếm được thực hiện trên cây con phải.",
-  },
-  {
-    cauHoi: "Tải file Tải về cho biết kết quả của chương trình",
-    dapAn: "24 la so chan\n31 la so le",
-  },
-  {
-    cauHoi:
-      'Tải file Tải về cho biết kết quả của chương trình\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab1x2.doc">Tải về</a>',
-    dapAn: "24 la so chan\n31 la so le",
-  },
-  {
-    cauHoi: "Tải file Tải về cho biết kết quả của hàm main()",
-    dapAn: "4.898980",
-  },
-  {
-    cauHoi:
-      'Tải file Tải về cho biết kết quả của hàm main()\n<a href="https://cms.poly.edu.vn/asset-v1:FPOLY+SOF307+27.02.2020+type@asset+block@Lab1x1.doc">Tải về</a>',
-    dapAn: "4.898980",
-  },
-  {
-    cauHoi: "Tải file [Tải về] cho biết kết quả của chương trình",
-    dapAn: "24 la so chan\n\n\r31 la so le",
-  },
-  {
-    cauHoi:
-      "Với Stack được cài đặt bằng mảng, thủ tục sau để làm gì?\nvoid MNullStack (Stack s) {\n S.Top =Maxlenght + 1;\n}",
-    dapAn: "Thủ tục khởi tạo Stack rỗng",
-  },
-  {
-    cauHoi:
-      'char S[20]="aaaaaea";\nchar* p=strstr(S,"e");\nNếu địa chỉ của S là 1000, thì giá trị của p là bao nhiêu là',
-    dapAn: "1005",
-  },
-  {
-    cauHoi:
-      "cho dãy số 27 40 -7 5 57, thực hiện bước thứ 1, khi áp dụng thuật toán sắp xếp lựa chọn để sắp xếp dãy theo thứ tự giảm, ta có được dãy mới là gì?",
-    dapAn: "57  27 -7  5  40",
-  },
-  {
-    cauHoi: "hàng đợi còn được gọi là danh sách kiểu",
-    dapAn: "fifo",
-  },
-  {
-    cauHoi:
-      "không phải lúc nào cũng có thể xây dựng bài toán theo giải thuật và thủ tục đệ quy một cách dễ dàng, các vấn đề có thể là",
+    cauHoi: "Đâu là các toán tử số học được sử dụng trong Thymeleaf?",
     dapAn: [
-      "Làm thế nào để đảm bảo kích thước bài toán giảm đi sau mỗi lần gọi?",
-      "Xem xét và định nghĩa các trường hợp đặc biệt (trường hợp suy biến) như thế nào?",
-    ],
+      "%",
+      "*",
+      "/"
+    ]
   },
   {
-    cauHoi: "Ý tưởng của giải thuật tìm kiếm nhị phân:",
-    dapAn:
-      "Tại mỗi bước tiến hành so sánh X với phần tử ở giữa của dãy,Dựa vào bước so sánh này quyết định giới hạn dãy tìm kiếm nằm ở nửa trên, hay nửa dưới của dãy hiện hành.",
-  },
-  {
-    cauHoi: "Ý tưởng của giải thuật tìm kiếm tuần tự",
-    dapAn:
-      "So sánh X lần lượt với các phần tử thứ nhất, thứ hai,... của dãy cho đến khi gặp phần tử có khoá cần tìm.",
-  },
-  {
-    cauHoi: "Ý tưởng phương pháp sắp xếp Trộn (Merge sort) là:",
-    dapAn:
-      "Phân đoạn dãy thành nhiều dãy con và lần lượt trộn hai dãy con thành dãy lớn hơn, cho đến khi thu được dãy ban đầu đã được sắp xếp.",
-  },
-  {
-    cauHoi: "Ý tưởng phương pháp sắp xếp chọn tăng dần (select sort)",
-    dapAn:
-      "Phân đoạn dãy thành nhiều dãy con và lần lượt trộn hai dãy con thành dãy lớn hơn, cho đến khi thu được dãy ban đầu đã được sắp xếp.",
-  },
-  {
-    cauHoi: "Ý tưởng phương pháp sắp xếp nổi bọt (bubble sort) là:",
-    dapAn:
-      "Bắt đầu từ cuối dãy đến đầu dãy, ta lần lượt so sánh hai phần tử kế tiếp nhau, nếu phần tử nào nhỏ hơn được đứng vị trí trên.",
-  },
-  {
-    cauHoi: "Ý tưởng phương pháp sắp xếp vun đống (Heap sort) là",
-    dapAn:
-      "Lần lượt tạo đống cho cây nhị phân (phần tử gốc có giá trị lớn nhất) và loại phần tử gốc ra khỏi cây đưa vào dãy sắp xếp.",
-  },
-  {
-    cauHoi: "ý tưởng phương pháp sắp xếp chèn (insertion sort) là:",
-    dapAn:
-      "Lần lượt lấy phần tử của danh sách chèn vị trí thích hợp của nó trong dãy bằng cách đẩy các phần tử lớn hơn xuống.",
-  },
-  {
-    cauHoi: "ý tưởng phương pháp sắp xếp chọn tăng dần (select sort)",
-    dapAn:
-      "Phân đoạn dãy thành nhiều dãy con và lần lượt trộn hai dãy con thành dãy lớn hơn, cho đến khi thu được dãy ban đầu đã được sắp xếp.",
-  },
-  {
-    cauHoi: "ý tưởng phương pháp sắp xếp nhanh (Quick sort) là:",
-    dapAn:
-      "Lần lượt chia dãy phần tử thành hai dãy con bởi một phần tử khoá (dãy con trước khoá gồm các phần tử nhỏ hơn khoá và dãy còn lại gồm các phần tử lớn hơn khoá).",
-  },
-  {
-    cauHoi: "ý tưởng phương pháp sắp xếp vun đống (Heap sort) là",
-    dapAn:
-      "Lần lượt tạo đống cho cây nhị phân (phần tử gốc có giá trị lớn nhất) và loại phần tử gốc ra khỏi cây đưa vào dãy sắp xếp.",
-  },
-  {
-    cauHoi: "Đâu là kiểu dữ liệu có cấu trúc?",
-    dapAn: ["Kiểu array (mảng)", "Kiểu con trỏ"],
-  },
-  {
-    cauHoi: "Đâu là phát biểu dúng về danh sach moc nối:",
-    dapAn: "Các phần tử của nó được lưu trữ rải rác trong bộ nhớ RAM.",
-  },
-  {
-    cauHoi: "Đâu là phát biểu đúng về danh sách",
-    dapAn: "Có thể xóa một phần tử tại vị trí bất kì trong danh sách.",
-  },
-  {
-    cauHoi: "Đặc trưng của thuật toán",
-    dapAn: "Tất cả ý nêu ra",
-  },
-  {
-    cauHoi:
-      "Đặc trưng nào của thuật toán thể hiện: Tất cả các phép toán có mặt trong các bước của thuật toán phải đủ đơn giản",
-    dapAn: "Tính khả thi",
-  },
-  {
-    cauHoi: "Đặc điểm của giải thuật đệ quy",
-    dapAn: ["Bài toán được chia nhỏ ra", "Có lời gọi đến chính thủ tục đó"],
-  },
-  {
-    cauHoi: "Để cài đặt Stack ta có thể dùng phương pháp nào sau đây?",
-    dapAn: "Bằng con trỏ và bằng mảng",
-  },
-  {
-    cauHoi:
-      "Để dùng danh sách liên kết, xét hai khai báo sau(cần 1KB để lưu dữ thông tin về một sinh viên):\n\n1- Khai báo 1: struct SV{ thongtin; struct SV *tiep;};\n\n2- Khai báo 2: struct SV {thongtin}; struct DS{struct SV* sv; struct DS* tiep;};\n\n(Với “thongtin” là một thành phần dữ liệu của cấu trúc); Chọn câu đúng nhất trong các câu sau:",
-    dapAn:
-      "Khai báo 2 sẽ giúp chương trình chạy nhanh hơn khi đổi vị trí 2 sinh viên.",
-  },
-  {
-    cauHoi:
-      "Để thêm một đối tượng x bất kỳ vào Stack, thao tác thường dùng là:",
-    dapAn: "PUSH(x).",
-  },
-  {
-    cauHoi:
-      "Để tạo danh sách liên kết, theo bạn sinh viên nào dưới đây là khai báo đúng cấu trúc tự trỏ sẽ được dùng:\n\n1- Sinh viên 1:\n\nstruct SV{char ht[25]; int tuoi; struct Sv *tiep;};\n\n2- Sinh viên 2:\n\ntypedef\n\n struct SV node;\n\nstruct SV{char ht[25]; int tuoi; node *tiep;};\n\n3- Sinh viên 3:\n\ntypedef\n\n struct SV{char ht[25]; int tuoi; struct SV *tiep;} node;",
-    dapAn: ["1", "2", "3"],
-  },
-  {
-    cauHoi:
-      "Để tạo danh sách liên kết, theo bạn sinh viên nào dưới đây là khai báo đúng cấu trúc tự trỏ sẽ được dùng:\n1- Sinh viên 1:\nstruct SV{char ht[25]; int tuoi; struct Sv *tiep;};\n2- Sinh viên 2:\ntypedef\n struct SV node;\nstruct SV{char ht[25]; int tuoi; node *tiep;};\n3- Sinh viên 3:\ntypedef\n struct SV{char ht[25]; int tuoi; struct SV *tiep;} node;",
-    dapAn: ["1", "2", "3"],
-  },
-  {
-    cauHoi:
-      "Để viết chương trình chỉ để sử dụng một số ít lần và cái giá của thời gian viết chương trình vượt xa cái giá của chạy chương trình thì ta chọn thuật toán:",
-    dapAn: ["Thuật toán dễ cài đặt", "Thuật toán đơn giản"],
-  },
-  {
-    cauHoi:
-      "Để đổi chỗ 2 phần tử a7, a9 ta đưa thêm một tham số X và ta thực hiện dãy lệnh sau đây",
-    dapAn: "X=a7 ; a7=a9 ; a9=X",
-  },
-  {
-    cauHoi: "Định nghĩa cấu trúc dữ liệu dạng danh sách (LIST)?",
-    dapAn:
-      "Danh sách là một tập hợp các phần tử có cùng một kiểu mà ta gọi là kiểu phần tử (ElementType).",
-  },
-  {
-    cauHoi: "Định nghĩa danh sách tuyến tính Hàng đợi (Queue)?",
-    dapAn:
-      "Hàng đợi là kiểu danh sách tuyến tính trong đó, phép bổ sung một phần tử vào hàng đợi được thực hiện ở một đầu, gọi là lối sau (rear) và phép loại bỏ một phần tử được thực hiện ở đầu kia, gọi là lối trước (front).",
-  },
-  {
-    cauHoi: "Độ cao của cây là gì?",
-    dapAn: "muc lon nhat cua cay",
-  },
-  {
-    cauHoi: "Độ phức tạp của giải thuật tìm kiếm nhị phân là:",
-    dapAn: "O(log2N)",
-  },
-  {
-    cauHoi: "Độ phức tạp của giải thuật tìm kiếm tuần tự là:",
-    dapAn: "O(N)",
-  },
-  {
-    cauHoi: "Ưu điểm của thủ tục đệ quy là",
-    dapAn: "Tất cả các đáp trên",
-  },
-  {
-    cauHoi:
-      "Ưu điểm của việc cài đặt danh sách bằng mảng là gì?\n\n1. Khi khai báo một mảng ta phải xác định số lượng phần tử của mảng, nên khống chế số luợng của đối tuợng mà danh sách lưu trữ.\n\n2. Việc truy nhập vào phần tử của mảng được thực hiện trực tiếp dựa vào địa chỉ tính được(chỉ số), nên tốc độ nhanh và đồng đều đối với mọi phần tử.",
-    dapAn: "1 sai, 2 đúng",
-  },
-  {
-    cauHoi: "Ứng dụng của giải thuật đệ quy để giải các bài toán sau:",
+    cauHoi: "Hãy điền vào chỗ trống hiển thị giá trị của thuộc tính x trong đối tượng o\n\r <ul th:object=\"${o}\">\n\r  <li th:text=\"_____\"></li>\n\r </ul>",
     dapAn: [
-      "Tháp Hà Nội",
-      "Tìm kiếm trong danh sách liên kết",
-      "Tính giai thừa của số nguyên n",
-    ],
+      "${o.x}",
+      "*{x}"
+    ]
   },
   {
-    cauHoi:
-      'Sinh viên tải file [Tải về] đầu ra output là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1QBehdLFF6wRqrS67Jqtp1Y4hxGt2vmv_" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "hello_world",
+    cauHoi: "Đâu là biểu được sử dụng để truy xuất các biến trong Model, Scopes và tham số?",
+    dapAn: "${}"
   },
   {
-    cauHoi:
-      'Sinh viên tải file [Tải về] đầu ra output là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1RzckDeWYowf8ccLqTU3aTR-u2jxkqeQN" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "fpolyhcm.com",
+    cauHoi: "Chọn mã cho kết quả tương đương với thẻ sau\n\r<span th:utext=\"${message}\"></span>",
+    dapAn: "<span>[(${message})]</span>"
   },
   {
-    cauHoi:
-      'Sinh viên tải file [Tải về] kết quả của chương trình là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1yjPMzGqdjZ3_2InGSL_OopzNFAvXjR5L" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "999",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] cho biết kết quả của chương trình là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1NagD7UzI5eAg_D98BdJCglQgQt6gnUnO" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "16.67",
-  },
-  {
-    cauHoi:
-      "Với Stack được cài đặt bằng mảng, thủ tục sau để làm gì?\n\n\rvoid MNullStack (Stack s) {\n\n\r S.Top =Maxlenght + 1;\n\n\r}",
-    dapAn: "Thủ tục khởi tạo Stack rỗng",
-  },
-  {
-    cauHoi:
-      "Khi đổi một số nguyên từ hệ thập phân sang hệ nhị phân thì người ta dùng phép chia liên tiếp cho 2 và lấy các số dư (là các chữ số nhị phân) theo chiều ngược lại.\n\n\rCơ chế sắp xếp này chính là cơ chế hoạt động của cấu trúc dữ liệu:",
-    dapAn: "Ngăn xếp (stack)",
-  },
-  {
-    cauHoi:
-      "Giả sử Q là Hàng đợi, các phần tử của nó có kiểu Item. Hàm sau làm nhiệm vụ gì \n\n\rboolean F(Queue Q) {\n\n\r F = (Q.rear = max);\n\n\r}",
-    dapAn: "Kiểm tra hàng đợi đầy",
-  },
-  {
-    cauHoi:
-      "Để lấy loại bỏ một đối tượng ra khỏi Stack, thao tác thường dùng là:",
-    dapAn: "POP(x)",
-  },
-  {
-    cauHoi:
-      "Stack (ngăn xếp) là 1 kiểu danh sách đặc biệt, mà phép bổ sung và phép loại bỏ luôn luôn thực hiện ở 1 đầu gọi là",
-    dapAn: "dinh",
-  },
-  {
-    cauHoi: "Danh sách tuyến tính dạng ngăn xếp là",
-    dapAn:
-      "Danh sách tuyến tính trong đó phép bổ sung một phần tử vào ngăn xếp và phép loại bỏ một phần tử khỏi ngăn xếp luôn luôn thực hiện ở một đầu gọi là đỉnh",
-  },
-  {
-    cauHoi:
-      "Tiến trình đặt (thêm) một phần tử dữ liệu mới vào trên ngăn xếp còn được biết đến với tên Hoạt động PUSH. Bước thứ  \n\n\rkiểm tra xem ngăn xếp đã đầy hay chưa?",
-    dapAn: "1",
-  },
-  {
-    cauHoi:
-      "Ưu điểm của việc cài đặt danh sách bằng mảng là gì?\n\n\r1. Khi khai báo một mảng ta phải xác định số lượng phần tử của mảng,nên khống chế số luợng của đối tuợng mà danh sách lưu trữ.\n\n\r2. Việc truy nhập vào phần tử của mảng được thực hiện trực tiếp dựa vào địa chỉ tính được(chỉ số) vậy nên tốc độ nhanh và đồng đều đối với mọi phần tử.",
-    dapAn: "1 sai, 2 đúng",
-  },
-  {
-    cauHoi:
-      "Khi chèn một phần tử vào danh sách xảy ra tình trạng:\n\n\rđộ dài của danh sách = độ dài của mảng thì thông báo là:",
-    dapAn: "danh sach day",
-  },
-  {
-    cauHoi:
-      "Một danh sách trong đó tất cả các thao tác chèn thực hiện tại một đầu, thao tác xóa được thực hiện tại đầu kia của danh sách gọi là:",
-    dapAn: "Queue;",
-  },
-  {
-    cauHoi:
-      'Danh sách khai báo bằng con trỏ. Thủ tục sau có chức năng gì?"\n\n\rvoid MnullList ( List Header)\n\n\r{\n\n\rNew (Header);\n\n\rHeader.Next : = Nil;\n\n\r}',
-    dapAn: "thu tuc khoi tao danh sach rong",
-  },
-  {
-    cauHoi:
-      "Nếu lưu trữ kế tiếp một cây nhị phân có chiều cao 8 thì phải dự trù bao nhiêu ô  , Câu nút gốc có mức 1, mỗi nút cần 1 ô nhớ)",
-    dapAn: "255 o",
-  },
-  {
-    cauHoi:
-      "Danh sách liên kết đôi là gì?\n\n\r1. Là một biến thể của Danh sách liên kết (Linked List), trong đó hoạt động duyệt qua các nút có thể được thực hiện theo hai chiều: về trước và về sau một cách dễ dàng khi so sánh với Danh sách liên kết đơn.\n\n\r2. Là một biến thể của danh sách liên kết đơn, nhưng do 2 danh sách đơn cộng lại, Không có đáp án nào đúng",
-    dapAn: "1 đúng, 2 sai",
-  },
-  {
-    cauHoi: "Tính chất quan trọng của danh sách là",
-    dapAn:
-      "Các phần tử của danh sách có thứ tự tuyến tính theo vị trí xuất hiện của chúng(position)",
-  },
-  {
-    cauHoi:
-      "Dấu hiệu nào dưới đây cho biết node p của một danh sách liên kết đơn là node cuối cùng bên phải:",
-    dapAn: "(p->next==null);",
-  },
-  {
-    cauHoi:
-      "Khi lưu trữ cây nhị phân dưới dạng mảng, nếu vị trí của nút cha trong mảng là 3 thì vị trí tương ứng của nút con sẽ là:",
-    dapAn: ["6", "7"],
-  },
-  {
-    cauHoi:
-      "Cho một danh sách móc nối với các phần tử trong danh sách có kiểu S1 được định nghĩa như sau:\n\n\rstruct S1{int info; struct S1 *next;} *head;\n\n\rBiết con trỏ “*head” lưu địa chỉ của phần tử đầu tiên trong danh sách. Nhóm câu lệnh nào sau đây xóa phần tử đầu tiên ra khỏi danh sách:",
-    dapAn: "Head=head->next;",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Cho biết chương trình trên lỗi ở dòng\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1OlnPMeViAZEz_S0FO6MfP8AWymnDKaxZ" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "19",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] khi nhập n=3 và A[0]: 4, Nhap A[1]: 6, Nhap A[2]: 3, kết quả sẽ là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1npF_lYtRHjXHA8K-DWL2qOHsjd7R5a0p" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "3,4,6",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải [Tải về] . Kết quả biến result là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1ugnliKsC6u12VTd8BRv87ch6wjOzieKZ" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "2",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] sau đó nhập a =12 và b=4 cho biết biến UCLN là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1cqD4eHVrCsoKcHo-06k7yn-m-7iioU8v" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải [Tải về] . Kết quả biến result là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1GpkoPaFWPijR1SpNhIc2XoLiIaq3LIbM" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "6",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Cho biết lỗi chương trình là thiếu dấu\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1LByZPVUNvPtmOd4svwqotf8BER6rryei" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: ";",
-  },
-  {
-    cauHoi: "Cài đặt danh sách bằng mảng có nghiã là",
-    dapAn:
-      "Dùng một mảng (array) để lưu trữ liên tiếp các phần tử của danh sách bắt đầu từ vị trí đầu tiên của mảng.",
-  },
-  {
-    cauHoi:
-      'Tải file [Tải về] cho biết kết quả của chương trình\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1OJh6sRWoZsqJCAs8TgZt6XpXc7Ec76V3" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "24 la so chan\n\n\r31 la so le",
-  },
-  {
-    cauHoi:
-      "Hãy chỉ ra tùy chọn gắn một file vào chương trình hiện tại không hợp lệ dưới đây là",
-    dapAn: "#include<file",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] kết quả của chương trình là?\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1Lktksg5Xl2sChaqc-Kn5HQQoA7qtR936" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "63.20, -45.60, 70.10, 3.60, 14.50",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Khi kết quả n=24 thì ta phải nhập a=\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1XY62FEypAdepyb4IKObBI-BUNtSmWSyE" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      "Ho một danh sách móc nối với các phần tử trong danh sách có kiểu S1 được định nghĩa như sau:\n\n\rstruct S1{int info; struct S1 *next;} *head;\n\n\rBiết con trỏ “*head” lưu địa chỉ của phần tử đầu tiên trong danh sách. Nhóm câu lệnh nào sau đây thêm một phần tử vào đầu danh sách:",
-    dapAn: "P->next=head; head=p;",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Sinh viên cho biết lỗi dòng thứ mấy\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1AseFYLV2FgFDGTTf7V_y9dVqe9KoEvQ_" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "21",
-  },
-  {
-    cauHoi:
-      "Cho lệnh gán X := F với F = 5X + 7Y , X=6, Y =X + 2. Sau lệnh này X có giá trị:",
-    dapAn: "86",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải [Tải về] . Cho biết đây là giải thuật gì nhị phân hay tuyến tính.....\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1kOMiPCwWdq-wCOZoUC3RuV5RoSoED9Pk" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "Tìm phần tử nhỏ nhất của mảng M bao gồm N phần tử",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải [Tải về] . Kết quả biến result là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1a9OCDcjy__ZIdKWam5GONELseJWl7Wgn" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "2",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải [Tải về] . Cho biết đây là giải thuật gì (nhị phân hay tuyến tính)?\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1wVX_QtRAjsT6b4aIxmZH5Dii7bhAu0FQ" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "tuyen tinh",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải [Tải về] . Tìm mô tả đúng nhất cho hàm TinhTong \n\n\r1. Hàm tính tổng N số nguyên đầu tiên\n\n\r2. Hàm tính tổng N số nguyên tố nhỏ hơn N, tính tổng N số nguyên tố lớn hơn N\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=121PkzE0orBt8DF5I33cS22LCTRUApvBa" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "1 sai, 2 sai",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải [Tải về] . Kết quả biến n là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1a7cW2HsoXgExQBbPQPB5EJX6UZoLRbkh" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "7",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải [Tải về] . Đáp án đúng nhất?\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1TERoGcicCwg9lI1WNWjT8E1cDBA6x-qK" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "Số phép gán: Gmin = 3 và Số phép so sánh: Smin = 2",
-  },
-  {
-    cauHoi:
-      "Mỗi phần tử trong danh sách liên kết đơn là một cấu trúc có hai thành phần",
-    dapAn: ["Thành phần dữ liệu", "Thành phần liên kết"],
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Khi nhập vào số 4, kết quả của chương trình là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1djS2F6dscrB2jIDhqFUr8UoyQxL51B-b" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "10",
-  },
-  {
-    cauHoi: "Có thể cài đặt danh sách bằng:",
-    dapAn: ["Con trỏ", "Mảng", "Array", "Pointer"],
-  },
-  {
-    cauHoi:
-      'Sinh viên tải [Tải về] . Kết quả nào đúng khi thực hiện giải thuật sau với a[]= {1, 3, 5, 4, 2}; n = 5 ?\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1JhFLtgPvDx6BPqmKR9vFWARYXuLadRod" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "1 4 2 3 5",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Khi nhập a=10; và i=2 thì biến b là =\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=13_g0Iu_hrcDeJSdmCQFbvvwlyLhaaiFa" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "4",
-  },
-  {
-    cauHoi:
-      "Nếu S1 và S2 là các câu lệnh và E là biểu thức logic thì\n\n\rIf E Then S1 Else S2\n\n\rGiả sử thời gian thực hiện các lệnh S1, S2 là O(f(n)) và O(g(n)) tương ứng. Khi đó thời gian thực hiện lệnh if là",
-    dapAn: "O(max (f()n), g(n)))",
-  },
-  {
-    cauHoi:
-      "Biểu thức điều kiện để kiểm tra một phần tử thứ i của mảng A có nằm trong (-5;10) là ?\n\n\r1. (A[i] > -5) and (A[i] < 10)\n\n\r2. (-5 < A[i]) and (10 < A[i])",
-    dapAn: "1 đúng, 2 đúng",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] sau đó nhập n =123 cho biết biến DC là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1ylu6iis-eK4IU1PTzerF21uSzeyj5VmZ" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "3",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] sau đó cho biết kết quả bang cac so\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1RAGLTMe3BAi3x3cwJbqO_ob-38LrpOB9" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "153,370,371,407",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] sau đó cho biết kết quả của biến sum1 là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1ZlLaha9QxPla9-xazG2KMe15_BvpBVaC" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "10",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] cho biết chức năng chính của hàm là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1eBOfzEJwNcxT_pkLzzj5EtSo3pigHDYx" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "sap xep day so tang dan",
-  },
-  {
-    cauHoi: "Danh sách tuyến tính dạng ngăn xếp là:",
-    dapAn:
-      "Là một danh sách tuyến tính trong đó phép bổ sung một phần tử vào ngăn xếp và phép loại bỏ một phần tử khỏi ngăn xếp luôn luôn thực hiện ở một đầu gọi là đỉnh .",
-  },
-  {
-    cauHoi:
-      "Cho một ma trận thưa, hàng 1 có 2 phần tử F(11) , F(12) . Từ hàng thứ 2 chỉ có 3 phần tử F(k , k-1) ; F(k, k) ; F(k, k+1) , hàng cuối cùng cũng chỉ có 2 phần tử : F(n, n-1) ; F(n , n)\n\n\rHãy lưu trữ liên tiếp ưu tiên hàng của ma trận này thành một mảng một chiều : thí dụ F(11) là b(1) ; F(12) là b(2) ; F(21) là b(3) …\n\n\rNếu F(67) thì b(  )",
-    dapAn: "17",
-  },
-  {
-    cauHoi: "Có thể cài đặt danh sách bằng:",
-    dapAn: ["Con trỏ", "Mảng"],
-  },
-  {
-    cauHoi: "Trong các cấu trúc dữ liệu sau đâu là dữ liệu trừu tượng",
+    cauHoi: "Giải sử p.html có chứa một fragment x. Hãy chọn mã đúng để chèn nội dung của fragment x trong p.html vào nội dung thẻ <div>",
     dapAn: [
-      "Cấu trúc dữ liệu dạng (StacK)",
-      "Cấu trúc dữ liệu dạng danh sách(LIST)",
-      "Cấu trúc dữ liệu kiểu hàng đợi(QUEUE)",
-    ],
+      "<div th:insert=\"~{/p :: x}\"></div>",
+      "<div th:insert=\"~{/p.html :: x}\"></div>"
+    ]
   },
   {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . kết quả của chương trình là 0 1 1 2, ta cần nhập biến j=\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1onb1Lz3VhFO4BwmCCd-VDFZ5cbxBbAXd" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "4",
+    cauHoi: "Giả sử list là biến trong Model có kiểu là List<String>. Hãy điền vào chỗ trống để hiển thị thứ tự và giá trị các phần tử của list.\n\r<li th:each=\"item, state: ${list}\">\n\r<b th:text=\"_____\"></b>\n\r<b th:text=\"_____\"></b>\n\r</li>",
+    dapAn: "${state.index}, ${item}"
   },
   {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Cho biết kết quả của chương trình\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1MT5I47vYk9hcC7IWykPTaGHtRaMh6tAb" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "0 1 1 2 3 5 8 13 21 34",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Sinh viên cho biết lỗi dòng thứ mấy\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1Lsx8ubpGPtMM9ldIiAnoTJsZ6t-UYpfs" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "15",
-  },
-  {
-    cauHoi: "Kiểu dữ liệu float có thể xử lí dữ liệu trong phạm vi nào",
-    dapAn: "3.4*10-38-den-3.4*1038",
-  },
-  {
-    cauHoi:
-      "Cho dãy số {4 0 2 8 5 9 6 1 3 7}. áp dụng phương pháp sắp xếp chèn (Insert sort) sau lần lặp đầu tiên của giải thuật ta có kết quả:{0 4 2 8 5 9 6 1 3 7}. Dãy số thu được sau lần lặp thứ ba là:",
-    dapAn: "{0-2-4-8-5-9-6-1-3-7}",
-  },
-  {
-    cauHoi:
-      'Danh sách khai báo bằng con trỏ. Thủ tục sau có chức năng gì?"\nvoid MnullList ( List Header)\n{\nNew (Header);\nHeader.Next : = Nil;\n}',
-    dapAn: "thu-tuc-khoi-tao-danh-sach-rong",
-  },
-  {
-    cauHoi: "Trường hợp đệ quy của giải thuật đệ qui là",
-    dapAn:
-      "là cơ chế đưa bài toán cần giải về một hay nhiều bài toán tương tự nhưng có quy mô nhỏ hơn",
-  },
-  {
-    cauHoi: "Trường hợp cơ sở của giải thuật đệ quy là",
-    dapAn:
-      "trường hợp bài toán Pn, có quy mô đủ nhỏ để ta có thể giải trực tiếp.",
-  },
-  {
-    cauHoi:
-      "Danh sách khai báo bằng con trỏ. Hàm sau có chức năng gì?\nBoolean EList( ListvHeader )\n{\nElist = (Header.Next = Nil);\n}",
-    dapAn: "kiem-tra-danh-sach-rong",
-  },
-  {
-    cauHoi:
-      'Sinh viên tải file [Tải về] đầu ra output là\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1QBehdLFF6wRqrS67Jqtp1Y4hxGt2vmv_" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "hello_World",
-  },
-  {
-    cauHoi: "Ứng dụng của giải thuật đệ quy để giải các bài toán sau:",
+    cauHoi: "Để tổ chức được giao diện đa ngôn ngữ trong Spring Boot với Thymeleaf, bạn cần phải thực hiện những công việc nào?",
     dapAn: [
-      "Tìm kiếm trong danh sách liên kết",
-      "Tính giai thừa của số nguyên n",
-      "tháp Hà Nội",
-    ],
+      "Cấu hình nạp tài nguyên đa ngôn ngữ vào hệ thống",
+      "Hiển thị dữ liệu từ tài nguyên đa ngôn ngữ lên giao diện",
+      "Tổ chức tài nguyên đa ngôn ngữ"
+    ]
   },
   {
-    cauHoi:
-      "Một danh sách trong đó tất cả các thao tác chèn thực hiện tại một đầu, thao tác xóa được thực hiện tại đầu kia của danh sách gọi là:",
-    dapAn: "cay-nhi-phan.",
+    cauHoi: "Chọn phát biểu đúng về @DecimalMax() và @Max().",
+    dapAn: "@DecimalMax() áp dụng cho cả số thực và số nguyên trong khi @Max() chỉ áp dụng cho số nguyên"
   },
   {
-    cauHoi: "Có thể cài đặt danh sách bằng:",
-    dapAn: ["Array", "Pointer"],
+    cauHoi: "Đâu là cú pháp chọn fragment có tên là myfrag được khai báo trong file frags.html cùng thư mục?",
+    dapAn: [
+      "<div th:replace=“frags :: myfrag\">…</div>",
+      "<div th:replace=“frags.html :: myfrag\">…</div>"
+    ]
   },
   {
-    cauHoi:
-      "Cho dãy khoá 42,23,74,11,65,58,94,36\n\n\rLần lượt đưa dãy khoá trên vào cây nhị phân tìm kiếm. Nếu ta tìm kiếm trên cây nhị phân này thì trong trường hợp xấu nhất phải làm bao nhiêu phép so sánh",
-    dapAn: "4",
+    cauHoi: "Điền vào chỗ trống để hoàn thiện việc đăng ký interceptor xử lý sự thay đổi ngôn ngữ thông qua tham số có tên là \"lang\" chỉ khi request với url là \"/home/index\"\n\r@Override\n\rpublic void addInterceptors(InterceptorRegistry registry) {\n\r LocaleChangeInterceptor locale = new LocaleChangeInterceptor();\n\r locale.setParamName(\"_____\");\n\r registry.addInterceptor(locale).addPathPatterns(\"_____\");\n\r}",
+    dapAn: "lang, /home/index"
   },
   {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Khi nhập a=10; và i=2 thì biến b là =\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=13_g0Iu_hrcDeJSdmCQFbvvwlyLhaaiFa" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "2",
+    cauHoi: "Giả sử biến items trong Model có kiểu là List<String>. Hãy chọn mã tạo ra các thẻ <option value=\"index\">value</option>",
+    dapAn: "<option th:each=\"item, state: ${items}\" th:value=\"${state.index}\" th:text=\"${item}\"/>"
   },
   {
-    cauHoi:
-      "Cho dãy khoá 42,23,74,11,65,58,94,36\n\n\rLần lượt đưa dãy khoá trên vào cây nhị phân tìm kiếm. Bây giờ ta muốn tìm kiếm xem trong dãy khoá trên có khoá 60 không thì phải làm bao nhiêu phép so sánh:",
-    dapAn: "4",
+    cauHoi: "Cho 2 phát biểu về khai báo thông báo lỗi:\n\r1. Gán thông báo lỗi cho thuộc tính message của annotation kiểm lỗi\n\r2. Khai báo trong file tài nguyên properties",
+    dapAn: "1 đúng, 2 đúng"
   },
   {
-    cauHoi:
-      'Sinh viên tải file [Tải về] . Cho biết chương trình trên lỗi ở dòng\n<a href="https://docs.google.com/uc?export=download&amp;confirm=no_antivirus&amp;id=1OlnPMeViAZEz_S0FO6MfP8AWymnDKaxZ" target="_blank" class="nn-down">Tải về</a>',
-    dapAn: "20",
+    cauHoi: "File tài nguyên đa ngôn ngữ phải đặt thao nguyên tắc nào.",
+    dapAn: "<tên>_<mã ngôn ngữ>.properties"
   },
+  {
+    cauHoi: "@NotBlank có thể được sử dụng để kiểm lỗi cho trường có kiểu dữ liệu nào?",
+    dapAn: "String"
+  },
+  {
+    cauHoi: "Sự khác biệt giữa việc lựa chọn theo (tag, class, id) và fragment là gì?\n\r1. Tên fragment có ý nghĩa như mong muốn trong khi đó tag thì không vì phải sử dụng tag theo quy định của HTML\n\r2. Fragment có thể chứa tham số, trong khi (tag, class, id) không thể",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là cú pháp đúng của phương thức trong controller được sử dụng để validate dữ liệu trong đối số sv?",
+    dapAn: [
+      "public String validate(@Valid Student sv, Errors errors){}",
+      "public String validate(@Validated Student sv, BindingResult errors){}",
+      "public String validate(@Validated Student sv, Errors errors){}"
+    ]
+  },
+  {
+    cauHoi: "Biểu thức ~{/frags :: dynamic(~{::#main})} được hiểu là gì?\n\r1. Chọn fragment dynamic khai báo trong frags.html và truyền thẻ có id là main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html\n\r2. Chọn fragment dynamic khai báo trong frags.html và truyền fragment main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Biểu thức ~{/frags :: dynamic(~{::.main})} được hiểu là gì?\n\r1. Chọn fragment dynamic khai báo trong frags.html và truyền thẻ có class là main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html\n\r2. Chọn fragment dynamic khai báo trong frags.html và truyền fragment main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Đâu là khai báo fragment hợp lệ?",
+    dapAn: [
+      "<div th:fragment=\"myfrag\">…</div>",
+      "<div th:fragment=\"myfrag(x)\">…</div>",
+      "<div th:fragment=\"myfrag(x, y)\">…</div>"
+    ]
+  },
+  {
+    cauHoi: "Giả sử biến items trong Model có kiểu là List<String>. Hãy chọn mã tạo ra các thẻ <option value=\"value\">value</option>",
+    dapAn: [
+      "<option th:each=\"item, state: ${items}\" th:value=\"${item}\" th:text=\"${item}\"/>",
+      "<option th:each=\"item: ${items}\" th:value=\"${item}\" th:text=\"${item}\"/>"
+    ]
+  },
+  {
+    cauHoi: "Với cú pháp lựa chọn fragment là ~{file :: selector} thì selector được hiểu là gì?",
+    dapAn: [
+      "class",
+      "fragment",
+      "id",
+      "tag"
+    ]
+  },
+  {
+    cauHoi: "Khi thực hiện DELETE, Firebase REST API sẽ trả về dữ liệu gì?",
+    dapAn: "Null"
+  },
+  {
+    cauHoi: "RESTful API là web service hoạt động theo tiêu chuẩn nào?\n\r1. Operations: GET, POST, PUT, DELETE\n\r2. Transfer Data: JSON/XML",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Khi thực hiện POST, Firebase REST API sẽ trả về dữ liệu gì?",
+    dapAn: "Đối tượng chứa thuộc tính name là key được sinh tự động"
+  },
+  {
+    cauHoi: "Đâu là các phương thức của RestTemplate?",
+    dapAn: [
+      "delete(url)",
+      "getForObject(url, responseType<T>): T",
+      "postForObject(url, httpEntity, responseType<T>): T",
+      "put(url, httpEntity)"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống tên phương thức thích hợp của AngularJS để truy vấn dữ liệu.\n\r$http._____(url).then(response => {}).catch(error => {}))",
+    dapAn: "get"
+  },
+  {
+    cauHoi: "Điền vào chỗ trống để bóc lấy dữ liệu trả về từ REST API trong AngularJS?\n\r$http.get(url).then(response => {\n\r     var data = _____;\n\r})",
+    dapAn: "response.data"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống của đoạn mã Java sau đây để có thể thực hiện thêm mới dữ liệu với REST API và nhận kết quả JSON\n\rURL url = new URL(\"...\");\n\rHttpURLConnection conn = (HttpURLConnection) url.openConnection();\n\rconn.setRequestProperty(\"Accept\", \"_____\");\n\rconn.setRequestMethod(\"_____\");",
+    dapAn: "application/json, POST"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống tên phương thức thích hợp của AngularJS để thêm mới dữ liệu.\n\r$http._____(url, data).then(response => {}).catch(error => {}))",
+    dapAn: "post"
+  },
+  {
+    cauHoi: "Thuật ngữ API trong REST API viết tắt của?",
+    dapAn: "Application Programming Interface"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n\r1. Một web service có thể sử dụng một hoặc nhiều web service khác\n\r2. JavaScript có thể sử dụng được web service",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu:\n\r1. REST API và RESTful API là một\n\r2. REST API khác RESTful API",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Cho Realtime Database của firebase như hình trên, Đâu là URL để truy vấn thông tin của Nguyễn Thị Diễm Phương?\n<img src=\"https://docs.google.com/uc?id=1KD4lSyUutTdRQXgxpPnae7L3A4y0VSQt\" style=\"max-width:95%\">",
+    dapAn: "https://poly-java-6-d4e0b-default-rtdb.firebaseio.com/users/PS09013.json"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống tên phương thức thích hợp của AngularJS.\n\r$http._____(url, data).then(response => {}).catch(error => {}))",
+    dapAn: [
+      "post",
+      "put"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống tên phương thức thích hợp của AngularJS.\n\r$http._____(url).then(response => {}).catch(error => {}))",
+    dapAn: [
+      "delete",
+      "get"
+    ]
+  },
+  {
+    cauHoi: "Cho 2 phát biểu:\n\r1. RESTful Web Service và RESTful API là một\n\r2. REST API khác RESTful Web Service",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Thông số nào phụ thuộc vào hệ quản trị CSDL?",
+    dapAn: [
+      "spring.datasource.driverClassName",
+      "spring.jpa.hibernate.dialect"
+    ]
+  },
+  {
+    cauHoi: "Spring.jpa.hibernate.ddl-auto có những giá trị hợp lệ nào?",
+    dapAn: [
+      "create",
+      "create-drop",
+      "none"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện câu lệnh JPQL\n\r@Query(\"SELECT o._____ FROM Product o WHERE o.id=?1\")\n\rCategory findByProduct(Integer id);",
+    dapAn: "category"
+  },
+  {
+    cauHoi: "Đâu là các phương thức được khai báo trong CrudRepository?",
+    dapAn: [
+      "<S extends T> S save(S entity)",
+      "Optional<T> findById(ID id)",
+      "T getOne(ID id)",
+      "void delete(T entity)"
+    ]
+  },
+  {
+    cauHoi: "Page chứa kết quả truy vấn phân trang. Gọi phương thức nào để lấy tổng số trang truy vấn được?",
+    dapAn: "getTotalPages()"
+  },
+  {
+    cauHoi: "Annotation nào được sử dụng để chú thích cho field có kiểu java.util.Date",
+    dapAn: "@Temporal"
+  },
+  {
+    cauHoi: "Hãy viết phương thức DSL tương đương với truy vấn sau:\n\r@Query(“SELECT p FROM Product p WHERE p.price=?1”)",
+    dapAn: [
+      "findByPrice(double value)",
+      "findByPriceEqual(double value)"
+    ]
+  },
+  {
+    cauHoi: "Spring.jpa.hibernate.ddl-auto=validate\n\rKhai báo trên có ý nghĩa gì?",
+    dapAn: "Kiểm tra tính hợp lệ của CSDL so với ràng buộc trong các entity class"
+  },
+  {
+    cauHoi: "Để có thể làm việc được với CSDL SQL Server, bạn cần phải khai báo thư viện cần thiết nào?\n\r1. Spring Data JPA\n\r<dependency>\n\r <groupId>org.springframework.boot</groupId>\n\r <artifactId>spring-boot-starter-data-jpa</artifactId>\n\r</dependency>\n\r2. SQL Server Driver\n\r<dependency>\n\r <groupId>com.microsoft.sqlserver</groupId>\n\r <artifactId>mssql-jdbc</artifactId>\n\r <scope>runtime</scope>\n\r</dependency>",
+    dapAn: "Cả 2"
+  },
+  {
+    cauHoi: "Đâu là annotation được sử dụng để chú thích cho lớp controller chứa toàn các phương thức của REST API?",
+    dapAn: "@RestController"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để thực hiện đếm sản phẩm theo khoảng giá\n\r@Query(value = \"SELECT COUNT(*) FROM Products WHERE Price BETWEEN ?1 AND ? 2\", nativeQuery = true)\n\r_____ countByPrice(double min, double max);",
+    dapAn: "Long"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện phương thức truy vấn\n\r@Query(\"SELECT count(o) FROM Product o WHERE o.category.id=?1\")\n\r_____ countByCategory(String id);",
+    dapAn: "Long"
+  },
+  {
+    cauHoi: "Đâu là các annotation được sử dụng để ánh xạ các hoạt động của REST API với các phương thức của RestController?",
+    dapAn: "@PutMapping"
+  },
+  {
+    cauHoi: "Hãy viết phương thức DSL tương đương với truy vấn sau:\n\r@Query(“SELECT p FROM Product p WHERE p.name LIKE ?1”)",
+    dapAn: [
+      "List<Product> findAllByNameLike(String name)",
+      "List<Product> findByNameLike(String name)",
+      "List<Product> getAllByNameLike(String name)",
+      "List<Product> getByNameLike(String name)"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để cho phép phương thức sau đây được sử dụng như hoạt động GET của REST API\n\r_____\n\r@GetMapping(\"/rest/find-all\")\n\rpublic List<T> findAll() {…}",
+    dapAn: "@ResponseBody"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, hãy điền vào chỗ trống tên  phương thức phân quyền yêu cầu phải đăng nhập mới được phép truy xuất\n\rhttp.authorizeRequests().antMatchers(\"/**\")._____",
+    dapAn: "authenticated()"
+  },
+  {
+    cauHoi: "Trong bảo mật, CORS (Cross-Site Resource Sharing) là kỹ thuật dùng để ngăn chặn?",
+    dapAn: "Ngăn chặn chia sẻ tài nguyên"
+  },
+  {
+    cauHoi: "Trong file cấu hình Security, bạn cần viết mã cung cấp người dữ liệu người sử dụng trong phương thức nào?",
+    dapAn: "configure(AuthenticationManagerBuilder auth)"
+  },
+  {
+    cauHoi: "Đâu là annotation hợp lệ để phân quyền sử dụng cho các phương thức trong controller",
+    dapAn: [
+      "@PreAuthorize(“hasAnyRole('ADMIN', 'USER')”)",
+      "@PreAuthorize(“hasRole('ADMIN')”)",
+      "@PreAuthorize(“isAuthenticated()”)"
+    ]
+  },
+  {
+    cauHoi: "Trong file cấu hình Security, bạn cần viết mã cung cấp cơ chế mã hóa mật khẩu trong phương thức nào?",
+    dapAn: "getPasswordEncoder()"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là những phương thức của http.formLogin() xác định địa chỉ URL form đăng nhập?",
+    dapAn: "loginPage(url)"
+  },
+  {
+    cauHoi: "Trong bảo mật, Authoiation là kỹ thuật dùng để ngăn chặn?",
+    dapAn: "Ngăn chặn thực hiện không đúng vai trò"
+  },
+  {
+    cauHoi: "Trong bảo mật, Authentication là kỹ thuật dùng để ngăn chặn?",
+    dapAn: "Ngăn chặn thực hiện khi chưa đăng nhập"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là những phương thức của http.formLogin() xác định địa chỉ URL xử lý đăng nhập?",
+    dapAn: "loginProcessingUrl(url)"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là những phương thức của http.formLogin() xác định địa chỉ URL xử lý sau khi đăng nhập thất bại?",
+    dapAn: "failureUrl(url)"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là những phương thức của http.formLogin() giúp tùy biến xử lý các hành động có thể xảy ra trong đăng nhập với form tùy biến?",
+    dapAn: [
+      "defaultSuccessUrl(url, always)",
+      "failureUrl(url)",
+      "loginPage(url)",
+      "loginProcessingUrl(url)"
+    ]
+  },
+  {
+    cauHoi: "Để sử dụng được @PreAuthorize trong các controller thì file cấu hình phải được chú thích bởi các annotation nào?",
+    dapAn: [
+      "@Configuration",
+      "@EnableGlobalMethodSecurity(prePostEnabled = true)",
+      "@EnableWebSecurity"
+    ]
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là những url cần được khai báo xử lý trong controller?\n\rhttp.formLogin()\n\r .loginPage(\"/security/login/form\")  \n\r .loginProcessingUrl(\"/security/login\")\n\r .defaultSuccessUrl(\"/security/login/success\", false)\n\r .failureUrl(\"/security/login/error\")",
+    dapAn: [
+      "/security/login/error",
+      "/security/login/form",
+      "/security/login/success"
+    ]
+  },
+  {
+    cauHoi: "Trong Thymeleaf, biểu thức nào cho phép truy xuất danh sách authority?",
+    dapAn: [
+      "${#authentication.authorities}",
+      "${#authentication.getAuthorities()}",
+      "${#request.userPrincipal.authorities}",
+      "${#request.userPrincipal.getAuthorities()}"
+    ]
+  },
+  {
+    cauHoi: "Strong Spring Security, bạn có vai trò (role) là ADMIN thì thẩm quyền (authority) tương ứng với role là gì?\n\r1. ROLE_ADMIN\n\r2. AUTHORITY_ADMIN",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Đâu là phương thức được khai báo trong UserDetails để truy xuất tên đăng nhập?",
+    dapAn: "getUsername()"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n\r1. UserDetails là interface mô tả mô hình dữ liệu của người đăng nhập\n\r2. User là class implements UserDetails đồng thời bổ sung các hàm tiện ích giúp bạn dễ dàng tạo ra đối tượng UserDetails",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n\r1. User.withUsername(\"A\").password(\"B\").roles(\"C\").build();\n\r2. User.withUsername(\"A\").roles(\"C\").password(\"B\").build();",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Cách nào sau đây tạo đối tượng UserDetailsService?\n\r1. UserDetailsService uds = new UserDetailsService() {\n\r @Override\n\r public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {\n\r  return null;\n\r }\n\r};\n\r2. UserDetailsService uds = username -> {\n\r  return null;\n\r};",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n\r1. User.withUsername(\"A\").password(\"B\").roles(\"C\").build();\n\r2. User.withUsername(\"A\").password(\"B\").authorities(\"ROLE_C\").build();",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là các key được sử dụng để khai báo thông tin đã đăng ký với facebook developer trong application.properties?",
+    dapAn: [
+      "spring.security.oauth2.client.registration.facebook.client-id=<app-id>",
+      "spring.security.oauth2.client.registration.facebook.client-secret=<secret-code>"
+    ]
+  },
+  {
+    cauHoi: "Đâu là URL dẫn đến trang đăng ký tài khoản developer của facebook?",
+    dapAn: "https://developers.facebook.com/docs/facebook-login"
+  },
+  {
+    cauHoi: "Với oauth là OAuth2AuthenticationToken, đâu là phương thức để lấy email của tài khoản?",
+    dapAn: "oauth.getPrincipal().getAttribute(\"email\")"
+  },
+  {
+    cauHoi: "Giả sử chúng ta muốn có các liên kết đến trang đăng nhập từ mạng xã hội như các liên kết sau:\n\r<a href=\"/oauth2/google\">Google</a>\n\r<a href=\"/oauth2/facebook\">Facebook</a>\n\rHãy điền vào chỗ trống để hoàn thiện mã cấu hình đăng nhập xã hội\n\rhttp.oauth2Login()\n\r .loginPage(\"/auth/login/form\")\n\r .defaultSuccessUrl(\"/oauth2/login/success\", true)\n\r .failureUrl(\"/auth/login/error\")\n\r .authorizationEndpoint()\n\r  .baseUri(\"_____\");",
+    dapAn: "/oauth2"
+  },
+  {
+    cauHoi: "Đâu là khai báo đúng địa chỉ chuyển hướng sau khi đăng nhập (Valid Oauth Redirect URL) trong facebook?",
+    dapAn: "http://localhost:8080/login/oauth2/code/facebook"
+  },
+  {
+    cauHoi: "Trong Java, phương thức nào của HttpURLConnection giúp thiết lập header Authorization  cho request?",
+    dapAn: "setRequestProperty(\"Authorization\", \"Basic <token>\")"
+  },
+  {
+    cauHoi: "Để sử dụng được Spring Boot REST API bảo mật thì các REST Consumer cần header nào?",
+    dapAn: "Authorization"
+  },
+  {
+    cauHoi: "Đâu là lệnh được sử dụng để tạo đối tượng Authentication từ UserDetails (user)?",
+    dapAn: "new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities())"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n\r1. UserDetailsService là interface mô tả mô hình dữ liệu của người đăng nhập\n\r2. UserDetails là interface cung cấp phương thức giúp tải dữ liệu người sử dụng theo tên đăng nhập để xác thực",
+    dapAn: "1 sai, 2 sai"
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n\r1. User.withUsername(\"A\").password(\"B\").roles(\"ROLE_C\").build();\n\r2. User.withUsername(\"A\").password(\"B\").authorities(\"C\").build();",
+    dapAn: "1 sai, 2 sai"
+  },
+  {
+    cauHoi: "Để đăng nhập được từ tài khoản Gmail, bạn cần thực hiện nhưng công việc nào?",
+    dapAn: [
+      "Cấu hình đăng nhập",
+      "Khai báo mã ứng dụng và mã bí mật vào application.properties",
+      "Khai báo thư viện Oauth2 cần thiết vào pom.xml",
+      "Đăng ký tài khoản developer của Google và khai báo đầy đủ thông tin, lấy mã ứng dụng (app id) và mã bí mật (secret code)"
+    ]
+  },
+  {
+    cauHoi: "UserDetailsService khai báo phương thức nào?",
+    dapAn: "loadUserByUsername(String)"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trong biểu thức thích hợp để hiển thị lỗi của  thuộc tính p của bean b trong Model\n\r<form th:action=\"@{/save}\" th:object=\"${b}\">\n\r    <input th:errors=\"_____\">\n\r</form>",
+    dapAn: [
+      "${b.p}",
+      "*{p}"
+    ]
+  },
+  {
+    cauHoi: "Để upload được file thì thẻ <form> cần những thuộc tính nào?",
+    dapAn: [
+      "enctype=\"mutipart/form-data\"",
+      "method=\"post\""
+    ]
+  },
+  {
+    cauHoi: "Spring.jpa.hibernate.ddl-auto=create-drop\n\rKhai báo trên có ý nghĩa gì?",
+    dapAn: "Xóa CSDL hiện có, tạo lại CSDL đúng như các entity class, xóa CSDL khi shutdown ứng dụng"
+  },
+  {
+    cauHoi: "Giả sử x là biến trong Model có kiểu là String. Đâu là biểu thức hiển thị x có dạng viết hoa tất cả các ký tự đầu tiên của các từ?",
+    dapAn: "${#strings.capitalizeWords(x)}"
+  },
+  {
+    cauHoi: "Cho Realtime Database của firebase như hình trên, Đâu là URL để truy vấn thông tin liên lạc của Nguyễn Thị Diễm Phương?\n<img src=\"https://docs.google.com/uc?id=1KD4lSyUutTdRQXgxpPnae7L3A4y0VSQt\" style=\"max-width:95%\">",
+    dapAn: "https://poly-java-6-d4e0b-default-rtdb.firebaseio.com/users/PS09013/contact.json"
+  },
+  {
+    cauHoi: "Phương thức nào có các Stream của đầu vào và đầu ra chứa các phần tử cùng kiểu?",
+    dapAn: [
+      "filter()",
+      "limit()",
+      "peek()"
+    ]
+  },
+  {
+    cauHoi: "Trong HttpServletRequest, phương thức nào cho phép lấy UserDetails chứa thông tin của người đăng nhập?",
+    dapAn: "isUserInRole(role)"
+  },
+  {
+    cauHoi: "Đâu là các phương thức của ObjectMapper",
+    dapAn: [
+      "readTree()",
+      "readValue()",
+      "writeValue()",
+      "writeValueAsString()"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các toán tử so sánh trong Thymeleaf?",
+    dapAn: [
+      "!=",
+      "<",
+      "==",
+      ">",
+      "eq",
+      "gt",
+      "lt",
+      "ne",
+      "<=",
+      ">=",
+      "ge",
+      "le"
+    ]
+  },
+  {
+    cauHoi: "Đâu là biểu được sử dụng để truy xuất dữ liệu trong file tài nguyên (.properties)",
+    dapAn: "#{}"
+  },
+  {
+    cauHoi: "Trong Thymeleaf, biểu thức nào cho phép truy xuất username của người đăng nhập",
+    dapAn: [
+      "${#authentication.getName()}",
+      "${#authentication.name}",
+      "${#authentication.principal.getUsername()}",
+      "${#authentication.principal.username}"
+    ]
+  },
+  {
+    cauHoi: "Giả sử x là biến trong Model có kiểu là Double. Đâu là biểu thức hiển thị x có dạng #,###.## (2 số lẻ, tách nhóm phần nguyên bởi dấu phẩy)",
+    dapAn: "${#numbers.formatDecimal(x, 0, 'COMMA', 2, 'POINT')}"
+  },
+  {
+    cauHoi: "Hãy chọn biểu thức đúng?",
+    dapAn: [
+      "${#request.getParameter('x')}",
+      "${#request.getRequestURI()}",
+      "${#request.requestURI}",
+      "${#servletContext.contextPath}"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống hiển thị giá trị của biến x trong ServletContext\n < b th:text=\"_____\" >  < /b?",
+    dapAn: "${application.x}"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống biểu thức thích hợp để buộc thuộc tính p của bean b trong Model\n < form th:action=\"@{/save}\" > \n     < input th:field=\"_____\" > \n < /form >",
+    dapAn: "${b.p}"
+  },
+  {
+    cauHoi: "Giả sử list là biến trong Model có kiểu là List < String > . Hãy điền vào chỗ trống để hiển thị thứ tự và giá trị các phần tử của list.\n < li th:each=\"item, state: ${list}\" > \n < b th:text=\"_____\" >  < /b > \n < b th:text=\"_____\" >  < /b > \n < /li >",
+    dapAn: "${state.index}, ${item}"
+  },
+  {
+    cauHoi: "Hãy điền mã đúng vào chỗ trống\n  List < Integer >  list = Arrays.asList(1, 9, 4, 7, 5, 2);\n  list.forEach(_____);",
+    dapAn: [
+      "(n) - >  {System.out.println(n);}",
+      "n - >  System.out.println(n)"
+    ]
+  },
+  {
+    cauHoi: "Cho lớp Student:\n@Data\n@AllArgsConstructor\n@NoArgsConstructor\npublic class Student {\n String name;\n Boolean gender = false;\n Double marks = 0.0;\n}\nHãy điền mã đúng vào chỗ trống:\nList < Student >  list = Arrays.asList(\n    new Student(\"Nguyễn Văn Tèo\", true, 7.5)\n    ...\n  );\n  Collections.sort(list, _____);",
+    dapAn: [
+      "(sv1, sv2) - >  -sv1.getMarks().compareTo(sv2.getMarks())",
+      "(sv1, sv2) - >  sv1.getName().compareTo(sv2.getName())",
+      "(sv1, sv2) - >  { return -sv1.getMarks().compareTo(sv2.getMarks());}",
+      "(sv1, sv2) - >  { return sv1.getName().compareTo(sv2.getName());}"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các toán tử số học được sử dụng trong Thymeleaf",
+    dapAn: [
+      "+",
+      "-"
+    ]
+  },
+  {
+    cauHoi: "Với Firebase REST API, entrypoint được quy định kết thúc là gì?",
+    dapAn: ".json"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là những URL đã được bảo vệ với lệnh sau\nhttp.authorizeRequests().antMatchers(\"/a/**\").authenticated()",
+    dapAn: [
+      "/a",
+      "/a/b",
+      "/a/b/c",
+      "/a/b/c/d"
+    ]
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là những url cần được khai báo xử lý trong controller?\nhttp.formLogin()\n .loginPage(\"/security/login/form\")  \n .loginProcessingUrl(\"/security/login\")\n .defaultSuccessUrl(\"/security/login/success\", false)\n .failureUrl(\"/security/login/error\")",
+    dapAn: [
+      "/security/login/error",
+      "/security/login/form",
+      "/security/login/success"
+    ]
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n1. UserDetailsService là interface mô tả mô hình dữ liệu của người đăng nhập\n2. UserDetails là interface cung cấp phương thức giúp tải dữ liệu người sử dụng theo tên đăng nhập để xác thực",
+    dapAn: "1 sai, 2 sai"
+  },
+  {
+    cauHoi: "Biểu thức ~{/frags :: dynamic(~{::#main})} được hiểu là gì?\n1. Chọn fragment dynamic khai báo trong frags.html và truyền thẻ main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html\n2. Chọn fragment dynamic khai báo trong frags.html và truyền fragment main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html",
+    dapAn: "1 sai, 2 sai"
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n1. User.withUsername(\"A\").password(\"B\").roles(\"ROLE_C\").build();\n2. User.withUsername(\"A\").password(\"B\").authorities(\"C\").build();",
+    dapAn: "1 sai, 2 sai"
+  },
+  {
+    cauHoi: "Mục đích của web service là gì?\n1. Xây dựng các operation trên nền internet chỉ để phục vụ cho các ứng dụng web\n2. Xây dựng các operation trên nền internet để phục vụ cho mọi thể loại ứng dụng",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là cú pháp đúng khi tạo một DAO\n1. public class MyDAO extends JpaRepository < T, ID > {}\n2. public interface MyDAO extends JpaRepository < T, ID > {}",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Với Spring Data JPA, trong entity class khi khai báo thực thể kết hợp là @JoinColumn(name=\"UserId\") sẽ ánh xạ với cột khóa ngoại có tên như thế nào?\n1. UserId\n2. User_Id",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Với Spring Data JPA khi khai báo với entity class là @Table(name=\"UserRoles\") sẽ ánh xạ với bảng có tên như thế nào?\n1. UserRoles\n2. User_Roles",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Với Spring Data JPA khi khai báo trong entity class là @Column(name=\"FirstName\") sẽ ánh xạ với cột có tên như thế nào?\n1. FirstName\n2. First_Name",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n1. User.password(\"B\").withUsername(\"A\").roles(\"C\").build();\n2. User.withUsername(\"A\").roles(\"C\").password(\"B\").build();",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về vị trí của đối số tích lũy lỗi:\n1. Đối số BindingResult hoặc Errors bắt buộc phải đặt ngay sau bean được kiểm lỗi\n2. Đối số BindingResult hoặc Errors không bắt buộc phải đặt ngay sau bean được kiểm lỗi",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n1. User.withUsername(\"A\").password(\"B\").roles(\"C\").build();\n2. User.withUsername(\"A\").password(\"B\").authorities(\"C\").build();",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu:\n1. RESTful Web Service và RESTful API là một\n2. REST API khác RESTful Web Service",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n1. Với SOAP, dữ liệu truyền thông cồng kềnh hơn REST\n2. Với SOAP, dữ liệu truyền thông nhẹ hơn REST",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu:\n1. REST API và RESTful API là một\n2. REST API khác RESTful API",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Tại sao nên sử dụng ResponseEntity trong các RestController method?\n1. Có nhiều lựa chọn trả về với mã trạng thái khác nhau\n2. Tránh được lỗi",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "UserDetailsService khai báo bao nhiêu phương thức trừu tượng? Có thể sử dụng biểu thức Lambda để tạo đối tượng UserDetailsService được hay không?\n1. 1 phương thức, hoàn toàn được\n1. 1 phương thức, không thể được",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n1. UserDetails là interface mô tả mô hình dữ liệu của người đăng nhập\n2. User là class implements UserDetails đồng thời bổ sung các hàm tiện ích giúp bạn dễ dàng tạo ra đối tượng UserDetails",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Theo cú pháp của JSON, các cặp key=value phải thỏa mãn\n1. Key phải là chuỗi\n2. Value có thể là chuỗi",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity và bạn có cấu hình đăng nhập và đăng xuất như sau:\nhttp.formLogin().loginPage(\"url1\")\nThì\n1. Bạn cần viết phương thức ánh xạ với các url1  trong controller để chuyển đến giao diện đăng nhập\n2. Không cần viết mã trong controller, hệ thống sẽ tự nhận biết form đăng nhập",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là sự thể hiện của trang web được bảo mật?\n1. Trang web trước và sau khi đăng nhập có thể khác nhau\n2. Không thể thực hiện một số hành vi nếu chưa đăng nhập",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n1. User.withUsername(\"A\").password(\"B\").roles(\"C\").build();\n2. User.withUsername(\"A\").password(\"B\").authorities(\"ROLE_C\").build();",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đối số thứ 2 (x) của phương thức RestTemplate.getForObject(url, x) có ý nghĩa gì?\n1. Quy định kiểu dữ liệu trả về\n2. Quy định kiểu dữ liệu gửi đi",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về dự án Spring Boot sử dụng Thymeleaf như sau:\n1. Thymeleaf là một động cơ tạo mẫu (template engine) chạy phía server có khả năng xử lý việc tạo ra HTML, XML, CSS, JS  và TEXT.\n2. Thymeleaf dựa vào các nguyên mẫu (HTML, CSS…) và bổ sung các quy luật cần thiết để sản sinh ra template hoàn thiện với dữ liệu động.",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là cú pháp đúng của phương thức readValue() trong ObjectMapper\n1. readValue(source, Class < T > ): T\n2. readValue(source, TypeReference < T > ): T",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Trong interface JpaRepository < T, ID >  thì\n1. T là kiểu của Entity\n2. ID là kiểu của field @Id của Entity",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về annotation kiểm lỗi sau:\n1. Tất cả annotation kiểm lỗi đều có thuộc tính message\n2. Nếu không cung cấp thông báo lỗi cho thuộc tính message thì hệ thống sẽ hiển thị lỗi mặc định khi có lỗi",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Cách nào sau đây cung cấp UserDetailsService cho auth (AuthenticationManagerBuilder)?\n1. auth.userDetailsService(new UserDetailsService() {\n @Override\n public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {\n  return null;\n }\n});\n2. auth.userDetailsService( username - >  {\n  return null;\n});",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Spring Security sẵn có\n1. Mô hình dữ liệu người sử dụng được chuẩn hóa\n2. Phương pháp mã hóa mật khẩu",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện câu lệnh JPQL\n@Query(\"SELECT o FROM Product o WHERE o.category.id=_____\")\nList < Product >  findByCategoryId(@Param(\"id\") String id);",
+    dapAn: ":id"
+  },
+  {
+    cauHoi: "Giả sử list là biến trong Model có kiểu là List < String > . Hãy chọn mã lệnh đúng hiển thị các phần tử của list.",
+    dapAn: [
+      "< b th:each=\"item, state: ${list}\" th:text=\"${item}\" >  < /b >",
+      "< b th:each=\"item: ${list}\" th:text=\"${item}\" >  < /b >"
+    ]
+  },
+  {
+    cauHoi: "Đâu là khai báo các thư viện cần thiết trong Spring Boot để có thể đăng nhập từ mạng xã hội?",
+    dapAn: [
+      "< dependency > \n  < groupId > org.springframework.boot < /groupId > \n  < artifactId > spring-boot-starter-oauth2-client < /artifactId > \n < /dependency >",
+      "< dependency > \n  < groupId > org.springframework.boot < /groupId > \n  < artifactId > spring-boot-starter-security < /artifactId > \n < /dependency >"
+    ]
+  },
+  {
+    cauHoi: "Với Thymeleaf Extras Spring Security, đâu là các thẻ sử dụng security thích hợp?",
+    dapAn: [
+      "< div sec:authorize=\"hasAnyRole('ADMIN')\" >  < /div >",
+      "< div sec:authorize=\"isAuthenticated()\" >  < /div >"
+    ]
+  },
+  {
+    cauHoi: "Đâu là khai báo fragment hợp lệ?",
+    dapAn: [
+      "< div th:fragment=\"myfrag\" > … < /div >",
+      "< div th:fragment=\"myfrag(x)\" > … < /div >",
+      "< div th:fragment=\"myfrag(x, y)\" > … < /div >"
+    ]
+  },
+  {
+    cauHoi: "Giải sử p.html có chứa một fragment x. Hãy chọn mã đúng để thay thế thẻ  < div >  bằng fragment x.",
+    dapAn: [
+      "< div th:replace=\"~{/p :: x}\" >  < /div >",
+      "< div th:replace=\"~{/p.html :: x}\" >  < /div >"
+    ]
+  },
+  {
+    cauHoi: "Đâu là cú pháp chọn fragment có tên là myfrag được khai báo trong file frags.html cùng thư mục?",
+    dapAn: [
+      "< div th:replace=“frags :: myfrag\" > … < /div >",
+      "< div th:replace=“frags.html :: myfrag\" > … < /div >"
+    ]
+  },
+  {
+    cauHoi: "Chọn mã cho kết quả tương đương với thẻ sau\n < span th:utext=\"${message}\" >  < /span >",
+    dapAn: "< span > [(${message})] < /span >"
+  },
+  {
+    cauHoi: "File tài nguyên đa ngôn ngữ phải đặt thao nguyên tắc nào.",
+    dapAn: "< tên > _ < mã ngôn ngữ > .properties"
+  },
+  {
+    cauHoi: "Đâu là các annotation được sử dụng để ánh xạ các hoạt động của REST API với các phương thức của RestController?",
+    dapAn: [
+      "@DeleteMapping",
+      "@GetMapping",
+      "@PostMapping",
+      "@PutMapping"
+    ]
+  },
+  {
+    cauHoi: "Đâu là annotation được sử dụng để ánh xạ các hoạt động của REST API với các phương thức của RestController?",
+    dapAn: "@GetMapping"
+  },
+  {
+    cauHoi: "Đâu là các annotation kiểm lỗi số?",
+    dapAn: [
+      "@Min()",
+      "@Size()"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các annotation kiểm lỗi thời gian?",
+    dapAn: [
+      "@Past()",
+      "@PastOrPresent()"
+    ]
+  },
+  {
+    cauHoi: "Đâu là annotation được sử dụng để chú thích đọc dữ liệu JSON từ đối số của phương thức REST API?",
+    dapAn: "@RequestBody"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để cho phép phương thức sau đây được sử dụng như hoạt động GET của REST API\n_____\n@GetMapping(\"/rest/find-all\")\npublic List < T >  findAll() {…}",
+    dapAn: "@ResponseBody"
+  },
+  {
+    cauHoi: "Annotation nào được sử dụng để yêu cầu Spring kiểm lỗi bean?",
+    dapAn: [
+      "@Valid",
+      "@Validated"
+    ]
+  },
+  {
+    cauHoi: "Đâu là biểu được sử dụng để làm đúng đường dẫn url?",
+    dapAn: "@{}"
+  },
+  {
+    cauHoi: "Chọn các đoạn mã lệnh đúng",
+    dapAn: [
+      "ActionListener listener = e - >  {};",
+      "ActionListener listener = new ActionListener() {\n @Override\n public void actionPerformed(ActionEvent e) {}\n};",
+      "new Thread(() - >  {}).start();",
+      "new Thread(new Runnable() {\n @Override\n public void run() {}\n}).start();"
+    ]
+  },
+  {
+    cauHoi: "@NotEmpty có thể được sử dụng để kiểm lỗi cho trường có kiểu dữ liệu nào?",
+    dapAn: [
+      "Array",
+      "Collection",
+      "Map",
+      "String"
+    ]
+  },
+  {
+    cauHoi: "Giả sử x là biến trong Model có kiểu là Integer. Nếu x có giá trị là 10 thì đâu là kết quả của đoạn mã sau?\n < ul th:switch=\"${x}\" > \n  < li th:case=\"1\" > Một < /li > \n  < li th:case=\"2\" > Hai < /li > \n  < li th:case=\"3\" > Ba < /li > \n  < li th:case=\"*\" > Bốn < /li > \n < /ul >",
+    dapAn: "Bốn"
+  },
+  {
+    cauHoi: "Để tổ chức được giao diện đa ngôn ngữ trong Spring Boot, bạn cần phải thực hiện những công việc nào?",
+    dapAn: [
+      "Cấu hình interceptor xử lý thay đổi ngôn ngữ",
+      "Cấu hình phương pháp duy trì ngôn ngữ được chọn",
+      "Lập trình lựa chọn ngôn ngữ"
+    ]
+  },
+  {
+    cauHoi: "Cho Realtime Database của firebase như hình trên, Để cập nhật thông tin liên lạc của Nguyễn Thị Diễm Phương bạn cần?\n<img src=\"https://cms.poly.edu.vn/asset-v1:FPOLY+SOF306+2021_Summer+type@asset+block@firebase.png\">",
+    dapAn: [
+      "Data: { email: \"?\", address: \"?\"}",
+      "Operation: PUT",
+      "URL: https://poly-java-6-d4e0b-default-rtdb.firebaseio.com/users/PS09013/contact.json"
+    ]
+  },
+  {
+    cauHoi: "Chon interface\n@FunctionalInterface\npublic interface Demo4Inter{\n void m1(int x);\n}\nHãy chọn mã đúng khi tạo đối tượng",
+    dapAn: [
+      "Demo4Inter o1 = new Demo4Inter() {\n @Override\n public void m1(int x) {}\n};",
+      "Demo4Inter o2 = new Demo4Inter() {\n @Override\n public void m1(int x) {}\n public void m2() {}\n};",
+      "Demo4Inter o3 = x - >  {};",
+      "Demo4Inter o4 = x - >  System.out.println(x);"
+    ]
+  },
+  {
+    cauHoi: "Chon interface\n@FunctionalInterface\npublic interface Demo4Inter{\n void m1(int x);\n}\nHãy chọn mã đúng khi tạo đối tượng",
+    dapAn: [
+      "Demo4Inter o1 = new Demo4Inter() {\n @Override\n public void m1(int x) {}\n};",
+      "Demo4Inter o3 = x - >  {};",
+      "Demo4Inter o4 = x - >  System.out.println(x);"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các phương thức được khai báo trong CrudRepository?",
+    dapAn: [
+      "Iterable < T >  findAll()",
+      "Long count()",
+      "boolean exists(ID id)"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các phương thức được khai báo trong PagingAndSortingRepository?",
+    dapAn: [
+      "Iterable<T> findAll(Sort sort)",
+      "Page<T> findAll(Pageable pageable)"
+    ]
+  },
+  {
+    cauHoi: "spring.jpa.hibernate.ddl-auto=none\nKhai báo trên có ý nghĩa gì?",
+    dapAn: "Không kiểm tra các ràng buộc trong entity với CSDL"
+  },
+  {
+    cauHoi: "spring.jpa.hibernate.ddl-auto=validate\nKhai báo trên có ý nghĩa gì?",
+    dapAn: "Kiểm tra tính hợp lệ của CSDL so với ràng buộc trong các entity class"
+  },
+  {
+    cauHoi: "Hãy viết phương thức DSL tương đương với truy vấn sau:\n@Query(“SELECT p FROM Product p WHERE p.available=true AND p.price=?1 OR p.name LIKE ?2 ORDER BY createDate”)",
+    dapAn: [
+      "List < Product >  findByAvailableTrueAndPriceEqualOrNameLikeOrderByCreateDate(double price, String name);",
+      "List < Product >  findByAvailableTrueAndPriceIsOrNameLikeOrderByCreateDate(double price, String name);",
+      "List < Product >  findByAvailableTrueAndPriceOrNameLikeOrderByCreateDate(double price, String name);"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các phương thức được khai báo trong JpaRepository?",
+    dapAn: [
+      "List < T >  findAll()",
+      "List < T >  findAll(Sort sort)",
+      "List < T >  save(Iterable < ? extends T >  entities)"
+    ]
+  },
+  {
+    cauHoi: "Trong bảo mật, XSS (Cross-Site Scripting) là kỹ thuật dùng để?",
+    dapAn: "Ngăn chặn thực hiện của script được nhập từ người sử dụng"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để thực hiện tổng hợp số lượng sản phẩm từng loại\n@Query(\"SELECT o.category, count(o) FROM Product o GROUP BY o.category\")\nList < _____ >  getReport();",
+    dapAn: "Object[]"
+  },
+  {
+    cauHoi: "Đâu là khai báo phương thức truy vấn đùng cú pháp DSL?",
+    dapAn: [
+      "Page < Product >  findAllByNameLike(String name, Pageable pageable);",
+      "Page < Product >  findByNameLike(String name, Pageable pageable);"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền tên thực thể còn thiếu vào ô trống vào ô trống\n@Query(\"SELECT o FROM ___ o\")\nList < Product >  findByX();",
+    dapAn: "Product"
+  },
+  {
+    cauHoi: "Trong REST, POST đại diện cho hoạt động nào?",
+    dapAn: "Thêm mới dữ liệu"
+  },
+  {
+    cauHoi: "Đâu là lệnh tạo UserDetails hợp lệ?",
+    dapAn: [
+      "User.password().withUsername().roles().build();",
+      "User.withUsername().password().authorities().build();",
+      "User.withUsername().password().roles().build();",
+      "User.withUsername().roles().password().build();"
+    ]
+  },
+  {
+    cauHoi: "Phương thức loadUserByUsername() của UserDetailsService trả về kiểu gì?",
+    dapAn: "UserDetails"
+  },
+  {
+    cauHoi: "Spring.jpa.hibernate.ddl-auto=create-drop\nKhai báo trên có ý nghĩa gì?",
+    dapAn: "Xóa CSDL hiện có, tạo lại CSDL đúng như các entity class, xóa CSDL khi shutdown ứng dụng"
+  },
+  {
+    cauHoi: "spring.jpa.hibernate.ddl-auto=create-drop\nKhai báo trên có ý nghĩa gì?",
+    dapAn: "Xóa CSDL hiện có, tạo lại CSDL đúng như các entity class, xóa CSDL khi shutdown ứng dụng"
+  },
+  {
+    cauHoi: "Spring.jpa.hibernate.ddl-auto=create\nKhai báo trên có ý nghĩa gì?",
+    dapAn: "Xóa các bảng hiện có và tạo lại dựa trên các entity class"
+  },
+  {
+    cauHoi: "spring.jpa.hibernate.ddl-auto=create\nKhai báo trên có ý nghĩa gì?",
+    dapAn: "Xóa các bảng hiện có và tạo lại dựa trên các entity class"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống của đoạn mã Java sau đây để có thể thực hiện xóa dữ liệu với REST API và nhận kết quả JSON\nURL url = new URL(\"...\");\nHttpURLConnection conn = (HttpURLConnection) url.openConnection();\nconn.setRequestProperty(\"Accept\", \"_____\");\nconn.setRequestMethod(\"_____\");",
+    dapAn: "application/json, DELETE"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, hãy điền vào chỗ trống tên các phương thức phân quyền hợp lệ\nhttp.authorizeRequests().antMatchers(\"/**\")._____",
+    dapAn: [
+      "authenticated()",
+      "hasAnyRole(\"ADMIN\", \"STAFF\")",
+      "hasRole(\"ADMIN\")",
+      "permitAll()"
+    ]
+  },
+  {
+    cauHoi: "Đâu là phương thức kết thúc trong Stream API?",
+    dapAn: [
+      "collect()",
+      "count()",
+      "forEach()",
+      "max()",
+      "min()",
+      "reduce()",
+      "sum()",
+      "allMatch()",
+      "anyMatch()",
+      "average()"
+    ]
+  },
+  {
+    cauHoi: "Trong file cấu hình Security, bạn cần viết mã phân quyền sử dụng trong phương thức nào?",
+    dapAn: "configure(HttpSecurity http)"
+  },
+  {
+    cauHoi: "spring.jpa.hibernate.ddl-auto có những giá trị hợp lệ nào?",
+    dapAn: [
+      "create",
+      "create-drop",
+      "none"
+    ]
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là những phương thức của http.formLogin() xác định địa chỉ URL xử lý sau khi đăng nhập thành công?",
+    dapAn: "defaultSuccessUrl(url, always)"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống tên phương thức thích hợp của AngularJS.\n$http._____(url).then(response = >  {}).catch(error = >  {}))",
+    dapAn: [
+      "delete",
+      "get"
+    ]
+  },
+  {
+    cauHoi: "Đâu là phương thức trung gian trong Stream API?",
+    dapAn: [
+      "filter()",
+      "map()",
+      "mapToDouble()",
+      "mapToInt()",
+      "peek()",
+      "sorted()",
+      "distinct()",
+      "limit()",
+      "mapToLong()"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống tên phương thức thích hợp của AngularJS để truy vấn dữ liệu.\n$http._____(url).then(response = >  {}).catch(error = >  {}))",
+    dapAn: "get"
+  },
+  {
+    cauHoi: "Đâu là các phương thức của JsonNode được sử dụng để lấy tham chiếu đến JsonNode của một key?",
+    dapAn: "get(key)"
+  },
+  {
+    cauHoi: "Trong Authentication phương thức nào cho phép lấy List < GrantedAuthority >  để từ đó có thể kiểm tra vai trò?",
+    dapAn: "getAuthorities()"
+  },
+  {
+    cauHoi: "Đâu là phương thức được khai báo trong UserDetails có thể truy xuất đến vai trò của người sử dụng?",
+    dapAn: "getAuthorities()"
+  },
+  {
+    cauHoi: "Đâu là phương thức được khai báo trong UserDetails?",
+    dapAn: [
+      "getAuthorities()",
+      "getUsername()",
+      "isEnable()"
+    ]
+  },
+  {
+    cauHoi: "Trong Authentication phương thức nào cho phép lấy username của người đăng nhập?",
+    dapAn: "getName()"
+  },
+  {
+    cauHoi: "Trong Authentication phương thức nào cho phép lấy UserDetails chứa thông tin của người đăng nhập?",
+    dapAn: "getPrincipal()"
+  },
+  {
+    cauHoi: "Với conn là đối tượng HttpURLConnection, hãy điền vào chỗ trống tên các phương thức để thực hiện việc đọc dữ liệu trả về từ REST API?\nint responseCode = conn._____;\nif (responseCode == 200) {\n    return mapper.readTree(conn._____);\n}",
+    dapAn: "getResponseCode()/getInputStream()"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, hãy điền vào chỗ trống tên các phương thức phân quyền yêu cầu phải đăng nhập với vai trò ADMIN hoặc STAFF thì mới được phép truy xuất\nhttp.authorizeRequests().antMatchers(\"/**\")._____",
+    dapAn: "hasAnyRole(\"ADMIN\", \"STAFF\")"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, hãy điền vào chỗ trống tên các phương thức phân quyền yêu cầu phải đăng nhập với vai trò ADMIN thì mới được phép truy xuất\nhttp.authorizeRequests().antMatchers(\"/**\")._____",
+    dapAn: [
+      "hasAnyRole(\"ADMIN\", \"STAFF\")",
+      "hasRole(\"ADMIN\")"
+    ]
+  },
+  {
+    cauHoi: "Đâu là khai báo đúng địa chỉ chuyển hướng sau khi đăng nhập (Authorized Redirect URL) trong google?",
+    dapAn: "http://localhost:8080/login/oauth2/code/google"
+  },
+  {
+    cauHoi: "Đâu là các phương thức của JsonNode được sử dụng để chuyển đổi sang Iterator < JsonNode > ?",
+    dapAn: "iterator()"
+  },
+  {
+    cauHoi: "Hãy chọn lệnh đúng duyệt Map sau\nMap < String, Double >  map = new HashMap <  > ();",
+    dapAn: [
+      "map.forEach((k, v) - >  System.out.printf(\"%s=%.2f\", k, v));",
+      "map.forEach((k, v) - >  System.out.printf(\"%s=%.2f\", k, v));",
+      "map.forEach((k, v) - >  {System.out.printf(\"%s=%.2f\", k, v);});"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các phương thức của ResponseEntity có mã trạng thái là 404?",
+    dapAn: "notFound()"
+  },
+  {
+    cauHoi: "Đâu là các phương thức của ResponseEntity có mã trạng thái là 200?",
+    dapAn: "ok()"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, hãy điền vào chỗ trống tên phương thức phân quyền không cần đăng nhập cũng được phép truy xuất\nhttp.authorizeRequests().antMatchers(\"/**\")._____",
+    dapAn: "permitAll()"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống tên phương thức thích hợp của AngularJS để thêm mới dữ liệu.\n$http._____(url, data).then(response = >  {}).catch(error = >  {}))",
+    dapAn: "post"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống tên phương thức thích hợp của AngularJS.\n$http._____(url, data).then(response = >  {}).catch(error = >  {}))",
+    dapAn: [
+      "post",
+      "put"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào các chỗ trống để tạo thành câu lệnh đúng cú pháp trong AngularJS.\n$http._____(url, data)._____(response = >  {})._____(error = >  {}))",
+    dapAn: [
+      "post/then/catch",
+      "put/then/catch"
+    ]
+  },
+  {
+    cauHoi: "Đâu là cú pháp đúng của phương thức trong controller được sử dụng để validate dữ liệu trong đối số sv?",
+    dapAn: [
+      "public String validate(@Valid Student sv, Errors errors){}",
+      "public String validate(@Valid Student sv, Errors errors){}",
+      "public String validate(@Validated Student sv, BindingResult errors){}",
+      "public String validate(@Validated Student sv, Errors errors){}"
+    ]
+  },
+  {
+    cauHoi: "Đâu là cú pháp đúng của phương thức trong controller được sử dụng để validate dữ liệu trong đối số sv?",
+    dapAn: [
+      "public String validate(@Valid Student sv, Errors errors){}",
+      "public String validate(@Validated Student sv, Errors errors){}"
+    ]
+  },
+  {
+    cauHoi: "Điền vào chỗ trống để bóc lấy dữ liệu trả về từ REST API trong AngularJS?\n$http.get(url).then(response = >  {\n     var data = _____;\n})",
+    dapAn: "response.data"
+  },
+  {
+    cauHoi: "Thông số nào chỉ ra JDBC Driver cần nạp vào để làm việc với hệ quản trị CSDL?",
+    dapAn: "spring.datasource.driverClassName"
+  },
+  {
+    cauHoi: "Đâu là các key được sử dụng để khai báo thông tin đã đăng ký với google developer trong application.properties?",
+    dapAn: [
+      "spring.security.oauth2.client.registration.google.client-id= < app-id >",
+      "spring.security.oauth2.client.registration.google.client-secret= < secret-code >"
+    ]
+  },
+  {
+    cauHoi: "Giả sử trong cấu hình java có khai báo bean để nạp các file tài nguyên đa ngôn ngữ như sau\n@Bean(\"messageSource\")\npublic MessageSource getMessageSource() {\n ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();\n ms.setBasenames(\"classpath:i18n/layout\", \"classpath:i18n/home\");\n ms.setDefaultEncoding(\"utf-8\");\n return ms;\n}\nHãy cho biết các file tài nguyên đa ngôn ngữ đặt ở thư mục nào của dự án?",
+    dapAn: "src/main/resources/i18n"
+  },
+  {
+    cauHoi: "Đâu là các thuộc tính do Thymeleaf định nghĩa mới mà không dựa vào các thuộc tính của HTML?",
+    dapAn: [
+      "th:case",
+      "th:each",
+      "th:fragment",
+      "th:if",
+      "th:remove",
+      "th:switch",
+      "th:unless",
+      "th:utext"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các thuộc tính do Thymeleaf định nghĩa mới dựa vào thuộc tính có sẵn của HTML?",
+    dapAn: [
+      "th:action",
+      "th:src",
+      "th:title",
+      "th:href"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để thay thế thẻ sau đây bằng nội dung của menu.html\n < nav th:replace=\"_____\" >  < /nav >",
+    dapAn: "~{/menu.html}"
+  },
+  {
+    cauHoi: "Đâu là biểu thức lựa chọn fragment đúng?",
+    dapAn: [
+      "~{frags.html :: #myid}",
+      "~{frags.html :: .myclass}",
+      "~{frags.html :: body}",
+      "~{frags.html :: myfrag}"
+    ]
+  },
+  {
+    cauHoi: "Biểu thức nào cho phép hiển thị giá trị của key trong tài nguyên đa ngôn ngữ?",
+    dapAn: [
+      "#{key}",
+      "~{key}"
+    ]
+  },
+  {
+    cauHoi: "Đâu là biểu được sử dụng để truy xuất các fragment từ các template khác?",
+    dapAn: "~{}"
+  },
+  {
+    cauHoi: "Với RestTemplate API, HttpEntity < T >  được sử dụng để làm nhiệm vụ gì?",
+    dapAn: "Đóng gói dữ liệu gửi đến REST API"
+  },
+  {
+    cauHoi: "Giả sử x là biến trong Model có kiểu là Integer. Nếu x có giá trị là 2 thì đâu là kết quả của đoạn mã sau?\n < ul th:switch=\"${x}\" > \n  < li th:case=\"1\" > Một < /li > \n  < li th:case=\"2\" > Hai < /li > \n  < li th:case=\"3\" > Ba < /li > \n  < li th:case=\"*\" > Bốn < /li > \n < /ul >",
+    dapAn: "Hai"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về ưu điểm khi sử dụng Thymeleaf so với JSP\n1. Đơn giản, dễ quản lý, bảo trì\n2. Thu hẹp khoảng cách giữa designer và developer",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Cho đoạn mã Thymeleaf như sau\n < b th:text=\"${x  <  5 ? 'Fail' : 'Pass'}\" >  < /b > \n < b th:if=\"${x  >  5}\" > Pass < /b > \nNếu biến x trong Model có giá trị bằng 5 thì đâu là kết quả của đoạn mã trên?",
+    dapAn: "Fail"
+  },
+  {
+    cauHoi: "Namespace của template Thymeleaf\n1. xmlns:th=\"http://www.thymeleaf.org\"\n2. xmlns:th=\"http://www.thymeleaf.com\"",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Giả sử x là biến trong Model có kiểu là List. Đâu là biểu thức hiển thị số lượng phần tử có trong x?",
+    dapAn: "${#lists.size(x)}"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống hiển thị giá trị của biến x trong HttpSession\n < b th:text=\"_____\" >  < /b?",
+    dapAn: "${session.x}"
+  },
+  {
+    cauHoi: "Giả sử x là biến trong Model có kiểu là Object[]. Đâu là biểu thức hiển thị số lượng phần tử của x?",
+    dapAn: "${#arrays.length(x)}"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống hiển thị giá trị của thuộc tính x trong đối tượng o\n  < ul th:object=\"${o}\" > \n   < li th:text=\"_____\" >  < /li > \n  < /ul >",
+    dapAn: [
+      "${o.x}",
+      "*{x}"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để đoạn mã tính tổng căn bậc 2 các số chia hết cho 3\nStream < Integer >  s = Stream.of(1, 9, 4, 7, 5, 2);\n  double x = s.filter(n - >  n % 3 == 0)._____.sum();",
+    dapAn: [
+      "mapToDouble(Math::sqrt)",
+      "mapToDouble(n - >  Math.sqrt(n))"
+    ]
+  },
+  {
+    cauHoi: "Hãy cho biết kết quả của biểu thức sau:\nStream.of(1, 9, 3, 7, 6, 2).filter(n - >  n % 3 == 0).reduce(0, (p, c) - >  p  <  c ? c : p)",
+    dapAn: "9"
+  },
+  {
+    cauHoi: "Hãy điền mã đúng vào chỗ trống\n  List < Integer >  list = Arrays.asList(1, 9, 4, 7, 5, 2);\n  list.forEach(_____);",
+    dapAn: [
+      "(n) - >  System.out.println(n)",
+      "n - >  System.out.println(n)",
+      "n - >  System.out::println(n)",
+      "n - >  {System.out.println(n);}"
+    ]
+  },
+  {
+    cauHoi: "Cho lớp Student:\n@Data\n@AllArgsConstructor\n@NoArgsConstructor\npublic class Student {\n String name;\n Boolean gender = false;\n Double marks = 0.0;\n}\nHãy điền mã đúng vào chỗ trống:\nList < Student >  list = Arrays.asList(\n    new Student(\"Nguyễn Văn Tèo\", true, 7.5)\n    ...\n  );\n  Collections.sort(list, _____);",
+    dapAn: [
+      "(sv1, sv2) - >  -sv1.getMarks().compareTo(sv2.getMarks())",
+      "(sv1, sv2) - >  { return -sv1.getMarks().compareTo(sv2.getMarks());}"
+    ]
+  },
+  {
+    cauHoi: "Đâu là hàm được sử dụng để chuyển đổi đối chuỗi JSON sang đối tượng JSON?",
+    dapAn: "JSON.parse()"
+  },
+  {
+    cauHoi: "Hãy điền mã đúng vào chỗ trống\n  List < Integer >  list = Arrays.asList(1, 9, 4, 7, 5, 2);\n  list.forEach(_____);",
+    dapAn: [
+      "(n) - >  System.out.println(n)",
+      "n - >  System.out.println(n)",
+      "n - >  {System.out.println(n);}"
+    ]
+  },
+  {
+    cauHoi: "Trong phương thức xử lý đăng nhập thành công từ mạng xã hội, bạn muốn truy xuất đến các thông tin đầy đủ nhất của người sử dụng được mạng xã hội trả về thì cần khai báo thêm đối số nào?",
+    dapAn: "OAuth2AuthenticationToken"
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n1. User.withUsername(\"A\").password(\"B\").roles(\"C\").build();\n2. User.withUsername(\"A\").roles(\"C\").password(\"B\").build();",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là URL dẫn đến trang đăng ký tài khoản developer của google?",
+    dapAn: "https://console.developers.google.com/"
+  },
+  {
+    cauHoi: "Trong RestTemplate phương thức nào của HttpHeaders giúp thiết lập header Authorization cho request?",
+    dapAn: "add(\"Authorization\", \"Basic  < token > \")"
+  },
+  {
+    cauHoi: "Trong Java, phương thức nào của HttpURLConnection giúp thiết lập header Authorization  cho request?",
+    dapAn: "setRequestProperty(\"Authorization\", \"Basic  < token > \")"
+  },
+  {
+    cauHoi: "Đâu là các thành phần trong Spring Security",
+    dapAn: [
+      "Authentication",
+      "User",
+      "UserDetails",
+      "UserDetailsService"
+    ]
+  },
+  {
+    cauHoi: "Giả sử biến items trong Model có kiểu là Map < String, String > . Hãy điền vào chỗ trống các thuộc tính thích hợp\n < th:block th:each=\"item, state : ${items}\" > \n     < input th:value=\"${item.key}\" _____=\"${item.key}\" type=\"radio\" name=\"r\" > \n     < label th:text=\"${item.value}\" _____=\"${item.key}\" >  < /label > \n < /th:block >",
+    dapAn: "th:id, th:for"
+  },
+  {
+    cauHoi: "Annotation nào có thể được sử dụng để kiểm tra định dạng email?",
+    dapAn: [
+      "@Email()",
+      "@Pattern()"
+    ]
+  },
+  {
+    cauHoi: "Giả sử biến items trong Model có kiểu là List < String > . Hãy chọn mã tạo ra các thẻ  < option value=\"value\" > value < /option >",
+    dapAn: [
+      "< option th:each=\"item, state: ${items}\" th:value=\"${item}\" th:text=\"${item}\"/ >",
+      "< option th:each=\"item: ${items}\" th:value=\"${item}\" th:text=\"${item}\"/ >"
+    ]
+  },
+  {
+    cauHoi: "@NotEmpty, @NotBlank, @NotNul có thể được sử dụng để kiểm tra lỗi nào?",
+    dapAn: "Đối tượng null"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống biểu thức thích hợp để buộc thuộc tính p của bean b trong Model\n < form th:action=\"@{/save}\" th:object=\"${b}\" > \n     < input th:field=\"_____\" > \n < /form >",
+    dapAn: [
+      "${b.p}",
+      "*{p}"
+    ]
+  },
+  {
+    cauHoi: "Biểu thức nào cho phép hiển thị giá trị của key trong tài nguyên đa ngôn ngữ?",
+    dapAn: "#{key}"
+  },
+  {
+    cauHoi: "Biểu thức ~{/frags :: dynamic(~{::.main})} được hiểu là gì?\n1. Chọn fragment dynamic khai báo trong frags.html và truyền thẻ có class là main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html\n2. Chọn fragment dynamic khai báo trong frags.html và truyền fragment main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Biểu thức ~{/frags :: dynamic(~{::main})} được hiểu là gì?\n1. Chọn fragment dynamic khai báo trong frags.html và truyền thẻ main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html\n2. Chọn fragment dynamic khai báo trong frags.html và truyền fragment main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là cú pháp đúng của phương thức trong controller được sử dụng để validate dữ liệu trong đối số sv?",
+    dapAn: "public String validate(@Validated Student sv, Errors errors){}"
+  },
+  {
+    cauHoi: "Cho Realtime Database của firebase như hình trên, Đâu là URL để truy vấn thông tin liên lạc của Nguyễn Thị Diễm Phương?\n<img src=\"https://cms.poly.edu.vn/asset-v1:FPOLY+SOF306+2021_Summer+type@asset+block@firebase.png\">",
+    dapAn: "https://poly-java-6-d4e0b-default-rtdb.firebaseio.com/users/PS09013/contact.json"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống của đoạn mã Java sau đây để có thể thực hiện cập nhật dữ liệu với REST API và nhận kết quả JSON\nURL url = new URL(\"...\");\nHttpURLConnection conn = (HttpURLConnection) url.openConnection();\nconn.setRequestProperty(\"Accept\", \"_____\");\nconn.setRequestMethod(\"_____\");",
+    dapAn: "application/json, PUT"
+  },
+  {
+    cauHoi: "Trong REST, PUT đại diện cho hoạt động nào?",
+    dapAn: "Cập nhật dữ liệu"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống của đoạn mã Java sau đây để có thể thực hiện tương tác với REST API và nhận kết quả JSON\nURL url = new URL(\"...\");\nHttpURLConnection conn = (HttpURLConnection) url.openConnection();\nconn.setRequestProperty(\"Accept\", \"_____\");\nconn.setRequestMethod(\"_____\");",
+    dapAn: [
+      "application/json, DELETE",
+      "application/json, GET",
+      "application/json, POST",
+      "application/json, PUT"
+    ]
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n1. Ứng dụng mobile không thể sử dụng được web service\n2. JavaScript có thể sử dụng được web service",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống của đoạn mã Java sau đây để có thể thực hiện truy vấn dữ liệu từ REST API và nhận kết quả JSON\nURL url = new URL(\"...\");\nHttpURLConnection conn = (HttpURLConnection) url.openConnection();\nconn.setRequestProperty(\"Accept\", \"_____\");\nconn.setRequestMethod(\"_____\");",
+    dapAn: "application/json, GET"
+  },
+  {
+    cauHoi: "Trong REST, GET đại diện cho hoạt động nào?",
+    dapAn: "Truy vấn dữ liệu"
+  },
+  {
+    cauHoi: "Trong RestTemplate, phương thức nào không trả về kết quả?",
+    dapAn: [
+      "delete(url)",
+      "put(url, httpEntity)"
+    ]
+  },
+  {
+    cauHoi: "Khi thực hiện PUT, Firebase REST API sẽ trả về dữ liệu gì?",
+    dapAn: "Đối tượng vừa cập nhật thành công"
+  },
+  {
+    cauHoi: "Trong HttpServletRequest, phương thức nào cho phép kiểm tra người đăng nhập có vai trò nào đó hay không?",
+    dapAn: "getUserPrincipal()"
+  },
+  {
+    cauHoi: "Điền vào chỗ trống để có cấu trúc đúng của file cấu hình Spring Security?\n@Configuration\n_____\npublic class SecurityConfig  extends _____{}",
+    dapAn: "@EnableWebSecurity/WebSecurityConfigurerAdapter"
+  },
+  {
+    cauHoi: "Với auth là AuthenticationManagerBuilder, hãy điền vào chỗ trống để cung cấp thông tin của một User vào bộ nhớ\nauth.inMemoryAuthentication()._____(x)._____(y)._____(z)",
+    dapAn: [
+      "withUser/password/roles",
+      "withUser/roles/password"
+    ]
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là url không cần khai báo xử lý trong controller?\nhttp.formLogin()\n .loginPage(\"/security/login/form\")  \n .loginProcessingUrl(\"/security/login\")\n .defaultSuccessUrl(\"/security/login/success\", false)\n .failureUrl(\"/security/login/error\")",
+    dapAn: "/security/login"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về Spring Security\n1. Spring Security là một framework, cung cấp các quy chuẩn trong việc thực hiện phòng vệ ứng dụng web\n2. Đơn giản trong Validation (XSS), CORS, CSRF",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Để truy xuất thông tin của người đăng nhập, trong Thymeleaf bạn có thể sử dụng đối tượng tiện ích nào?\n1. #request\n2. #authentication",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Với Spring Security framework\n1. Bạn có thể tùy biến hình thức đăng nhập (Login UI)\n2. Tự xử lý đăng xuất và lỗi truy cập không đúng vai trò",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện phương thức truy vấn\n@Query(\"SELECT o.name FROM Product o\")\nList < _____ >  findProducts(Integer id);",
+    dapAn: "String"
+  },
+  {
+    cauHoi: "Hãy viết phương thức DSL tương đương với truy vấn sau:\n@Query(“SELECT p FROM Product p WHERE p.name LIKE ?1”)",
+    dapAn: [
+      "List < Product >  findAllByNameLike(String name)",
+      "List < Product >  findByNameLike(String name)",
+      "List < Product >  getAllByNameLike(String name)",
+      "List < Product >  getByNameLike(String name)"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện phương thức truy vấn có sắp xếp\n@Query(\"SELECT o FROM Product o WHERE o.name LIKE ?2\")\nList < Product >  findItems(_____, _____);\n1. Sort sort, String keywords\n2. String keywords, Sort sort",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Hãy điền vào các chỗ trống để hoàn thiện phương thức truy vấn sản phẩm\n@Query(value = \"SELECT * FROM _____ WHERE Name LIKE ?1\", nativeQuery = true)\nList < _____ >  findByKeyword(String keyword);",
+    dapAn: "Products, Product"
+  },
+  {
+    cauHoi: "Các lệnh tạo ra đối tượng Sort sau đây đúng hay sai\n1. Sort a = Sort.by(\"column1\", \"column2\")\n2. Sort b = Sort.by(Direction.DESC, \"column1\", \"column2\")",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là các phương thức của ResponseEntity có mã trạng thái là 204?",
+    dapAn: "noContent()"
+  },
+  {
+    cauHoi: "Spring.jpa.hibernate.ddl-auto=none\nKhai báo trên có ý nghĩa gì?",
+    dapAn: "Không kiểm tra các ràng buộc trong entity với CSDL"
+  },
+  {
+    cauHoi: "Page chứa kết quả truy vấn phân trang. Gọi phương thức nào để lấy danh sách (List < T > ) các thực thể của trang truy vấn?",
+    dapAn: "getContent()"
+  },
+  {
+    cauHoi: "Đâu là cú pháp đúng khi sử dụng PageRequest để tạo Pageable?",
+    dapAn: [
+      "PageRequest.of(int page, int size)",
+      "PageRequest.of(int page, int size, Direction direction, String...properties)",
+      "PageRequest.of(int page, int size, Sort sort)"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các phương thức của ObjectMapper được sử dụng để đọc nguồn dữ liệu JSON và chuyển đổi kết quả theo kiểu theo mong muốn của người lập trình",
+    dapAn: "readValue()"
+  },
+  {
+    cauHoi: "Với Spring Data JPA khi khai báo field có tên là firstName thì sẽ ánh xạ với cột có tên như thế nào?\n1. FirstName\n2. First_Name",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Spring.jpa.hibernate.ddl-auto=validate\nKhai báo trên có ý nghĩa gì?",
+    dapAn: "Kiểm tra tính hợp lệ của CSDL so với ràng buộc trong các entity class"
+  },
+  {
+    cauHoi: "Đâu là các phương thức của JsonNode được sử dụng để chuyển đổi giá trị của node sang kiểu thích hợp?",
+    dapAn: [
+      "asDouble()",
+      "asInt()",
+      "asText()"
+    ]
+  },
+  {
+    cauHoi: "Với Thymeleaf Extras Spring Security, đâu là các thẻ sử dụng security thích hợp?",
+    dapAn: [
+      "< div sec:authentication=\"\" >  < /div >",
+      "< div sec:authorize=\"\" >  < /div >"
+    ]
+  },
+  {
+    cauHoi: "Đâu là cú pháp chọn fragment có tên là myfrag được khai báo trong cùng file lựa chọn fragment?",
+    dapAn: "< div th:replace=“~{:: myfrag}\" > … < /div >"
+  },
+  {
+    cauHoi: "Đâu là các phương thức được khai báo trong JpaRepository?",
+    dapAn: [
+      "T saveAndFlush(T entity)",
+      "void deleteInBatch(Iterable < T >  entities)",
+      "void flush()"
+    ]
+  },
+  {
+    cauHoi: "Chon interface\n@FunctionalInterface\npublic interface Demo4Inter{\n void m1(int x);\n default void m2() {}\n}\nHãy chọn mã đúng khi tạo đối tượng",
+    dapAn: [
+      "Demo4Inter o1 = new Demo4Inter() {\n @Override\n public void m1(int x) {}\n};",
+      "Demo4Inter o2 = new Demo4Inter() {\n @Override\n public void m1(int x) {}\n @Override\n public void m2() {}\n};",
+      "Demo4Inter o3 = x - >  {};",
+      "Demo4Inter o4 = x - >  System.out.println(x);"
+    ]
+  },
+  {
+    cauHoi: "Sự khác biệt giữa việc lựa chọn theo (tag, class, id) và fragment là gì?\n1. Tên fragment có ý nghĩa như mong muốn trong khi đó tag thì không vì phải sử dụng tag theo quy định của HTML\n2. Fragment có thể chứa tham số, trong khi (tag, class, id) không thể",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Giả sử có lớp thực thể\n@Entity\n@Data\n@NoArgsConstructor\n@AllArgsConstructor\npublic class Report {\n @Id\n Category category;\n Long count;\n}\nHãy điền vào chỗ trống để thực hiện tổng hợp số lượng sản phẩm từng loại\n@Query(\"SELECT new Report(o.category, count(o)) FROM Product o GROUP BY o.category\")\nList < _____ >  getReport();",
+    dapAn: "Report"
+  },
+  {
+    cauHoi: "Đâu là định dạng đúng của key trong file tài nguyên thông báo lỗi ?",
+    dapAn: "< annotation > . < bean > . < property >"
+  },
+  {
+    cauHoi: "Với Spring Security Framework, bạn có thể bảo về ứng dụng web bằng những hình thức nào?",
+    dapAn: [
+      "Cấu hình bằng java",
+      "Lập trình tùy biến",
+      "Sử dụng Annotation",
+      "Ẩn hiện giao diện"
+    ]
+  },
+  {
+    cauHoi: "Hãy cho biết kết quả của biểu thức sau:\nStream.of(1, 9, 3, 7, 6, 2).filter(n - >  n % 3 == 0).reduce(10, (p, c) - >  p  >  c ? c : p)",
+    dapAn: "3"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về khai báo thông báo lỗi:\n1. Gán thông báo lỗi cho thuộc tính message của annotation kiểm lỗi\n2. Khai báo trong file tài nguyên properties",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Điền vào chỗ trống để hoàn thiện cấu hình java duy trì ngôn ngữ được chọn\n@Bean(\"localeResolver\")\npublic LocaleResolver getLocaleResolver() {\n CookieLocaleResolver resolver = new CookieLocaleResolver();\n resolver.setDefaultLocale(_____);\n resolver.setCookieMaxAge(10*24*60*60); // 10 ngày\n resolver.setCookiePath(\"/\");\n return resolver;\n}",
+    dapAn: "new Locale(\"vi\")"
+  },
+  {
+    cauHoi: "Phương thức nào đúng truy vấn sản phẩm theo loại\n1.\n@Query(\"SELECT o FROM Product o WHERE o.category.id=?1\")\nList < Product >  findByCategoryId(String id);\n2. \n@Query(\"SELECT o FROM Product o WHERE o.category.id=:id\")\nList < Product >  findByCategoryId(@Param(\"id\") String id);",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Cho cấu hình nạp file tài nguyên như sau:\n@Bean(\"messageSource\")\npublic MessageSource getMessageSource() {\n ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();\n ms.setBasenames(\"classpath:i18n/messages\");\n ms.setDefaultEncoding(\"utf-8\");\n return ms;\n}\nHỏi file messages.properties đặt ở thư mục nào?",
+    dapAn: "src/main/resources/i18n"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để tạo địa chỉ url đúng cú pháp (trong đó biến x có trong Model)\n < a th:href=\"_____\" >",
+    dapAn: [
+      "@{'/url/'+${x}}",
+      "@{/url/{p}(p=${x})}",
+      "@{|/url/${x}|}"
+    ]
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, hãy điền vào chỗ trống để chuyển điều khiển đến URL xử lý lỗi truy cập không hợp lệ\nhttp._____()._____(URL);",
+    dapAn: "exceptionHandling/accessDeniedPage"
+  },
+  {
+    cauHoi: "Trong controller, cần viết bao nhiêu phương thức để xử lý cấu hình đăng nhập từ mạng xã hội như sau (giả sử 1 URL map với 1 phương thức)?\nhttp.oauth2Login()\n .loginPage(\"/auth/login/form\")\n .defaultSuccessUrl(\"/oauth2/login/success\", true)\n .failureUrl(\"/auth/login/error\")\n .authorizationEndpoint()\n  .baseUri(\"/oauth2/authorization\");",
+    dapAn: "1"
+  },
+  {
+    cauHoi: "Đâu là biểu được sử dụng để truy xuất các thuộc tính của một đối tượng được chọn bởi th:object?",
+    dapAn: "*{}"
+  },
+  {
+    cauHoi: "Spring.jpa.hibernate.ddl-auto=update\nKhai báo trên có ý nghĩa gì?",
+    dapAn: "Chỉ cập nhật lại thông số các cột và các bảng đúng như khai báo trong các entity class (không xóa cột, bảng thừa)"
+  },
+  {
+    cauHoi: "Với Thymeleaf Extras Spring Security, đâu là các thẻ sử dụng security thích hợp?",
+    dapAn: [
+      "< div sec:authentication=\"authorities\" >  < /div >",
+      "< div sec:authentication=\"name\" >  < /div >"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để tạo địa chỉ url đúng cú pháp (trong đó biến x có trong Model)\n < a th:href=\"_____\" >",
+    dapAn: [
+      "@{'/url?p=' + ${x}}",
+      "@{/url(p=${x})}",
+      "@{|/url?p=${x}|}"
+    ]
+  },
+  {
+    cauHoi: "Trong Thymeleaf, biểu thức nào biểu thức nào được sử dụng để kiểm tra user có một vai trò nào đó hay không?",
+    dapAn: "${#request.isUserInrole('ADMIN')}"
+  },
+  {
+    cauHoi: "Để sử dụng được Spring Boot REST API bảo mật thì các REST Consumer cần giá trị của header Authorization có định dạng như thế nào?",
+    dapAn: "Basic Base64(username:password)"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về dự án Spring Boot sử dụng Thymeleaf như sau:\n1. Cần phải khai báo thư viện Thymeleaf\n2. Các template mặc định có đuôi là html và đặt trong thư mục src/main/resources/templates",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là cú pháp đúng của phương thức trong controller được sử dụng để validate dữ liệu trong đối số sv?",
+    dapAn: [
+      "public String validate(@Valid Student sv, BindingResult errors){}",
+      "public String validate(@Valid Student sv, Errors errors){}",
+      "public String validate(@Validated Student sv, BindingResult errors){}",
+      "public String validate(@Validated Student sv, Errors errors){}"
+    ]
+  },
+  {
+    cauHoi: "Hãy chọn lệnh đúng duyệt Map sau\nMap < String, Double >  map = new HashMap <  > ();",
+    dapAn: [
+      "map.forEach((k, v) - >  System.out.printf(\"%s=%.2f\", k, v));",
+      "map.forEach((k, v) - >  {System.out.printf(\"%s=%.2f\", k, v);});"
+    ]
+  },
+  {
+    cauHoi: "Biểu thức nào cho phép hiển thị giá trị của key trong tài nguyên đa ngôn ngữ?",
+    dapAn: "~{key}"
+  },
+  {
+    cauHoi: "Cho lớp Student:\n@Data\n@AllArgsConstructor\n@NoArgsConstructor\npublic class Student {\n String name;\n Boolean gender = false;\n Double marks = 0.0;\n}\nHãy điền mã đúng vào chỗ trống:\nList < Student >  list = Arrays.asList(\n    new Student(\"Nguyễn Văn Tèo\", true, 7.5)\n    ...\n  );\n  Collections.sort(list, _____);",
+    dapAn: [
+      "(sv1, sv2) - >  sv1.getName().compareTo(sv2.getName())",
+      "(sv1, sv2) - >  { return sv1.getName().compareTo(sv2.getName());}"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền mã đúng vào chỗ trống\n\r  List<Integer> list = Arrays.asList(1, 9, 4, 7, 5, 2);\n\r  list.forEach(_____);",
+    dapAn: [
+      "(n) -> System.out.println(n)",
+      "n -> System.out.println(n)",
+      "n -> {System.out.println(n);}"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các phương thức của JsonNode được sử dụng để chuyển đổi sang Iterator<JsonNode>?",
+    dapAn: "iterator()"
+  },
+  {
+    cauHoi: "Phương thức nào của Stream API dùng để tích lũy một giá trị nào đó từ các phần tử trong Stream đầu vào?",
+    dapAn: "reduce()"
+  },
+  {
+    cauHoi: "Hãy chọn lệnh đúng duyệt Map sau\n\rMap<String, Double> map = new HashMap<>();",
+    dapAn: "map.forEach((k, v) -> System.out.printf(\"%s=%.2f\", k, v));"
+  },
+  {
+    cauHoi: "Cho lớp Student:\n\r@Data\n\r@AllArgsConstructor\n\r@NoArgsConstructor\n\rpublic class Student {\n\r String name;\n\r Boolean gender = false;\n\r Double marks = 0.0;\n\r}\n\rHãy điền mã đúng vào chỗ trống:\n\rList<Student> list = Arrays.asList(\n\r    new Student(\"Nguyễn Văn Tèo\", true, 7.5)\n\r    ...\n\r  );\n\r  Collections.sort(list, _____);",
+    dapAn: [
+      "(sv1, sv2) -> sv1.getName().compareTo(sv2.getName())",
+      "(sv1, sv2) -> { return sv1.getName().compareTo(sv2.getName());}"
+    ]
+  },
+  {
+    cauHoi: "Phương thức nào có các Stream của đầu vào và đầu ra chứa các phần tử cùng kiểu?",
+    dapAn: [
+      "filter()",
+      "peek()"
+    ]
+  },
+  {
+    cauHoi: "Cho lớp Student:\n\r@Data\n\r@AllArgsConstructor\n\r@NoArgsConstructor\n\rpublic class Student {\n\r String name;\n\r Boolean gender = false;\n\r Double marks = 0.0;\n\r}\n\rHãy điền mã đúng vào chỗ trống:\n\rList<Student> list = Arrays.asList(\n\r    new Student(\"Nguyễn Văn Tèo\", true, 7.5)\n\r    ...\n\r  );\n\r  Collections.sort(list, _____);",
+    dapAn: [
+      "(sv1, sv2) -> -sv1.getName().compareTo(sv2.getName())",
+      "(sv1, sv2) -> { return sv1.getName().compareTo(sv2.getName());}"
+    ]
+  },
+  {
+    cauHoi: "Giả sử x là biến trong Model có kiểu là Date. Đâu là biểu thức hiển thị x có dạng ngày-tháng-năm.",
+    dapAn: "${#dates.format(x, 'dd-MM-yyyy')}"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống hiển thị giá trị của tham số x\n\r<b th:text=\"_____\"></b?",
+    dapAn: "${param.x}"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để thay thế thẻ sau đây bằng nội dung của menu.html\n\r<nav th:replace=\"_____\"></nav>",
+    dapAn: [
+      "~{/menu.html}",
+      "~{/menu}"
+    ]
+  },
+  {
+    cauHoi: "Giả sử map là biến trong Model có kiểu là Map<String, String>. Hãy chọn mã lệnh đúng hiển thị các cặp key=value.",
+    dapAn: "<b th:each=\"x, y: ${map}\" th:text=\"@{|${x.key} = ${x.value}|}\"></b>"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống hiển thị giá trị của biến x trong HttpSession\n\r<b th:text=\"_____\"></b?",
+    dapAn: "${session.x}"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về dự án Spring Boot sử dụng Thymeleaf như sau:\n\r1. Cần phải khai báo thư viện Thymeleaf\n\r2. Các template mặc định có đuôi là html và đặt trong thư mục src/main/resources/templates",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Giả sử list là biến trong Model có kiểu là List<String>. Hãy chọn mã lệnh đúng hiển thị các phần tử của list.",
+    dapAn: [
+      "<b th:each=\"item, state: ${list}\" th:text=\"${item}\"></b>",
+      "<b th:each=\"item: ${list}\" th:text=\"${item}\"></b>"
+    ]
+  },
+  {
+    cauHoi: "Giả sử biến items trong Model có kiểu là Map<String, String>. Hãy điền vào chỗ trống các thuộc tính thích hợp\n\r<th:block th:each=\"item, state : ${items}\">\n\r    <input th:value=\"${item.key}\" _____=\"${item.key}\" type=\"radio\" name=\"r\">\n\r    <label th:text=\"${item.value}\" _____=\"${item.key}\"></label>\n\r</th:block>",
+    dapAn: "th:id, th:for"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống biểu thức thích hợp để buộc thuộc tính p của bean b trong Model\n\r<form th:action=\"@{/save}\">\n\r    <input th:field=\"_____\">\n\r</form>",
+    dapAn: "${b.p}"
+  },
+  {
+    cauHoi: "Kiểu dữ liệu để nhận trường file khi upload là gì?",
+    dapAn: "MultipartFile"
+  },
+  {
+    cauHoi: "Giả sử biến items trong Model có kiểu là Map<String, String>. Hãy điền vào chỗ trống biểu thức thích hợp\n\r<th:block th:each=\"item, state : ${items}\">\n\r    <input th:value=\"${item.key}\" th:id=\"_____\" type=\"radio\" name=\"r\">\n\r    <label th:text=\"${item.value}\" th:for=\"${item.key}\"></label>\n\r</th:block>",
+    dapAn: "${item.key}"
+  },
+  {
+    cauHoi: "Biểu thức ~{/frags :: dynamic(~{::#main})} được hiểu là gì?\n\r1. Chọn fragment dynamic khai báo trong frags.html và truyền thẻ main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html\n\r2. Chọn fragment dynamic khai báo trong frags.html và truyền fragment main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html",
+    dapAn: "1 sai, 2 sai"
+  },
+  {
+    cauHoi: "Hãy điền tên thực thể còn thiếu vào ô trống vào ô trống\n\r@Query(\"SELECT o FROM Category o\")\n\rList<____> findByX();",
+    dapAn: "Category"
+  },
+  {
+    cauHoi: "Trong REST, DELETE đại diện cho hoạt động nào?",
+    dapAn: "Cập nhật dữ liệu"
+  },
+  {
+    cauHoi: "Với RestTemplate API, HttpEntity<T> được sử dụng để làm nhiệm vụ gì?",
+    dapAn: "Đóng gói dữ liệu gửi đến REST API"
+  },
+  {
+    cauHoi: "Đối số thứ 2 (x) của phương thức RestTemplate.getForObject(url, x) có ý nghĩa gì?\n\r1. Quy định kiểu dữ liệu trả về\n\r2. Quy định kiểu dữ liệu gửi đi",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n\r1. Với SOAP, dữ liệu truyền thông cồng kềnh hơn REST\n\r2. Với SOAP, dữ liệu truyền thông nhẹ hơn REST",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Đâu là các phương thức tương tác với REST API trong AngularJS?",
+    dapAn: [
+      "$http.delete(url).then(response => {}).catch(error => {}))",
+      "$http.get(url).then(response => {}).catch(error => {})",
+      "$http.post(url, data).then(response => {}).catch(error => {}))",
+      "$http.put(url, data).then(response => {}).catch(error => {}))"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền tên thực thể còn thiếu vào ô trống vào ô trống\n\r@Query(\"SELECT o FROM ___ o\")\n\rList<Product> findByX();",
+    dapAn: "Product"
+  },
+  {
+    cauHoi: "Khi thực hiện GET, Firebase REST API sẽ trả về dữ liệu gì?",
+    dapAn: "Đối tượng JSON"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống của đoạn mã Java sau đây để có thể thực hiện tương tác với REST API và nhận kết quả JSON\n\rURL url = new URL(\"...\");\n\rHttpURLConnection conn = (HttpURLConnection) url.openConnection();\n\rconn.setRequestProperty(\"Accept\", \"_____\");\n\rconn.setRequestMethod(\"_____\");",
+    dapAn: [
+      "application/json, DELETE",
+      "application/json, GET",
+      "application/json, POST",
+      "application/json, PUT"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào các chỗ trống để tạo thành câu lệnh đúng cú pháp trong AngularJS.\n\r$http._____(url, data)._____(response => {})._____(error => {}))",
+    dapAn: [
+      "post/then/catch",
+      "put/then/catch"
+    ]
+  },
+  {
+    cauHoi: "Đâu là khai báo phương thức truy vấn đùng cú pháp DSL?",
+    dapAn: [
+      "List<Product> findAllByNameLike(String name, Sort sort);",
+      "List<Product> findByNameLike(String name, Sort sort);"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện phương thức truy vấn có sắp xếp\n\r@Query(\"SELECT o FROM Product o WHERE o.name LIKE ?2\")\n\rList<Product> findItems(_____, _____);\n\r1. Sort sort, String keywords\n\r2. String keywords, Sort sort",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để thực hiện tổng hợp số lượng sản phẩm từng loại\n\r@Query(\"SELECT o.category, count(o) FROM Product o GROUP BY o.category\")\n\rList<_____> getReport();",
+    dapAn: "Object[]"
+  },
+  {
+    cauHoi: "Spring.jpa.hibernate.ddl-auto=create\n\rKhai báo trên có ý nghĩa gì?",
+    dapAn: "Xóa các bảng hiện có và tạo lại dựa trên các entity class"
+  },
+  {
+    cauHoi: "Với Spring Data JPA khi khai báo trong entity class là @Column(name=\"FirstName\") sẽ ánh xạ với cột có tên như thế nào?\n\r1. FirstName\n\r2. First_Name",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Trong AngularJS, đâu là lệnh thiết lập header Authorization chung cho mọi request?",
+    dapAn: "$httpProvider.defaults.headers.common['Authorization'] = \"Basic <token>\""
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n\r1. User.password(\"B\").withUsername(\"A\").roles(\"C\").build();\n\r2. User.withUsername(\"A\").roles(\"C\").password(\"B\").build();",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Lệnh nào sau đây tạo đối tượng UserDetails có username là \"A\", password là \"B\" và vai trò là \"C\"?\n\r1. User.withUsername(\"A\").password(\"B\").roles(\"C\").build();\n\r2. User.withUsername(\"A\").password(\"B\").authorities(\"C\").build();",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về Spring Security\n\r1. Spring Security là một framework, cung cấp các quy chuẩn trong việc thực hiện phòng vệ ứng dụng web\n\r2. Đơn giản trong Validation (XSS), CORS, CSRF",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là url không cần khai báo xử lý trong controller?\n\rhttp.formLogin()\n\r .loginPage(\"/security/login/form\")  \n\r .loginProcessingUrl(\"/security/login\")\n\r .defaultSuccessUrl(\"/security/login/success\", false)\n\r .failureUrl(\"/security/login/error\")",
+    dapAn: "/security/login"
+  },
+  {
+    cauHoi: "Đâu là khai báo phương thức truy vấn đùng cú pháp DSL?",
+    dapAn: [
+      "Page<Product> findAllByNameLike(String name, Pageable pageable);",
+      "Page<Product> findByNameLike(String name, Pageable pageable);"
+    ]
+  },
+  {
+    cauHoi: "Đâu là sự thể hiện của trang web được bảo mật?\n\r1. Trang web trước và sau khi đăng nhập có thể khác nhau\n\r2. Không thể thực hiện một số hành vi nếu chưa đăng nhập",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, hãy điền vào chỗ trống tên phương thức phân quyền không cần đăng nhập cũng được phép truy xuất\n\rhttp.authorizeRequests().antMatchers(\"/**\")._____",
+    dapAn: "permitAll()"
+  },
+  {
+    cauHoi: "Với Thymeleaf Extras Spring Security, đâu là các thẻ sử dụng security thích hợp?",
+    dapAn: [
+      "<div sec:authentication=\"\"></div>",
+      "<div sec:authorize=\"\"></div>"
+    ]
+  },
+  {
+    cauHoi: "Với oauth là OAuth2AuthenticationToken, đâu là phương thức để lấy tên của tài khoản?",
+    dapAn: "oauth.getPrincipal().getAttribute(\"fullname\")"
+  },
+  {
+    cauHoi: "Spring Security framework cho phép thực hiện\n\r1. Đăng nhập với user facebook\n\r2. Đăng nhập với user google",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là khai báo các thư viện cần thiết trong Spring Boot để có thể đăng nhập từ mạng xã hội?",
+    dapAn: [
+      "<dependency>\n\r <groupId>org.springframework.boot</groupId>\n\r <artifactId>spring-boot-starter-oauth2-client</artifactId>\n\r</dependency>",
+      "<dependency>\n\r <groupId>org.springframework.boot</groupId>\n\r <artifactId>spring-boot-starter-security</artifactId>\n\r</dependency>"
+    ]
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, hãy điền vào chỗ trống để chuyển điều khiển đến URL xử lý lỗi truy cập không hợp lệ\n\rhttp._____()._____(URL);",
+    dapAn: "exceptionHandling/accessDeniedPage"
+  },
+  {
+    cauHoi: "Trong bảo mật, CSRF (Cross-Site Request Forgery) là kỹ thuật dùng để ngăn chặn?",
+    dapAn: "Ngăn chặn các request giả lập"
+  },
+  {
+    cauHoi: "Trong HttpServletRequest, phương thức nào cho phép lấy username của người đăng nhập?",
+    dapAn: "getRemoteUser()"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là phương thức của http.rememberMe() giúp tùy biến tên tham số ghi nhớ tài khoản của form đăng nhập?",
+    dapAn: "rememberMeParameter()"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện câu lệnh JPQL\n\r@Query(\"SELECT o FROM Product o WHERE o.category.id=_____\")\n\rList<Product> findByCategoryId(@Param(\"id\") String id);",
+    dapAn: ":id"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống hiển thị giá trị của biến x trong Model\n\r<b th:text=\"_____\"></b?",
+    dapAn: "${x}"
+  },
+  {
+    cauHoi: "Đâu là annotation được sử dụng để chú thích dữ liệu JSON được trả về từ REST API?",
+    dapAn: "@ResponseBody"
+  },
+  {
+    cauHoi: "Giả sử có cấu hình interceptor xử lý thay đổi ngôn ngữ như sau\n\r@Override\n\rpublic void addInterceptors(InterceptorRegistry registry) {\n\r LocaleChangeInterceptor locale = new LocaleChangeInterceptor();\n\r locale.setParamName(\"lang\");\n\r registry.addInterceptor(locale).addPathPatterns(\"/language/change\");\n\r}\n\rHãy lựa chọn liên kết làm thay đổi ngôn ngữ",
+    dapAn: [
+      "<a href=\"/language/change?lang=en\">",
+      "<a href=\"/language/change?lang=vi\">"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để đoạn mã tính tổng căn bậc 2 các số chia hết cho 3\n\rStream<Integer> s = Stream.of(1, 9, 4, 7, 5, 2);\n\r  double x = s.filter(n -> n % 3 == 0)._____.sum();",
+    dapAn: [
+      "mapToDouble(Math::sqrt)",
+      "mapToDouble(n -> Math.sqrt(n))"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các key được sử dụng để khai báo thông tin đã đăng ký với google developer trong application.properties?",
+    dapAn: [
+      "spring.security.oauth2.client.registration.google.client-id=<app-id>",
+      "spring.security.oauth2.client.registration.google.client-secret=<secret-code>"
+    ]
+  },
+  {
+    cauHoi: "Với Thymeleaf Extras Spring Security, đâu là các thẻ sử dụng security thích hợp?",
+    dapAn: [
+      "<div sec:authorize=\"hasAnyRole('ADMIN')\"></div>",
+      "<div sec:authorize=\"isAuthenticated()\"></div>"
+    ]
+  },
+  {
+    cauHoi: "Với http là HttpSecurity, đâu là những URL đã được bảo vệ với lệnh sau\n\rhttp.authorizeRequests().antMatchers(\"/a/**\").authenticated()",
+    dapAn: [
+      "/a",
+      "/a/b",
+      "/a/b/c",
+      "/a/b/c/d"
+    ]
+  },
+  {
+    cauHoi: "Hãy cho biết kết quả của biểu thức sau:\n\rStream.of(1, 9, 3, 7, 6, 2).filter(n -> n % 3 == 0).reduce(0, (p, c) -> p < c ? c : p)",
+    dapAn: "9"
+  },
+  {
+    cauHoi: "Với Spring Data JPA khi khai báo với entity class là @Table(name=\"UserRoles\") sẽ ánh xạ với bảng có tên như thế nào?\n\r1. UserRoles\n\r2. User_Roles",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Cách nào sau đây cung cấp UserDetailsService cho auth (AuthenticationManagerBuilder)?\n\r1. auth.userDetailsService(new UserDetailsService() {\n\r @Override\n\r public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {\n\r  return null;\n\r }\n\r});\n\r2. auth.userDetailsService( username -> {\n\r  return null;\n\r});",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Cho cấu hình nạp file tài nguyên như sau:\n\r@Bean(\"messageSource\")\n\rpublic MessageSource getMessageSource() {\n\r ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();\n\r ms.setBasenames(\"classpath:i18n/messages\");\n\r ms.setDefaultEncoding(\"utf-8\");\n\r return ms;\n\r}\n\rHỏi file messages.properties đặt ở thư mục nào?",
+    dapAn: "src/main/resources/i18n"
+  },
+  {
+    cauHoi: "Với http là HttpSecurity và bạn có cấu hình đăng nhập và đăng xuất như sau:\n\rhttp.formLogin().loginPage(\"url1\")\n\rThì\n\r1. Bạn cần viết phương thức ánh xạ với các url1  trong controller để chuyển đến giao diện đăng nhập\n\r2. Không cần viết mã trong controller, hệ thống sẽ tự nhận biết form đăng nhập",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Đâu là annotation được sử dụng để ánh xạ các hoạt động của REST API với các phương thức của RestController?",
+    dapAn: "@PostMapping"
+  },
+  {
+    cauHoi: "Giả sử trong cấu hình java có khai báo bean để nạp các file tài nguyên đa ngôn ngữ như sau\n\r@Bean(\"messageSource\")\n\rpublic MessageSource getMessageSource() {\n\r ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();\n\r ms.setBasenames(\"classpath:i18n/layout\", \"classpath:i18n/home\");\n\r ms.setDefaultEncoding(\"utf-8\");\n\r return ms;\n\r}\n\rHãy cho biết các file tài nguyên đa ngôn ngữ đặt ở thư mục nào của dự án?",
+    dapAn: "src/main/resources/i18n"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n\r1. UserDetails là interface mô tả mô hình dữ liệu của người đăng nhập\n\r2. UserDetailsService là interface cung cấp phương thức giúp tải dữ liệu người sử dụng theo tên đăng nhập để xác thực",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện phương thức đếm sản phẩm theo loại\n\r@Query(\"SELECT _____(o) FROM Product o WHERE o.category.id=?1\")\n\rLong countByCategory(String id);",
+    dapAn: "count"
+  },
+  {
+    cauHoi: "Trong Thymeleaf, biểu thức nào cho phép truy xuất username của người đăng nhập",
+    dapAn: [
+      "${#request.getRemoteUser()}",
+      "${#request.remoteUser}",
+      "${#request.userPrincipal.getUsername()}",
+      "${#request.userPrincipal.username}"
+    ]
+  },
+  {
+    cauHoi: "Lệnh nào được sử dụng để truy vấn một thực thể theo khóa chính (@Id)\n\r1. T entity = dao.findById(id).get()\n\r2. T entity = dao.getOne(id);",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Page chứa kết quả truy vấn phân trang. Gọi phương thức nào để lấy danh sách (List<T>) các thực thể của trang truy vấn?",
+    dapAn: "getContent()"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về ưu điểm khi sử dụng Thymeleaf so với JSP\n\r1. Đơn giản, dễ quản lý, bảo trì\n\r2. Thu hẹp khoảng cách giữa designer và developer",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện phương thức truy vấn\n\r@Query(\"SELECT o.name, o.price FROM Product o\")\n\rList<_____> findProducts(Integer id);",
+    dapAn: "Object[]"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để tạo địa chỉ url đúng cú pháp (trong đó biến x có trong Model)\n\r<a th:href=\"_____\">",
+    dapAn: [
+      "@{'/url/'+${x}}",
+      "@{/url/{p}(p=${x})}",
+      "@{|/url/${x}|}"
+    ]
+  },
+  {
+    cauHoi: "Giả sử biến items trong Model có kiểu là Map<String, String>. Hãy chọn mã tạo ra các thẻ <option value=\"key\">value</option>",
+    dapAn: [
+      "<option th:each=\"item, state: ${items}\" th:value=\"${item.key}\" th:text=\"${item.value}\"/>",
+      "<option th:each=\"item: ${items}\" th:value=\"${item.key}\" th:text=\"${item.value}\"/>"
+    ]
+  },
+  {
+    cauHoi: "Cho Realtime Database của firebase như hình trên, Để cập nhật thông tin liên lạc của Nguyễn Thị Diễm Phương bạn cần?\n<img src=\"https://docs.google.com/uc?id=1KD4lSyUutTdRQXgxpPnae7L3A4y0VSQt\" style=\"max-width:95%\">",
+    dapAn: [
+      "Data: { email: \"?\", address: \"?\"}",
+      "Operation: PUT",
+      "URL: https://poly-java-6-d4e0b-default-rtdb.firebaseio.com/users/PS09013/contact.json"
+    ]
+  },
+  {
+    cauHoi: "Chọn các đoạn mã lệnh đúng",
+    dapAn: [
+      "ActionListener listener = e -> {};",
+      "ActionListener listener = new ActionListener() {\n\r @Override\n\r public void actionPerformed(ActionEvent e) {}\n\r};",
+      "Runnable run = () -> {};",
+      "Runnable run = new Runnable() {\n\r @Override\n\r public void run() {}\n\r};"
+    ]
+  },
+  {
+    cauHoi: "Hãy chọn lệnh đúng duyệt Map sau\nMap < String, Double >  map = new HashMap <  > ();",
+    dapAn: "map.forEach((k, v) - >  System.out.printf(\"%s=%.2f\", k, v));"
+  },
+  {
+    cauHoi: "Đâu là phương thức trung gian trong Stream API?",
+    dapAn: "peek()"
+  },
+  {
+    cauHoi: "Đâu là phương thức kết thúc trong Stream API?",
+    dapAn: "forEach()"
+  },
+  {
+    cauHoi: "Đâu là phương thức trung gian trong Stream API?",
+    dapAn: "mapToDouble()"
+  },
+  {
+    cauHoi: "Đâu là phương thức kết thúc trong Stream API?",
+    dapAn: [
+      "count()",
+      "max()",
+      "min()"
+    ]
+  },
+  {
+    cauHoi: "Đâu là phương thức kết thúc trong Stream API?",
+    dapAn: [
+      "allMatch()",
+      "anyMatch()",
+      "average()"
+    ]
+  },
+  {
+    cauHoi: "Đâu là phương thức trung gian trong Stream API?",
+    dapAn: [
+      "distinct()",
+      "limit()",
+      "mapToLong()"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các toán tử so sánh trong Thymeleaf?",
+    dapAn: [
+      "!=",
+      "==",
+      "eq",
+      "ne"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các thuộc tính do Thymeleaf định nghĩa mới mà không dựa vào các thuộc tính của HTML?",
+    dapAn: [
+      "th:case",
+      "th:switch",
+      "th:unless"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các thuộc tính do Thymeleaf định nghĩa mới dựa vào thuộc tính có sẵn của HTML?",
+    dapAn: "th:src"
+  },
+  {
+    cauHoi: "Đâu là các thuộc tính do Thymeleaf định nghĩa mới dựa vào thuộc tính có sẵn của HTML?",
+    dapAn: "th:href"
+  },
+  {
+    cauHoi: "Đâu là các thuộc tính do Thymeleaf định nghĩa mới mà không dựa vào các thuộc tính của HTML?",
+    dapAn: [
+      "th:each",
+      "th:if",
+      "th:switch"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các toán tử so sánh trong Thymeleaf?",
+    dapAn: [
+      "<=",
+      ">=",
+      "ge",
+      "le"
+    ]
+  },
+  {
+    cauHoi: "Hãy cho biết kết quả của biểu thức sau:\n\rStream.of(1, 9, 3, 7, 6, 2).filter(n -> n % 3 == 0).reduce(0, (p, c) -> p + c)",
+    dapAn: "18"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trong biểu thức thích hợp để hiển thị lỗi của  thuộc tính p của bean b trong Model\n\r<form th:action=\"@{/save}\">\n\r    <input th:errors=\"_____\">\n\r</form>",
+    dapAn: "${b.p}"
+  },
+  {
+    cauHoi: "Mục đích của web service là gì?\n\r1. Xây dựng các operation trên nền internet chỉ để phục vụ cho các ứng dụng web\n\r2. Xây dựng các operation trên nền internet để phục vụ cho mọi thể loại ứng dụng",
+    dapAn: "1 sai, 2 đúng"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống của đoạn mã Java sau đây để có thể thực hiện cập nhật dữ liệu với REST API và nhận kết quả JSON\n\rURL url = new URL(\"...\");\n\rHttpURLConnection conn = (HttpURLConnection) url.openConnection();\n\rconn.setRequestProperty(\"Accept\", \"_____\");\n\rconn.setRequestMethod(\"_____\");",
+    dapAn: "application/json, PUT"
+  },
+  {
+    cauHoi: "Biểu thức ~{/frags :: dynamic(~{::main})} được hiểu là gì?\n\r1. Chọn fragment dynamic khai báo trong frags.html và truyền thẻ main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html\n\r2. Chọn fragment dynamic khai báo trong frags.html và truyền fragment main ở trang web hiện tại cho tham số của fragment dynamic trong frags.html",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Với conn là đối tượng HttpURLConnection, hãy điền vào chỗ trống tên các phương thức để thực hiện việc đọc dữ liệu trả về từ REST API?\n\rint responseCode = conn._____;\n\rif (responseCode == 200) {\n\r    return mapper.readTree(conn._____);\n\r}",
+    dapAn: "getResponseCode()/getInputStream()"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống để hoàn thiện phương thức truy vấn\n\r@Query(\"SELECT o FROM Product o WHERE o.category.id=:cid\")\n\rList<Product> findByCategoryId(_____ String id);",
+    dapAn: "@Param(\"cid\")"
+  },
+  {
+    cauHoi: "Để truy xuất thông tin của người đăng nhập, trong Thymeleaf bạn có thể sử dụng đối tượng tiện ích nào?\n\r1. #request\n\r2. #authentication",
+    dapAn: "1 đúng, 2 đúng"
+  },
+  {
+    cauHoi: "Hãy điền vào các chỗ trống để hoàn thiện phương thức truy vấn sản phẩm\n\r@Query(value = \"SELECT * FROM _____ WHERE Name LIKE ?1\", nativeQuery = true)\n\rList<_____> findByKeyword(String keyword);",
+    dapAn: "Products, Product"
+  },
+  {
+    cauHoi: "Hãy điền vào các chỗ trống để tạo thành câu lệnh đúng cú pháp trong AngularJS.\n\r$http._____(url)._____(response => {})._____(error => {}))",
+    dapAn: [
+      "delete/then/catch",
+      "get/then/catch"
+    ]
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống kiểu kết quả thu được của đoạn mã sau:\n\rStream<Integer> s = Stream.of(1, 9, 4, 7, 5, 2);\n\r_____ list = s.filter(n -> n % 3 == 0)\n\r  .map(n -> String.format(\"%.2f\", Math.sqrt(n)))\n\r  .collect(Collectors.toList());",
+    dapAn: "List<String>"
+  },
+  {
+    cauHoi: "Trong RestTemplate phương thức nào của HttpHeaders giúp thiết lập header Authorization cho request?",
+    dapAn: "add(\"Authorization\", \"Basic <token>\")"
+  },
+  {
+    cauHoi: "Cho Realtime Database của firebase như hình trên, Để thêm mới một user bạn cần thực hiện POST đến URL nào?\n<img src=\"https://docs.google.com/uc?id=1KD4lSyUutTdRQXgxpPnae7L3A4y0VSQt\" style=\"max-width:95%\">",
+    dapAn: "URL: https://poly-java-6-d4e0b-default-rtdb.firebaseio.com/users.json"
+  },
+  {
+    cauHoi: "Hãy viết phương thức DSL tương đương với truy vấn sau:\n\r@Query(“SELECT p FROM Product p WHERE p.price<=?1 OR p.name LIKE ?2”)",
+    dapAn: "findByPriceLessThanEqualOrNameLike(double value, String name)"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu về vị trí của đối số tích lũy lỗi:\n\r1. Đối số BindingResult hoặc Errors bắt buộc phải đặt ngay sau bean được kiểm lỗi\n\r2. Đối số BindingResult hoặc Errors không bắt buộc phải đặt ngay sau bean được kiểm lỗi",
+    dapAn: "1 đúng, 2 sai"
+  },
+  {
+    cauHoi: "Cho 2 phát biểu sau:\n\r1. User là interface mô tả mô hình dữ liệu của người đăng nhập\n\r2. UserDetails là class implements UserDetails đồng thời bổ sung các hàm tiện ích giúp bạn dễ dàng tạo ra đối tượng UserDetails",
+    dapAn: "1 sai, 2 sai"
+  },
+  {
+    cauHoi: "Đâu là các thuộc tính do Thymeleaf định nghĩa mới mà không dựa vào các thuộc tính của HTML?",
+    dapAn: [
+      "th:block",
+      "th:insert",
+      "th:replace"
+    ]
+  },
+  {
+    cauHoi: "Hãy cho biết kết quả của biểu thức sau:\n\rStream.of(1, 9, 3, 7, 6, 2).filter(n -> n % 3 == 0).reduce(10, (p, c) -> p > c ? c : p)",
+    dapAn: "3"
+  },
+  {
+    cauHoi: "Hãy điền vào chỗ trống biểu thức thích hợp để buộc thuộc tính p của bean b trong Model\n\r<form th:action=\"@{/save}\" th:object=\"${b}\">\n\r    <input th:field=\"_____\">\n\r</form>",
+    dapAn: [
+      "${b.p}",
+      "*{p}"
+    ]
+  },
+  {
+    cauHoi: "Đâu là các thuộc tính do Thymeleaf định nghĩa mới dựa vào thuộc tính có sẵn của HTML?",
+    dapAn: "th:title"
+  }
+
+
 ];
 const search = () => {
   let node1 = document.getElementById("myInput").value;
